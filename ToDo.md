@@ -25,3 +25,6 @@ ValtoLeptet nem ok -> kb ugyanaz a baj mint az AlagutSzajLeptetnel
 KocsiLeszallit ok
 Kirajzol ok
 initTerepasztal -> szekvenciát már hozzáadtam a uml fájlba de még nem csináltam meg
+
+
+a leszállítást nem a terepasztal csinálja hanem az állomás, úgyhogy az el volt írva, az ütközést így a mozdonyok kezelik
