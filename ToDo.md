@@ -6,26 +6,23 @@
 
 Class diagram:
 terepasztal új változó: utkozes: Boolean -> ha terepasztalon ütközés történt akkor true // doksi nincs updatelve 
-mozdony új függvény: utkozesVizsgal(): Boolean -> végig nézi, hogy másik vonattal ütközött-e a vonat, true ha igen // doksi nincs updatelve
-			(szerintem utkozik() fv-re lehet nincs szükség)
 
 Szekvenciák:
 Start ok
 init ok kép updatelve // doskiban lecserélve
 input ok
 Jatszik ok kép updatelve // doksiban lecserélve
-VonatMozgat ok
-UtkozesVizsgalat nem ok -> át kell alakítani
-ValtoClick ok
+VonatMozgat léptet fv szerelvényt kapjon doksiban
+UtkozesVizsgalat nem ok -> át kell alakítani -> kiesett
+ValtoClick módosítva -> elég egy paint munka SetAktualisAg -> valt
 AlagutSzajClick ok
-ValtoValt ok
-AlagutSzajLeptet nem ok -> lsd. feljebb
-AllomasLeptet módosítottam de amm ok
+ValtoValt módosítva
+AlagutSzajLeptet ok // módosítva
+AllomasLeptet ok // módosítva
 ValtoLeptet nem ok -> kb ugyanaz a baj mint az AlagutSzajLeptetnel
-KocsiLeszallit ok
+KocsiLeszallit ok // módosítva
 Kirajzol ok
 initTerepasztal -> szekvenciát már hozzáadtam a uml fájlba de még nem csináltam meg
 
-
-a leszállítást nem a terepasztal csinálja hanem az állomás, úgyhogy az el volt írva, az ütközést így a mozdonyok kezelik
+leptet fvek átírása -> úgy vettük, hogy mindig előtte hívódik meg, de nem
 beSin szekvenciát kéne csinálni
