@@ -28,3 +28,4 @@ initTerepasztal -> szekvenciát már hozzáadtam a uml fájlba de még nem csin�
 
 
 a leszállítást nem a terepasztal csinálja hanem az állomás, úgyhogy az el volt írva, az ütközést így a mozdonyok kezelik
+beSin szekvenciát kéne csinálni
