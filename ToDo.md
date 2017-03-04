@@ -30,3 +30,5 @@ beSin szekvenciát kéne csinálni
 Vonat osztály felvétele a doksiba (TODO Jana)
 Added kocsiMozgat szekvencia (Jana)
 TODO: create vonalak
+TODO: Class Diagram konzisztens legyen
+
