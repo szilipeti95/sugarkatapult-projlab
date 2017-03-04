@@ -28,3 +28,5 @@ leptet fvek átírása -> úgy vettük, hogy mindig előtte hívódik meg, de ne
 beSin szekvenciát kéne csinálni
 
 Vonat osztály felvétele a doksiba (TODO Jana)
+Added kocsiMozgat szekvencia (Jana)
+TODO: create vonalak
