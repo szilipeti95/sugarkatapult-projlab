@@ -4266,7 +4266,7 @@
 <XPD:REF name="Owner">t0zrINHOSUaDInQqJCXqmwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Attributes[1]" type="UMLAttribute" guid="Hiy2a4D8KE2Dd8XlZ8nC+gAA">
-<XPD:ATTR name="Name" type="string">SzajB</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">szajB</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:ATTR name="TypeExpression" type="string">AlagutSzaj</XPD:ATTR>
 <XPD:REF name="Owner">t0zrINHOSUaDInQqJCXqmwAA</XPD:REF>

@@ -27,8 +27,8 @@ initTerepasztal -> szekvenciát már hozzáadtam a uml fájlba de még nem csin�
 leptet fvek átírása -> úgy vettük, hogy mindig előtte hívódik meg, de nem
 beSin szekvenciát kéne csinálni
 
-Vonat osztály felvétele a doksiba (TODO Jana)
+Alagut osztály felvétele a doksiba (TODO Jana)
 Added kocsiMozgat szekvencia (Jana)
-TODO: create vonalak
+
 TODO: Class Diagram konzisztens legyen
 
