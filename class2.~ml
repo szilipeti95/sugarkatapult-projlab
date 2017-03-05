@@ -6986,7 +6986,7 @@
 <XPD:REF name="Context">q9+DTgFDTk2eYEK+xqXm8QAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLSequenceDiagram" guid="Ylmkgi/eQE2cZcSQ2VpotQAA">
-<XPD:ATTR name="Name" type="string">VonatLeszallit</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">KocsiLeszallit</XPD:ATTR>
 <XPD:ATTR name="MessageSignature" type="UMLMessageSignatureKind">mskNameAndType</XPD:ATTR>
 <XPD:REF name="DiagramOwner">ow6i1uIbM0K3TiBP7QtnnQAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLSequenceDiagramView" guid="WGpDEbeM6kmxOnAw9wrDxwAA">
