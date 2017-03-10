@@ -1952,7 +1952,7 @@
 <XPD:ATTR name="Height" type="integer">168</XPD:ATTR>
 <XPD:REF name="Model">P54xmTHmIUGE8U8WCkpCOgAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="LabelView" guid="pP63TYvj+ECWgEdH5OSzXwAA">
-<XPD:ATTR name="Text" type="string">Removealagut</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">RemoveAlagut</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="FrameTypeLabel" type="LabelView" guid="NOvc2rzZfEewfw1ylSsJyAAA">
 <XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
@@ -2307,7 +2307,7 @@
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedFrames" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedFrames[0]" type="UMLFrame" guid="P54xmTHmIUGE8U8WCkpCOgAA">
-<XPD:ATTR name="Name" type="string">Removealagut</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">RemoveAlagut</XPD:ATTR>
 <XPD:ATTR name="FrameKind" type="string">cd</XPD:ATTR>
 <XPD:REF name="InteractionInstanceSet">1XAy58dorkixKzpepXI2/AAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">1</XPD:ATTR>
