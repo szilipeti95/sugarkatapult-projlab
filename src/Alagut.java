@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Alagut {
 	private AlagutSzaj szajA;
 	private AlagutSzaj szajB;
@@ -11,23 +13,30 @@ public class Alagut {
 	//A paraméterben kapott AlagutSzaj-at hozzáadja az Alaguthoz
 	public void AddAlagutSzaj(AlagutSzaj a) {
 		System.out.println("Alagut.AddAlagutSzaj()");
-		if(allapot == AlagutAllapot.NincsAlagutSzaj){
-			szajA = a;
-		}
-		else{
+		
+		System.out.print("Hany alagutszaj van? (0/1): ");
+		Scanner reader = new Scanner(System.in);
+		String valasz = reader.next();
+		switch(valasz){
+		case "0": szajA = a; break;
+		case "1": 
 			if(szajA == null){
 				szajA = a;
 			}
 			else{
 				szajB = a;
 			}
-			//TODO
+			SinElem s = new Sin();
+			Terepasztal.getInstance().AddSinElem(s);
+			break;
 		}
+		reader.close();
 	}
 	
 	//A paraméterben kapott AlagutSzaj-at eltávolítja az Alagutból
 	public void RemoveAlagutSzaj(AlagutSzaj a) {
 		System.out.println("Alagut.RemoveAlagutSzaj()");
+		
 		if(szajA == a){
 			szajA = null;
 		}
@@ -35,7 +44,7 @@ public class Alagut {
 			szajB = null;
 		}
 		if(allapot == AlagutAllapot.VanAlagut){
-			//TODO
+			Terepasztal.getInstance().RemoveSinElem(a.getKovSinElem(elozo));
 		}
 	}
 }

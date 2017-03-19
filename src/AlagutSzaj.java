@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class AlagutSzaj extends SinElem {
 	private Boolean megepitve;
 	private SinElem alagutSin;
@@ -17,13 +19,15 @@ public class AlagutSzaj extends SinElem {
 	//
 	public void leptet(Mozdony m, SinElem s) {
 		System.out.println("AlagutSzaj.leptet()");
-		if(megepitve){
-			m.alagutValt();
+		
+		System.out.print("Meg van epitve az alagut? (i/n): ");
+		Scanner reader = new Scanner(System.in);
+		String valasz = reader.next();
+		switch (valasz){
+		case "i": m.alagutValt(); break;
+		case "n": m.utkozik(); Jatek.getInstance().veszt();
 		}
-		else{
-			m.utkozik();
-			Jatek.getInstance().veszt();
-		}
+		reader.close();
 	}
 	
 	//Visszaadja, hogy van-e rajta ütközés
