@@ -21,7 +21,6 @@ public class Allomas extends SinElem {
 	@Override //sinEleme
 	public void leptet(Mozdony m, SinElem s) {
 		System.out.println("Allomas.leptet()");
-		m.leszallit(this);//?
         szerelvenyek++;//SinEleme
 	}
 	
@@ -38,13 +37,13 @@ public class Allomas extends SinElem {
 		case "piros":
 			szin=Szin.PIROS;
 			break;
-		case "k�k":
+		case "kek":
 			szin=Szin.KEK;
 			break;
-		case "z�ld":
+		case "zold":
 			szin=Szin.ZOLD;
 			break;
-		case "s�rga":
+		case "sarga":
 			szin=Szin.SARGA;
 			break;
 		default://user nem jo szint adott meg

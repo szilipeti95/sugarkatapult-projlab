@@ -5,7 +5,6 @@ public class BeSin extends SinElem {//vonatok belelepesi pontja
 	@Override //sinEleme
 	public void leptet(Mozdony m, SinElem s) {
 		System.out.println("BeSin.leptet()");
-		//kell meg vmi?
         szerelvenyek++;//SinEleme
 	}
 	
@@ -26,13 +25,13 @@ public class BeSin extends SinElem {//vonatok belelepesi pontja
 		}finally{}
 		reader.close();
 		
-		return szerelvenyek > 0;//el�g egy szerelv�ny is, hogy utkozzon
+		return szerelvenyek > 0;//el�g egy szerelveny is, hogy utkozzon
 	}
 
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {//itt az elozo elvileg null
 		System.out.println("BeSin.getKovSinElem()");
-		return sinA;//ez jo, mert nincs sinB
+		return sinA;//ez jo, mert nincs sinBje a BeSinnek
 	}
 }
 
