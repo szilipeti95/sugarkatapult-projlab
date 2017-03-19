@@ -8,6 +8,7 @@ public class Terepasztal {
 	private ArrayList<BeSin> besinek;
 	private Alagut alagut;
 
+	//Terepasztal alapértékeit beállítja, listákat létrehozza
 	private Terepasztal(){
         System.out.println("Terepasztal.Constructor()");
         teliVonatSzam = 0;
@@ -16,7 +17,7 @@ public class Terepasztal {
         besinek = new ArrayList<>();
 
 	}
-
+    //Singleton osztály, lekérdezi a Terepasztalt
 	public static Terepasztal getInstance(){
 	    System.out.println("Terepasztal.getInstance()");
 		if(instance == null){
@@ -25,6 +26,8 @@ public class Terepasztal {
 		return instance;
 	}
 
+	//Timer tickre ez a függvény hívódik meg.
+    //Mozgatja a vonatokat, és vizsgálja az ütközéseket
 	public void tick() {
         System.out.println("Terepasztal.tick()");
 	    for(Mozdony m: mozdonyok){
@@ -34,7 +37,8 @@ public class Terepasztal {
             m.utkozesVizsgal();
         }
 	}
-	
+
+	//Inicializálja a Terepasztal elemeit (mozdonyok, sinek, besinek)
 	public void init(String fileName) {
 		System.out.println("Terepasztal.init()");
 		mozdonyok.add(new Mozdony());
@@ -43,7 +47,9 @@ public class Terepasztal {
 		sinelemek.add(besin);
 		besinek.add(besin);
 	}
-	
+
+	//Kattintásra hívódik meg a függvény
+    //Meghívja annak a SinElemnek az onClickjét amire kattintott a játékos
 	public void onInput(int x, int y) {
 	    System.out.println("Terepasztal.onInput()");
         for(SinElem s: sinelemek){
@@ -59,32 +65,38 @@ public class Terepasztal {
 	    //TODO: implement
         //Amugy ez mi?
 	}
-	
+	//Mozdony hozzáadás a listához
 	public void AddMozdony(Mozdony m) {
 	    System.out.println("Terepasztal.AddMozdony()");
 	    mozdonyok.add(m);
 	}
-	
+	//BeSin hozzáadás a listához
 	public void AddBeSin(BeSin b) {
         System.out.println("Terepasztal.AddBeSin()");
         besinek.add(b);
     }
-	
+	//SinElem hozzáadás a listához
 	public void AddSinElem(SinElem s) {
         System.out.println("Terepasztal.AddSinElem()");
         sinelemek.add(s);
 	}
-	
+	//SinElem törlése listából.
+    //Visszatérési érték boolean az alapján hogy sikerült-e vagy se.
 	public boolean RemoveSinElem(SinElem s) {
 	    System.out.println("Terepasztal.RemoveSinElem()");
 	    return sinelemek.remove(s);
 	}
-	
+
+	//Visszaadja a terepasztal alagútját
 	public Alagut getAlagut() {
 	    System.out.println("Terepasztal.getAlagut()");
 		return alagut;
 	}
-	
+
+	//teliVonatSzam számontartja hogy hány vonat van a terepasztalon
+    //aminek még van utasa.
+    //Ahogy egy kiürül meghívódik a függvény és csökkenti ezt a számot
+    //Ha ez a szám 0 a játéknak vége és a játékos nyert.
 	public void vonatKiurult() {
 	    teliVonatSzam--;
 	    System.out.println("Terepasztal.vonatKiurult()");
