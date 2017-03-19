@@ -8,7 +8,7 @@ public class Alagut {
 		return allapot;
 	}
 	
-	//A paramÈterben kapott AlagutSzaj-at hozz·adja az Alaguthoz
+	//A param√©terben kapott AlagutSzaj-at hozz√°adja az Alaguthoz
 	public void AddAlagutSzaj(AlagutSzaj a) {
 		System.out.println("Alagut.AddAlagutSzaj()");
 		if(allapot == AlagutAllapot.NincsAlagutSzaj){
@@ -25,7 +25,7 @@ public class Alagut {
 		}
 	}
 	
-	//A paramÈterben kapott AlagutSzaj-at elt·volÌtja az AlagutbÛl
+	//A param√©terben kapott AlagutSzaj-at elt√°vol√≠tja az Alagutb√≥l
 	public void RemoveAlagutSzaj(AlagutSzaj a) {
 		System.out.println("Alagut.RemoveAlagutSzaj()");
 		if(szajA == a){

@@ -1,11 +1,11 @@
 public class AlagutSzaj extends SinElem {
 	private Boolean megepitve;
-	private AlagutSin alagutSin;
+	private SinElem alagutSin;
 	
-	//Reagál arra, ha a felhasználó rákattint az alagutSzaj-ra
+	//ReagÃ¡l arra, ha a felhasznÃ¡lÃ³ rÃ¡kattint az alagutSzaj-ra
 	public void onInput() {
 		System.out.println("AlagutSzaj.onInput()");
-		Alagut a = Terepasztal.getAlagut();
+		Alagut a = Terepasztal.getInstance().getAlagut();
 		if(a.getAllapot() == AlagutAllapot.VanAlagut){
 			a.RemoveAlagutSzaj(this);
 		}
@@ -17,16 +17,23 @@ public class AlagutSzaj extends SinElem {
 	//
 	public void leptet(Mozdony m, SinElem s) {
 		System.out.println("AlagutSzaj.leptet()");
+		if(megepitve){
+			m.alagutValt();
+		}
+		else{
+			m.utkozik();
+			Jatek.getInstance().veszt();
+		}
 	}
 	
-	//Visszaadja, hogy van-e rajta ütközés
+	//Visszaadja, hogy van-e rajta Ã¼tkÃ¶zÃ©s
 	public Boolean getUtkozes() {
 		System.out.println("AlagutSzaj.getUtkozes()");
 		return false;
 	}
 
 	@Override
-	public SinElem getKovSinElem() {
+	public SinElem getKovSinElem(SinElem elozo) {
 		System.out.println("AlagutSzaj.getKovSinElem()");
 		return alagutSin;
 	}
