@@ -10,7 +10,6 @@ public class Terepasztal {
 
 	//Terepasztal alapértékeit beállítja, listákat létrehozza
 	private Terepasztal(){
-        System.out.println("Terepasztal.Constructor()");
         teliVonatSzam = 0;
         mozdonyok = new ArrayList<>();
         sinelemek = new ArrayList<>();
@@ -19,7 +18,6 @@ public class Terepasztal {
 	}
     //Singleton osztály, lekérdezi a Terepasztalt
 	public static Terepasztal getInstance(){
-	    System.out.println("Terepasztal.getInstance()");
 		if(instance == null){
 			instance = new Terepasztal();
 		}

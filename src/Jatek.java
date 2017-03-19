@@ -4,12 +4,10 @@ public class Jatek {
 
 
 	private Jatek(){
-        System.out.println("Jatek.Constructor()");
     }
 
     //Singleton osztály, visszaadja a Jatekot
     public static Jatek getInstance(){
-        System.out.println("Jatek.getInstance()");
         if(instance == null){
             instance = new Jatek();
         }
