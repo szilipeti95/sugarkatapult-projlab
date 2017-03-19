@@ -41,6 +41,11 @@ public class Valto extends SinElem {
             
             
         }
+		
+	public void raLep(Kocsi k) {
+            System.out.println("Valto osztály: meghívott függvény - raLep() ");
+            szerelvenyek++;
+	}
         
 	public void leptet(Mozdony m, SinElem s) {
             if(sinA != s){
@@ -50,13 +55,18 @@ public class Valto extends SinElem {
 	
 	public Boolean getUtkozes() {
                  System.out.println("Valto osztály: meghívott függvény - getUtkozes()");
-		return getSzerelvenyek() > 1;
+		return szerelvenyek > 1;
 	}
 
 	@Override
-	public SinElem getKovSinElem() {
+	public SinElem getKovSinElem(SinElem elozo) {
 		// TODO Auto-generated method stub
                  System.out.println("Valto osztály: meghívott függvény - getKovSinElem()");
-		return aktivAg;
+		if(aktivAg == elozo){
+			return sinA;
+		}else{
+			return aktivAg;
+		}
+		
 	}
 }

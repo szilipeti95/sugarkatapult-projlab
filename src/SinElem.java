@@ -1,24 +1,25 @@
 public abstract class SinElem {
 	protected SinElem sinA;
-	private int x;
-	private int y;
-	private int szerelvenyek;
-        
+	protected int x;
+	protected int y;
+	protected int szerelvenyek;
+    protected boolean lathato;    
         
 	public void leptet(Mozdony m, SinElem s) {
            System.out.println("SinElem osztály: meghívott függvény - leptet() ");
             
 	}
 
-    public SinElem(SinElem kov, int xi, int yi){
+    public SinElem(SinElem kov, int xi, int yi, boolean lathat){
         sinA = kov;
         x = xi;
         y = yi;
         szerelvenyek = 0;
+		lathato = lathat;
     }
     
     public SinElem(){
-        this(null, 0,0);
+        this(null, 0,0, true);
     }
         
     public int getX() {
@@ -45,7 +46,7 @@ public abstract class SinElem {
             }
 	}
 	
-	public void raLep() {
+	public void raLep(Kocsi k) {
             System.out.println("SinElem osztály: meghívott függvény - raLep() ");
             szerelvenyek++;
 	}
@@ -59,5 +60,5 @@ public abstract class SinElem {
 		return szerelvenyek > 1;
 	}
 	
-	public abstract SinElem getKovSinElem();
+	public abstract SinElem getKovSinElem(SinElem elozo);
 }
