@@ -9,6 +9,7 @@ public class Terepasztal {
 	private Alagut alagut;
 
 	private Terepasztal(){
+        System.out.println("Terepasztal.Constructor()");
         teliVonatSzam = 0;
         mozdonyok = new ArrayList<>();
         sinelemek = new ArrayList<>();
@@ -16,30 +17,29 @@ public class Terepasztal {
 	}
 
 	public static Terepasztal getInstance(){
+	    System.out.println("Terepasztal.getInstance()");
 		if(instance == null){
-		    System.out.println("Terepasztal create");
 			instance = new Terepasztal();
 		}
 		return instance;
 	}
 
 	public void tick() {
+        System.out.println("Terepasztal.tick()");
 	    for(Mozdony m: mozdonyok){
-            System.out.println("MozdonyMozgat");
             m.mozog();
         }
         for(Mozdony m: mozdonyok){
-            System.out.println("Mozdony utkozesVizsgal");
             m.utkozesVizsgal();
         }
 	}
 	
 	public void init(String fileName) {
-        System.out.println("Terepasztal init/beolvas");
+        System.out.println("Terepasztal.init()");
 	}
 	
 	public void onInput(int x, int y) {
-	    System.out.println("SinElem kereses onInput");
+	    System.out.println("Terepasztal.onInput()");
         for(SinElem s: sinelemek){
             if(s.getX() == x && s.getY() == y){
                 System.out.println("SinElem talalt");
@@ -49,39 +49,39 @@ public class Terepasztal {
 	}
 	
 	public void AddAlagutSzaj() {
-	    System.out.println("AddAlagutSzaj");
+	    System.out.println("Terepasztal.AddAlagutSzaj()");
 	    //TODO: implement
         //Amugy ez mi?
 	}
 	
 	public void AddMozdony(Mozdony m) {
-	    System.out.println("AddMozdony");
+	    System.out.println("Terepasztal.AddMozdony()");
 	    mozdonyok.add(m);
 	}
 	
 	public void AddBeSin(BeSin b) {
-        System.out.println("AddBeSin");
+        System.out.println("Terepasztal.AddBeSin()");
         besinek.add(b);
     }
 	
 	public void AddSinElem(SinElem s) {
-        System.out.println("AddSinElem");
+        System.out.println("Terepasztal.AddSinElem()");
         sinelemek.add(s);
 	}
 	
 	public boolean RemoveSinElem(SinElem s) {
-	    System.out.println("RemoveSinElem");
+	    System.out.println("Terepasztal.RemoveSinElem()");
 	    return sinelemek.remove(s);
 	}
 	
 	public Alagut getAlagut() {
-	    System.out.println("getAlagut");
+	    System.out.println("Terepasztal.getAlagut()");
 		return alagut;
 	}
 	
 	public void vonatKiurult() {
 	    teliVonatSzam--;
-	    System.out.println("vonatKiurult");
+	    System.out.println("Terepasztal.vonatKiurult()");
 	    System.out.println("teli vonatok szama: " + teliVonatSzam);
 	    if(teliVonatSzam == 0) {
             Jatek.getInstance().nyer();
