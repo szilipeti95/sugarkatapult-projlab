@@ -8,7 +8,6 @@ public class AlagutSzaj extends SinElem {
 	public void onInput() {
 		System.out.println("AlagutSzaj.onInput()");
 		Alagut a = Terepasztal.getInstance().getAlagut();
-		//if(a.getAllapot() == AlagutAllapot.VanAlagut){
 		System.out.println("Meg van mar epitve ez az alagutSzaj? (igen/nem)");
         Scanner reader = new Scanner(System.in);
         String valasz = reader.next();
