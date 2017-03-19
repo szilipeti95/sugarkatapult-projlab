@@ -41,10 +41,10 @@ public class Terepasztal {
 	//Inicializálja a Terepasztal elemeit (mozdonyok, sinek, besinek)
 	public void init(String fileName) {
 		System.out.println("Terepasztal.init()");
-		mozdonyok.add(new Mozdony());
-		sinelemek.add(new Sin());
+		AddMozdony(new Mozdony());
+		AddSinElem(new Sin());
 		BeSin besin = new BeSin();
-		sinelemek.add(besin);
+		AddBeSin(besin);
 		besinek.add(besin);
 	}
 
@@ -115,6 +115,12 @@ public class Terepasztal {
 	    if(teliVonatSzam == 0) {
             Jatek.getInstance().nyer();
         }
+	}
+	
+	public void VonatBead() {
+		System.out.println("Terepasztal.VonatBead()");
+		
+		besinek.get(0).VonatBead();
 	}
 
 }

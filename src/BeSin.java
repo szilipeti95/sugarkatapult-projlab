@@ -8,6 +8,11 @@ public class BeSin extends SinElem {//vonatok belelepesi pontja
         szerelvenyek++;//SinEleme
 	}
 	
+	public void VonatBead() {
+		System.out.println("BeSin.VonatBead()");
+		
+		Terepasztal.getInstance().AddMozdony(new Mozdony());
+	}
 	public Boolean getUtkozes() {
 		System.out.println("BeSin.getUtkozes()");
 		

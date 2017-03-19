@@ -8,13 +8,16 @@ public class Timer {
 		Scanner reader = new Scanner(System.in);
 		boolean exit = false;
 		while (!exit) {
-			System.out.println("Valasszon az alabbi lehetosegek kozul:? (tick, input, exit)");
+			System.out.println("Valasszon az alabbi lehetosegek kozul:? (tick, input, exit, vonatbead)");
 			switch (reader.next()) {
 			case "tick":
 				Terepasztal.getInstance().tick();
 				break;
 			case "input":
 				Terepasztal.getInstance().onInput(0, 0);			
+				break;
+			case "vonatbead":
+				Terepasztal.getInstance().VonatBead();			
 				break;
 			case "exit":
 				exit = true;
