@@ -21,7 +21,7 @@ public class Valto extends SinElem {
 	public SinElem kovAg() {
             
                 System.out.println("Valto.kovAg()");
-		return new SinElem();
+		return new Sin();
 	}
 	
 	public void onInput() {
@@ -64,9 +64,9 @@ public class Valto extends SinElem {
                  System.out.println("Valto.getKovSinElem()");
 				 
 		if(aktivAg == elozo){
-			return new SinElem();
+			return new Sin();
 		}else{
-			return new SinElem();
+			return new Sin();
 		}
 		
 	}

@@ -20,9 +20,9 @@ public class Sin extends SinElem {
 		// TODO Auto-generated method stub
                 System.out.println("Sin.getKovSinElem() ");
 		if(sinA == elozo){
-			return new SinElem();
+			return new Sin();
 		}else{
-			return new SinElem();
+			return new Sin();
 		}
 		
 	}
