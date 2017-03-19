@@ -27,6 +27,7 @@ public class Alagut {
 				szajB = a;
 			}
 			SinElem s = new Sin();
+			//feleptitjuk az alagutat a sinekbol
 			System.out.print("Alagut -> ");
 			Terepasztal.getInstance().AddSinElem(s);
 			break;
@@ -47,6 +48,7 @@ public class Alagut {
 			System.out.println("Van alagut? (igen/nem)");
 			Scanner reader = new Scanner(System.in);
 			if(reader.next().equals("igen")) {
+				//Valamelyik alagutSzaj megsemmisult. Le kell bontani az alagutat.
 				System.out.print("Alagut -> ");
 				Terepasztal.getInstance().RemoveSinElem(null);
 			}
