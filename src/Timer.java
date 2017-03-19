@@ -9,7 +9,7 @@ public class Timer {
 		Scanner reader = new Scanner(System.in);
 		boolean exit = false;
 		while (!exit) {
-			System.out.println("Valasszon az alabbi lehetosegek kozul:? (tick, input, exit, vonatbead)");
+			System.out.println("Valasszon az alabbi lehetosegek kozul? (tick, input, exit, vonatbead)");
 			switch (reader.next()) {
 			case "tick":
 				System.out.print("Timer -> ");
