@@ -15,6 +15,7 @@ public class Allomas extends SinElem {
 	@Override //sinEleme
 	public void raLep(Kocsi k) {
         System.out.println("Allomas.raLep()");
+		System.out.print("Allomas -> ");
         k.leszallit(this);//szerelvenynek szol hogy allomasra ert
 	}
 	
@@ -54,37 +55,10 @@ public class Allomas extends SinElem {
 		return szin;
 	}
 	
-	public Boolean getUtkozes() {//van e tobb szerelveny ugyanitt
-		System.out.println("Allomas.getUtkozes()");
-		
-		return szerelvenyek > 1;
-	}
 
 	@Override //sinEleme
 	public SinElem getKovSinElem(SinElem elozo) {
 		System.out.println("Allomas.getKovSinElem()");
-		
-		
-		//skeleton dolgok
-		Scanner reader = new Scanner(System.in);
-		System.out.println("Honnan jon a vonat? (a/b): ");
-		String valasz = reader.next();
-		switch (valasz)
-		{//user alapjan megtudjuk, hogy honnan jon a vonat
-		case "a":
-		case "A":
-			elozo=sinA;
-			break;
-		case "b":
-		case "B":
-			elozo=sinB;
-			break;
-		default:
-			elozo=sinA;
-			System.out.println("nem jo. Akkor 'a' sin felol jon.");
-			break;
-		}
-		
 		
 		if(elozo==sinA)
 			return sinB;

@@ -12,12 +12,15 @@ public class Timer {
 			System.out.println("Valasszon az alabbi lehetosegek kozul:? (tick, input, exit, vonatbead)");
 			switch (reader.next()) {
 			case "tick":
+				System.out.print("Timer -> ");
 				Terepasztal.getInstance().tick();
 				break;
 			case "input":
+				System.out.print("Timer -> ");
 				Terepasztal.getInstance().onInput(0, 0);			
 				break;
 			case "vonatbead":
+				System.out.print("Timer -> ");
 				Terepasztal.getInstance().VonatBead();			
 				break;
 			case "exit":

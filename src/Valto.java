@@ -31,6 +31,7 @@ public class Valto extends SinElem {
 	public void onInput() {
                 
                 System.out.println("Valto.onInput()");
+				System.out.print("Valto -> ");
                 SinElem s = kovAg();
                 valt(s);
             
@@ -43,8 +44,10 @@ public class Valto extends SinElem {
            
            System.out.println("Foglalt a valto? (igen/nem)");
            Scanner reader = new Scanner(System.in);
-           if(reader.next().equals("nem")) 
+           if(reader.next().equals("nem")) {
+				System.out.print("Valto -> ");
    				setAktualisAg(kovAg());
+           }
         }
 		
         //Akkor hivodik meg, ha ralep egy kocsi 
@@ -59,14 +62,10 @@ public class Valto extends SinElem {
             //if(sinA != s){
 			 System.out.println("Kapcsolodo agon jon a vonat? (igen/nem)");
 	         Scanner reader = new Scanner(System.in);
-	         if(reader.next().equals("nem"))
+	         if(reader.next().equals("nem")) {
+				System.out.print("Valto -> ");
                 valt(s);
-	}
-	
-        //Visszater azzal, hogy utkozes volt-e, azaz tobb mint 1 szerelveny all itt
-	public Boolean getUtkozes() {
-                 System.out.println("Valto.getUtkozes()");
-		return szerelvenyek > 1;
+	         }
 	}
 
         //Visszater a kovetkezo sinelemmel, attol fuggoen, hogy honnan jon a vonat

@@ -18,8 +18,8 @@ public class Alagut {
 		Scanner reader = new Scanner(System.in);
 		String valasz = reader.next();
 		switch(valasz){
-		case "igen": szajA = a; break;
-		case "nem": 
+		case "nem": szajA = a; break;
+		case "igen": 
 			if(szajA == null){
 				szajA = a;
 			}
@@ -27,6 +27,7 @@ public class Alagut {
 				szajB = a;
 			}
 			SinElem s = new Sin();
+			System.out.print("Alagut -> ");
 			Terepasztal.getInstance().AddSinElem(s);
 			break;
 		}
@@ -46,7 +47,8 @@ public class Alagut {
 			System.out.println("Van alagut? (igen/nem)");
 			Scanner reader = new Scanner(System.in);
 			if(reader.next().equals("igen")) {
-				Terepasztal.getInstance().RemoveSinElem(a.getKovSinElem(null));
+				System.out.print("Alagut -> ");
+				Terepasztal.getInstance().RemoveSinElem(null);
 			}
 		}
 }

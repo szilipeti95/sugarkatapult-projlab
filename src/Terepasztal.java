@@ -31,9 +31,11 @@ public class Terepasztal {
 	public void tick() {
         System.out.println("Terepasztal.tick()");
 	    for(Mozdony m: mozdonyok){
+			System.out.print("Terepasztal -> ");
             m.mozog();
         }
         for(Mozdony m: mozdonyok){
+			System.out.print("Terepasztal -> ");
             m.utkozesVizsgal();
         }
 	}
@@ -41,9 +43,12 @@ public class Terepasztal {
 	//Inicializálja a Terepasztal elemeit (mozdonyok, sinek, besinek)
 	public void init(String fileName) {
 		System.out.println("Terepasztal.init()");
+		System.out.print("Terepasztal -> ");
 		AddMozdony(new Mozdony());
+		System.out.print("Terepasztal -> ");
 		AddSinElem(new Sin());
 		BeSin besin = new BeSin();
+		System.out.print("Terepasztal -> ");
 		AddBeSin(besin);
 		besinek.add(besin);
 	}
@@ -68,6 +73,7 @@ public class Terepasztal {
 				s = new AlagutSzaj();
 			}
 		}
+		System.out.print("Terepasztal -> ");
 		s.onInput();
 	}
 	
@@ -111,15 +117,20 @@ public class Terepasztal {
 	public void vonatKiurult() {
 	    teliVonatSzam--;
 	    System.out.println("Terepasztal.vonatKiurult()");
-	    System.out.println("teli vonatok szama: " + teliVonatSzam);
-	    if(teliVonatSzam == 0) {
+	    //System.out.println("teli vonatok szama: " + teliVonatSzam);
+	    System.out.println("Mindegyik vonat ures? (igen/nem)");
+	    Scanner reader = new Scanner(System.in);
+	    //if(teliVonatSzam == 0)
+	    if (reader.next().equals("igen"))
+	    {
+			System.out.print("Terepasztal -> ");
             Jatek.getInstance().nyer();
         }
 	}
 	
 	public void VonatBead() {
 		System.out.println("Terepasztal.VonatBead()");
-		
+		System.out.print("Terepasztal -> ");
 		besinek.get(0).VonatBead();
 	}
 

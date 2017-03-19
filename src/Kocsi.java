@@ -10,9 +10,11 @@ public class Kocsi extends Szerelveny {
 	public void mozog(SinElem kovSin) {
 		System.out.println("Kocsi.mozog()");
 		//Ellepunk az aktuális sínről
+		System.out.print("Kocsi -> ");
 		sinElem.elLep();
 		
 		//rálépünk a paraméterként kapott "következő" sínre
+		System.out.print("Kocsi -> ");
 		kovSin.raLep(this);
 		
 		Scanner reader = new Scanner(System.in);
@@ -20,6 +22,7 @@ public class Kocsi extends Szerelveny {
 		if(reader.next().equals("igen")) {
 			kovKocsi = new Kocsi();
 			//Ha van a kocsihoz kapcsolódva még kocsi, akkor azt is mozgatjuk
+			System.out.print("Kocsi -> ");
 			kovKocsi.mozog(sinElem);
 			
 			
@@ -44,6 +47,7 @@ public class Kocsi extends Szerelveny {
 			System.out.println("Van kovetkezo kocsi? (igen/nem): ");
 			if(reader.next().equals("nem")) {
 				//Nincs következő kocsi, ez a vonat kiürült
+				System.out.print("Kocsi -> ");
 				Terepasztal.getInstance().vonatKiurult();
 			}
 		}

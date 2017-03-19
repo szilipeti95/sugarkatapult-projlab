@@ -5,6 +5,7 @@ public class App {
 		
 		//Letrehozzuk a menut
 		Menu menu = new Menu();
+		System.out.print("App -> ");
 		menu.start();
 	}
 }

@@ -16,15 +16,19 @@ public class Menu {//menupontok itt
 			String valasz = reader.next();
 			switch (valasz) {
 			case "play":
+					System.out.print("Menu -> ");
 					Jatek.getInstance().start(palya);
 				break;
 			case "select":
+				System.out.print("Menu -> ");
 				select();
 				break;
 			case "save":
+				System.out.print("Menu -> ");
 				save();
 				break;
 			case "load":
+				System.out.print("Menu -> ");
 				load();
 				break;
 			case "exit":

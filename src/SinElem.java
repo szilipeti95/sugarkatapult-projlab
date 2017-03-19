@@ -38,7 +38,7 @@ public abstract class SinElem {
 	}
 	
     //Visszater azzal, hogy tobb szerelveny van-e az adott sinen
-	public Boolean getUtkozes() {
+	public boolean getUtkozes() {
                 System.out.println("SinElem.getUtkozes() ");
 		return szerelvenyek > 1;
 	}

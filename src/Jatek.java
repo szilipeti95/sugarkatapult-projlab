@@ -15,8 +15,9 @@ public class Jatek {
 	public void start(String palya) {
         System.out.println("Jatek.start()");
         timer = new Timer();
+		System.out.print("Jatek -> ");
         Terepasztal.getInstance().init(palya);
-        
+		System.out.print("Jatek -> ");
         timer.start();
 	}
 	
