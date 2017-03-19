@@ -12,9 +12,7 @@ public abstract class Szerelveny {
 	public SinElem getSin() {
 		return sinElem;
 	}
-	
-	public abstract void leszallit(Allomas a);
-	
+		
 	//Ezt a függvény hívja meg az alagtSzaj, mikor a szerelvény belép az alagúttba.
 	public void alagutValt() {
 		System.out.println("Szerelveny.alagutValt()");

@@ -23,7 +23,6 @@ public class BeSin extends SinElem {//vonatok belelepesi pontja
 			szerelvenyek=0;
 			System.out.println("Nem szam, 0 lesz - " + e.getMessage());
 		}finally{}
-		reader.close();
 		
 		return szerelvenyek > 0;//el�g egy szerelveny is, hogy utkozzon
 	}

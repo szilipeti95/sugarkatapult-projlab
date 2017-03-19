@@ -27,7 +27,6 @@ public class AlagutSzaj extends SinElem {
 		case "i": m.alagutValt(); break;
 		case "n": m.utkozik(); Jatek.getInstance().veszt();
 		}
-		reader.close();
 	}
 	
 	//Visszaadja, hogy van-e rajta ütközés

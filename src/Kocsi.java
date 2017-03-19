@@ -32,7 +32,6 @@ public class Kocsi extends Szerelveny {
 	
 	//Ez a függvény hívódik meg, mikor az utasoknak le kell szállniuk a kocsiról
 	//Megvizsgálja, hogy a kocsi színe megegyezik-e az állomás színével
-	@Override
 	public void leszallit(Allomas a) {
 		System.out.println("Kocsi.leszallit()");
 		

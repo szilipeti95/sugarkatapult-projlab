@@ -48,9 +48,4 @@ public class Mozdony extends Szerelveny {
 		}
 	}
 
-	@Override
-	public void leszallit(Allomas a) {
-		// TODO Auto-generated method stub
-		
-	}
 }

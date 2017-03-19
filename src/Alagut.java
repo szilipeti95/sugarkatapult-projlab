@@ -30,7 +30,6 @@ public class Alagut {
 			Terepasztal.getInstance().AddSinElem(s);
 			break;
 		}
-		reader.close();
 	}
 	
 	//A paraméterben kapott AlagutSzaj-at eltávolítja az Alagutból
@@ -44,7 +43,11 @@ public class Alagut {
 			szajB = null;
 		}
 		if(allapot == AlagutAllapot.VanAlagut){
-			Terepasztal.getInstance().RemoveSinElem(a.getKovSinElem(elozo));
+			System.out.println("Van alagut? (igen/nem");
+			Scanner reader = new Scanner(System.in);
+			if(reader.next().equals("igen")) {
+				Terepasztal.getInstance().RemoveSinElem(a.getKovSinElem(null));
+			}
 		}
 	}
 }
