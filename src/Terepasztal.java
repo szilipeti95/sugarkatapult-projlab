@@ -12,13 +12,8 @@ public class Terepasztal {
         System.out.println("Terepasztal.Constructor()");
         teliVonatSzam = 0;
         mozdonyok = new ArrayList<>();
-        mozdonyok.add(new Mozdony());
         sinelemek = new ArrayList<>();
-        sinelemek.add(new Sin());
-        BeSin besin = new BeSin();
-        sinelemek.add(besin);
         besinek = new ArrayList<>();
-		besinek.add(besin);
 
 	}
 
@@ -41,7 +36,12 @@ public class Terepasztal {
 	}
 	
 	public void init(String fileName) {
-        System.out.println("Terepasztal.init()");
+		System.out.println("Terepasztal.init()");
+		mozdonyok.add(new Mozdony());
+		sinelemek.add(new Sin());
+		BeSin besin = new BeSin();
+		sinelemek.add(besin);
+		besinek.add(besin);
 	}
 	
 	public void onInput(int x, int y) {
