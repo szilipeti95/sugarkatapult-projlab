@@ -1,17 +1,24 @@
 public abstract class Szerelveny {
 	protected SinElem sinElem;
 	private Boolean alagutban;
-	private SinElem elozoSinElem;
+	protected SinElem elozoSinElem;
 	protected Kocsi kovKocsi;
+	
+	public Szerelveny()
+	{
+		sinElem = new Sin();
+	}
+	
 	public SinElem getSin() {
 		return sinElem;
 	}
 	
 	public abstract void leszallit(Allomas a);
 	
+	//Ezt a függvény hívja meg az alagtSzaj, mikor a szerelvény belép az alagúttba.
 	public void alagutValt() {
-			alagutban = !alagutban;
-			System.out.println("Szerelveny.alagutValt()");
+		System.out.println("Szerelveny.alagutValt()");
+		alagutban = !alagutban;
 	}
 	
 	public Boolean alagutbanVan() {

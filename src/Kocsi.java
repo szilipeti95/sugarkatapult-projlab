@@ -4,46 +4,48 @@ public class Kocsi extends Szerelveny {
 	private Szin szin;
 	private Boolean ures;
 	
-	//Ezt a függvényt hívja meg az elõzõ szerelvény
-	//Ez felelõs a kocsi mozgatásáért, és a követezõ kocsi mozgatásáért is
+	
+	//Ezt a fÃ¼ggvÃ©nyt hÃ­vja meg az elÅ‘zÅ‘ szerelvÃ©ny
+	//Ez felelÅ‘s a kocsi mozgatasÃ¡Ã©rt, Ã©s a kÃ¶vetezÅ‘ kocsi mozgatÃ¡sÃ¡Ã©rt is
 	public void mozog(SinElem kovSin) {
 		System.out.println("Kocsi.mozog()");
-		//Ellepunk az aktuális sínrõl
+		//Ellepunk az aktuÃ¡lis sÃ­nrÅ‘l
 		sinElem.elLep();
 		
-		//rálépünk a paraméterként kapott "következõ" sínre
-		kovSin.raLep();
+		//rÃ¡lÃ©pÃ¼nk a paramÃ©terkÃ©nt kapott "kÃ¶vetkezÅ‘" sÃ­nre
+		kovSin.raLep(this);
 		
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Van következõ kocsi? (igen/nem): ");
+		System.out.println("Van kÃ¶vetkezÅ‘ kocsi? (igen/nem): ");
 		if(reader.next().equals("igen")) {
-			//Ha van a kocsihoz kapcsolódva még kocsi, akkor azt is mozgatjuk
+			kovKocsi = new Kocsi();
+			//Ha van a kocsihoz kapcsolÃ³dva mÃ©g kocsi, akkor azt is mozgatjuk
 			kovKocsi.mozog(sinElem);
 			
 			
 		}
 			
-		//Elmetjük, hogy már a következõ sinen állunk
+		//ElmentjÃ¼k, hogy mÃ¡r a kÃ¶vetkezÅ‘ sinen Ã¡llunk
 		sinElem = kovSin;
 		
 	}
 	
-	//Ez a függvény hívódik meg, mikor az utasoknak le kell szállniuk a kocsiról
-	//Megvizsgálja, hogy a kocsi színe megegyezik-e az állomás színével
+	//Ez a fÃ¼ggvÃ©ny hÃ­vÃ³dik meg, mikor az utasoknak le kell szÃ¡llniuk a kocsirÃ³l
+	//MegvizsgÃ¡lja, hogy a kocsi szÃ­ne megegyezik-e az Ã¡llomÃ¡s szÃ­nÃ©vel
 	@Override
 	public void leszallit(Allomas a) {
 		System.out.println("Kocsi.leszallit()");
 		
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Egyezik az állomás színe? (igen/nem): ");
+		System.out.println("Egyezik az allomas szine? (igen/nem): ");
 		if(reader.next().equals("igen")) {
-			//A két szín megegyezik
+			//A kÃ©t szÃ­n megegyezik
 			ures = true;
 			
-			System.out.println("Van következõ kocsi? (igen/nem): ");
+			System.out.println("Van kovetkezo kocsi? (igen/nem): ");
 			if(reader.next().equals("nem")) {
-				//Nincs következõ kocsi, ez a vonat kiürült
-				terepAsztal.vonatKiurult();
+				//Nincs kÃ¶vetkezÅ‘ kocsi, ez a vonat kiÃ¼rÃ¼lt
+				Terepasztal.getInstance().vonatKiurult();
 			}
 		}
 	}

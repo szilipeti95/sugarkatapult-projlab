@@ -2,45 +2,49 @@ import java.util.Scanner;
 
 public class Mozdony extends Szerelveny {
 	private Boolean utkozott;
+	
+	//Ez a metÃ³dus hÃ­vidik meg, ha a mozdony nekimegy egy mÃ¡sik kocsinak.
 	public void utkozik() {
 		System.out.println("Mozdony.utkozik()");
+		utkozott = true;
 	}
 	
-	//Ezt a metódost hívja meg a terepasztal a vonatok mozgatásához.
-	//Majd ez felelõs a további kocsik mozgatásáért
+	//Ezt a metÃ³dost hÃ­vja meg a terepasztal a vonatok mozgatÃ¡sÃ¡hoz.
+	//Majd ez felelÅ‘s a tovÃ¡bbi kocsik mozgatÃ¡sÃ¡Ã©rt
 	public void mozog() {
 		System.out.println("Mozdony.mozog()");
 		
-		//Lekérdezzük a SinElem-tõl, amint állunk, hogy melyik a következõ, amerre menni kell
-		SinElem kovSin = sinElem.getKovSinElem();
-		//ellépünk a sinElemrõl, amin állunk
+		//LekÃ©rdezzÃ¼k a SinElem-tÅ‘l, amint Ã¡llunk, hogy melyik a kÃ¶vetkezÅ‘, amerre menni kell
+		SinElem kovSin = sinElem.getKovSinElem(elozoSinElem);
+		//ellÃ©pÃ¼nk a sinElemrÅ‘l, amin Ã¡llunk
 		sinElem.elLep();
-		//és rálépünk a következõre
-		kovSin.raLep();
+		//Ã©s rÃ¡lÃ©pÃ¼nk a kÃ¶vetkezÅ‘re
 		kovSin.leptet(this, sinElem);
 		
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Van következõ kocsi? (igen/nem): ");
-		if(reader.next().equals("igen"))
-			//Ha van a mozdonyhoz kapcsolódva még kocsi, akkor azt is mozgatjuk
+		System.out.println("Van kÃ¶vetkezÅ‘ kocsi? (igen/nem): ");
+		if(reader.next().equals("igen")) {
+			kovKocsi = new Kocsi();
+			//Ha van a mozdonyhoz kapcsolÃ³dva mÃ©g kocsi, akkor azt is mozgatjuk
 			kovKocsi.mozog(sinElem);
-			
-		//Elmetjük, hogy már a következõ sinen állunk
+		}
+		//ElmetjÃ¼k, hogy mÃ¡r a kÃ¶vetkezÅ‘ sinen Ã¡llunk
 		sinElem = kovSin;
+		
 	}
 	
-	//Ezt a függvényt hívja meg a terepasztal, hogy ellenõrizze az ütközéseket
+	//Ezt a fÃ¼ggvÃ©nyt hÃ­vja meg a terepasztal, hogy ellenÅ‘rizze az Ã¼tkÃ¶zÃ©seket
 	public void utkozesVizsgal() {
 		System.out.println("Mozdony.utkozesVizsgal()");
 		
-		//Lekérdezzük, hogy a SinElem-en, amin a mozdony van, van-e másik szerelvény.
+		//LekÃ©rdezzÃ¼k, hogy a SinElem-en, amin a mozdony van, van-e mÃ¡sik szerelvÃ©ny.
 		Boolean utkozes = sinElem.getUtkozes();
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Volt ütközés? (igen/nem): ");
+		System.out.println("Volt Ã¼tkÃ¶zÃ©s? (igen/nem): ");
 		if(reader.next().equals("igen")) {
-			//Volt ütközés
+			//Volt Ã¼tkÃ¶zÃ©s
 			utkozik();
-			jatek.veszt();
+			Jatek.getInstance().veszt();
 		}
 	}
 
