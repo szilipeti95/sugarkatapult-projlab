@@ -12,8 +12,14 @@ public class Terepasztal {
         System.out.println("Terepasztal.Constructor()");
         teliVonatSzam = 0;
         mozdonyok = new ArrayList<>();
+        mozdonyok.add(new Mozdony());
         sinelemek = new ArrayList<>();
+        sinelemek.add(new Sin());
+        BeSin besin = new BeSin();
+        sinelemek.add(besin);
         besinek = new ArrayList<>();
+		besinek.add(besin);
+
 	}
 
 	public static Terepasztal getInstance(){
