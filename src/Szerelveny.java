@@ -1,6 +1,6 @@
 public abstract class Szerelveny {
 	protected SinElem sinElem;
-	private Boolean alagutban;
+	private boolean alagutban;
 	protected SinElem elozoSinElem;
 	protected Kocsi kovKocsi;
 	
@@ -19,7 +19,7 @@ public abstract class Szerelveny {
 		alagutban = !alagutban;
 	}
 	
-	public Boolean alagutbanVan() {
+	public boolean alagutbanVan() {
 		return alagutban;
 	}
 }

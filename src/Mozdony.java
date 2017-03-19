@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Mozdony extends Szerelveny {
-	private Boolean utkozott;
+	private boolean utkozott;
 	
 	//Ez a metódus hívidik meg, ha a mozdony nekimegy egy másik kocsinak.
 	public void utkozik() {
@@ -15,13 +15,26 @@ public class Mozdony extends Szerelveny {
 		System.out.println("Mozdony.mozog()");
 		
 		//Lekérdezzük a SinElem-től, amint állunk, hogy melyik a következő, amerre menni kell
+		System.out.println("Mi legyen a kovetkezo sin?: (sin, allomas, valto)");
 		SinElem kovSin = sinElem.getKovSinElem(elozoSinElem);
+		Scanner reader = new Scanner(System.in);
+		switch (reader.next()) {
+		case "valto":
+			kovSin = new Valto();
+			break;
+		case "allomas":
+			kovSin = new Allomas();
+			break;
+		case "sin":
+		default:
+			kovSin = new Sin();
+			break;
+		}
 		//ellépünk a sinElemről, amin állunk
 		sinElem.elLep();
 		//és rálépünk a következőre
 		kovSin.leptet(this, sinElem);
 		
-		Scanner reader = new Scanner(System.in);
 		System.out.println("Van következő kocsi? (igen/nem): ");
 		if(reader.next().equals("igen")) {
 			kovKocsi = new Kocsi();
@@ -38,7 +51,7 @@ public class Mozdony extends Szerelveny {
 		System.out.println("Mozdony.utkozesVizsgal()");
 		
 		//Lekérdezzük, hogy a SinElem-en, amin a mozdony van, van-e másik szerelvény.
-		Boolean utkozes = sinElem.getUtkozes();
+		boolean utkozes = sinElem.getUtkozes();
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Volt ütközés? (igen/nem): ");
 		if(reader.next().equals("igen")) {
