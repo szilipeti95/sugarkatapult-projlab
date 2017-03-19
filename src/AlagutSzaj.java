@@ -24,12 +24,12 @@ public class AlagutSzaj extends SinElem {
 	public void leptet(Mozdony m, SinElem s) {
 		System.out.println("AlagutSzaj.leptet()");
 		
-		System.out.print("Meg van epitve az alagut? (i/n): ");
+		System.out.print("Meg van epitve az alagut? (igen/nem): ");
 		Scanner reader = new Scanner(System.in);
 		String valasz = reader.next();
 		switch (valasz){
-		case "i": m.alagutValt(); break;
-		case "n": m.utkozik(); Jatek.getInstance().veszt();
+		case "igen": m.alagutValt(); break;
+		case "nem": m.utkozik(); Jatek.getInstance().veszt();
 		}
 	}
 	@Override
