@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Terepasztal {
 	private int teliVonatSzam;
@@ -14,6 +15,7 @@ public class Terepasztal {
         mozdonyok = new ArrayList<>();
         sinelemek = new ArrayList<>();
         besinek = new ArrayList<>();
+        alagut = new Alagut();
 
 	}
     //Singleton osztály, lekérdezi a Terepasztalt
@@ -50,12 +52,23 @@ public class Terepasztal {
     //Meghívja annak a SinElemnek az onClickjét amire kattintott a játékos
 	public void onInput(int x, int y) {
 	    System.out.println("Terepasztal.onInput()");
-        for(SinElem s: sinelemek){
-            if(s.getX() == x && s.getY() == y){
-                System.out.println("SinElem talalt");
-                s.onInput();
-            }
-        }
+        
+	    System.out.println("Mire kattintott: (valto, alagutszaj)");
+		Scanner reader = new Scanner(System.in);
+		String valasz = reader.next();
+		SinElem s = null;
+		boolean jo = false;
+		while(!jo) {
+			if (valasz.equals("valto")){
+				jo = true;
+				s = new Valto();
+			}
+			else if (valasz.equals("alagutszaj")){
+				jo = true;
+				s = new AlagutSzaj();
+			}
+		}
+		s.onInput();
 	}
 	
 	public void AddAlagutSzaj() {

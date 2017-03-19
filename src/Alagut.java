@@ -14,12 +14,12 @@ public class Alagut {
 	public void AddAlagutSzaj(AlagutSzaj a) {
 		System.out.println("Alagut.AddAlagutSzaj()");
 		
-		System.out.print("Hany alagutszaj van? (0/1): ");
+		System.out.println("Van mar masik alagutszaj: (igen/nem)");
 		Scanner reader = new Scanner(System.in);
 		String valasz = reader.next();
 		switch(valasz){
-		case "0": szajA = a; break;
-		case "1": 
+		case "igen": szajA = a; break;
+		case "nem": 
 			if(szajA == null){
 				szajA = a;
 			}
@@ -42,12 +42,11 @@ public class Alagut {
 		else{
 			szajB = null;
 		}
-		if(allapot == AlagutAllapot.VanAlagut){
-			System.out.println("Van alagut? (igen/nem");
+		//if(allapot == AlagutAllapot.VanAlagut){
+			System.out.println("Van alagut? (igen/nem)");
 			Scanner reader = new Scanner(System.in);
 			if(reader.next().equals("igen")) {
 				Terepasztal.getInstance().RemoveSinElem(a.getKovSinElem(null));
 			}
 		}
-	}
 }

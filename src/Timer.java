@@ -1,21 +1,30 @@
 ﻿import java.util.Scanner;
 
 public class Timer {
-    public Timer(){
-        System.out.println("Timer.Constructor()");
-    }
 
 	public void start() {
 		System.out.println("Timer.start()");
 		
-		System.out.println("Tick? (igen/nem)");
 		Scanner reader = new Scanner(System.in);
 		boolean exit = false;
 		while (!exit) {
-		if (reader.next().equals("igen"))
-			Terepasztal.getInstance().tick();
-		else
-			exit = true;
+			System.out.println("Valasszon az alabbi lehetosegek kozul:? (tick, input, exit)");
+			switch (reader.next()) {
+			case "tick":
+				Terepasztal.getInstance().tick();
+				break;
+			case "input":
+				Terepasztal.getInstance().onInput(0, 0);			
+				break;
+			case "exit":
+				exit = true;
+				break;
+			default:
+				break;
+			}
+		if (exit)
+			System.exit(0);
+
 		}
 	}
 }
