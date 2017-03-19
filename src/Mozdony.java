@@ -15,8 +15,8 @@ public class Mozdony extends Szerelveny {
 		System.out.println("Mozdony.mozog()");
 		
 		//Lekérdezzük a SinElem-től, amint állunk, hogy melyik a következő, amerre menni kell
-		System.out.println("Mi legyen a kovetkezo sin?: (sin, allomas, valto)");
 		SinElem kovSin = sinElem.getKovSinElem(elozoSinElem);
+		System.out.println("Mi legyen a kovetkezo sin?: (sin, allomas, valto, alagutszaj)");
 		Scanner reader = new Scanner(System.in);
 		switch (reader.next()) {
 		case "valto":
@@ -24,6 +24,9 @@ public class Mozdony extends Szerelveny {
 			break;
 		case "allomas":
 			kovSin = new Allomas();
+			break;
+		case "alagutszaj":
+			kovSin = new AlagutSzaj();
 			break;
 		case "sin":
 		default:

@@ -57,20 +57,6 @@ public class Allomas extends SinElem {
 	public Boolean getUtkozes() {//van e tobb szerelveny ugyanitt
 		System.out.println("Allomas.getUtkozes()");
 		
-		//skeleton dolgok
-		Scanner reader = new Scanner(System.in);
-		System.out.println("Adja meg a szerelvenyek szamat (min. 0): ");
-		try
-		{//user inputot beolvassuk
-			szerelvenyek = Integer.parseInt(reader.next());
-		}
-		catch (Exception e)
-		{//rossz input, nem szam
-			szerelvenyek=0;
-			System.out.println("Nem szam, 0 lesz - ");
-		}finally{}
-		reader.close();
-		
 		return szerelvenyek > 1;
 	}
 
@@ -98,7 +84,6 @@ public class Allomas extends SinElem {
 			System.out.println("nem jo. Akkor 'a' sin felol jon.");
 			break;
 		}
-		reader.close();
 		
 		
 		if(elozo==sinA)

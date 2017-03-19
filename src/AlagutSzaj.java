@@ -8,10 +8,14 @@ public class AlagutSzaj extends SinElem {
 	public void onInput() {
 		System.out.println("AlagutSzaj.onInput()");
 		Alagut a = Terepasztal.getInstance().getAlagut();
-		if(a.getAllapot() == AlagutAllapot.VanAlagut){
+		//if(a.getAllapot() == AlagutAllapot.VanAlagut){
+		System.out.println("Meg van mar epitve ez az alagutSzaj? (igen/nem)");
+        Scanner reader = new Scanner(System.in);
+        String valasz = reader.next();
+        if (valasz.equals("igen")) {
 			a.RemoveAlagutSzaj(this);
 		}
-		else{
+		else if (valasz.equals("nem")){
 			a.AddAlagutSzaj(this);
 		}
 	}
@@ -28,12 +32,13 @@ public class AlagutSzaj extends SinElem {
 		case "n": m.utkozik(); Jatek.getInstance().veszt();
 		}
 	}
-	
-	//Visszaadja, hogy van-e rajta ütközés
-	public Boolean getUtkozes() {
-		System.out.println("AlagutSzaj.getUtkozes()");
-		return false;
+	@Override
+	public void raLep(Kocsi k) {
+		System.out.println("AlagutSzaj.raLep()");
+		
+		k.alagutValt();
 	}
+	
 
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {

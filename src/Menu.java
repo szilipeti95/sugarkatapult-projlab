@@ -16,10 +16,7 @@ public class Menu {//menupontok itt
 			String valasz = reader.next();
 			switch (valasz) {
 			case "play":
-				if (!palya.isEmpty())
 					Jatek.getInstance().start(palya);
-				else
-					System.out.println("Nem valasztot palyat!");
 				break;
 			case "select":
 				select();

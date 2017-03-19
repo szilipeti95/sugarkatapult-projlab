@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Valto extends SinElem {
 	private SinElem aktivAg;
@@ -35,11 +36,11 @@ public class Valto extends SinElem {
         public void valt(SinElem s){
             
            System.out.println("Valto.valt()");
-           if(getSzerelvenyek() == 0)
-           setAktualisAg(kovAg());
-            
-            
-            
+           
+           System.out.println("Foglalt a valto? (igen/nem)");
+           Scanner reader = new Scanner(System.in);
+           if(reader.next().equals("nem")) 
+   				setAktualisAg(kovAg());
         }
 		
 	public void raLep(Kocsi k) {
@@ -49,9 +50,11 @@ public class Valto extends SinElem {
         
 	public void leptet(Mozdony m, SinElem s) {
 		System.out.println("Valto.leptet()");
-            if(sinA != s){
+            //if(sinA != s){
+			 System.out.println("Kapcsolodo agon jon a vonat? (igen/nem)");
+	         Scanner reader = new Scanner(System.in);
+	         if(reader.next().equals("nem"))
                 valt(s);
-            }
 	}
 	
 	public Boolean getUtkozes() {
