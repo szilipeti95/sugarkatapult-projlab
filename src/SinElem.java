@@ -1,63 +1,48 @@
 public abstract class SinElem {
 	protected SinElem sinA;
-	private int x;
-	private int y;
-	private int szerelvenyek;
+	protected int x;
+	protected int y;
+	protected int szerelvenyek;
+    protected boolean lathato;    
         
-        
+    
+    //Tovabblepteti a sinen a vonatokat, feluldefinialjak a leszarmazottak
 	public void leptet(Mozdony m, SinElem s) {
-           System.out.println("SinElem osztály: meghívott függvény - leptet() ");
+           System.out.println("SinElem.leptet() ");
             
 	}
-
-    public SinElem(SinElem kov, int xi, int yi){
-        sinA = kov;
-        x = xi;
-        y = yi;
-        szerelvenyek = 0;
-    }
     
-    public SinElem(){
-        this(null, 0,0);
-    }
-        
-    public int getX() {
-        System.out.println("SinElem osztály: meghívott függvény - getX() ");
-        return x;
-    }
-
-    public int getY() {
-        System.out.println("SinElem osztály: meghívott függvény - getY() ");
-        return y;
-    }
-
+    //visszater a szerelvenyek szamaval
     public int getSzerelvenyek() {
-        System.out.println("SinElem osztály: meghívott függvény - getSzerelvenyek() ");
+        System.out.println("SinElem.getSzerelvenyek() ");
         return szerelvenyek;
     }
         
         
-	
+    //Ellep a szerelveny innen, csokkenti a szerelvenyek szamat
 	public void elLep() {
-            System.out.println("SinElem osztály: meghívott függvény - elLep() ");
+            System.out.println("SinElem.elLep() ");
             if(szerelvenyek>0){
                 szerelvenyek--;
             }
 	}
-	
-	public void raLep() {
-            System.out.println("SinElem osztály: meghívott függvény - raLep() ");
+    //Ralep egy kocsi
+	public void raLep(Kocsi k) {
+            System.out.println("SinElem.raLep() ");
             szerelvenyek++;
 	}
 	
+    //Input eseten hivodik meg
 	public void onInput() {
-            System.out.println("SinElem osztály: meghívott függvény - onInput() ");
+            System.out.println("SinElem.onInput() ");
 	}
 	
-	public Boolean getUtkozes() {
-                System.out.println("SinElem osztály: meghívott függvény - getUtkozes() ");
+    //Visszater azzal, hogy tobb szerelveny van-e az adott sinen
+	public boolean getUtkozes() {
+                System.out.println("SinElem.getUtkozes() ");
 		return szerelvenyek > 1;
 	}
 	
-	public abstract SinElem getKovSinElem();
+     //Absztrakt metodus
+	public abstract SinElem getKovSinElem(SinElem elozo);
 }

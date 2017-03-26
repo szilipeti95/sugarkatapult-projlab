@@ -1,19 +1,25 @@
 public class Sin extends SinElem {
 	private SinElem sinB;
-	public Boolean getUtkozes() {
-                System.out.println("Sin osztály: meghívott függvény - getUtkozes() ");
-		return getSzerelvenyek() > 0;
-	}
+	private boolean AlagutSin;
+	
         
+        //Beallitja a masik SinElemet
         public void setSinElem(SinElem s){
-            System.out.println("Sin osztály: meghívott függvény - setSinElem() ");
+            System.out.println("Sin.setSinElem() ");
             sinB = s;
         }
         
-	@Override
-	public SinElem getKovSinElem() {
-		// TODO Auto-generated method stub
-                System.out.println("Sin osztály: meghívott függvény - getKovSinElem() ");
-		return sinB;
+		
+		
+        //Visszater a kovetkezo SinElemmel, attol fuggoen, merrol jon a vonat
+		@Override
+		public SinElem getKovSinElem(SinElem elozo) {
+                System.out.println("Sin.getKovSinElem() ");
+		if(sinA == elozo){
+			return new Sin();
+		}else{
+			return new Sin();
+		}
+		
 	}
 }

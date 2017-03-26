@@ -1,10 +1,56 @@
+import java.util.Scanner;
+
 public class Alagut {
 	private AlagutSzaj szajA;
 	private AlagutSzaj szajB;
 	private AlagutAllapot allapot;
-	public void AddAlagutSzaj(AlagutSzaj a) {
+	
+	public AlagutAllapot getAllapot(){
+		System.out.println("Alagut.getAllapot()");
+		return allapot;
 	}
 	
-	public void RemoveAlagutSzaj(AlagutSzaj a) {
+	//A paraméterben kapott AlagutSzaj-at hozzáadja az Alaguthoz
+	public void AddAlagutSzaj(AlagutSzaj a) {
+		System.out.println("Alagut.AddAlagutSzaj()");
+		
+		System.out.println("Van mar masik alagutszaj: (igen/nem)");
+		Scanner reader = new Scanner(System.in);
+		String valasz = reader.next();
+		switch(valasz){
+		case "nem": szajA = a; break;
+		case "igen": 
+			if(szajA == null){
+				szajA = a;
+			}
+			else{
+				szajB = a;
+			}
+			SinElem s = new Sin();
+			//feleptitjuk az alagutat a sinekbol
+			System.out.print("Alagut -> ");
+			Terepasztal.getInstance().AddSinElem(s);
+			break;
+		}
 	}
+	
+	//A paraméterben kapott AlagutSzaj-at eltávolítja az Alagutból
+	public void RemoveAlagutSzaj(AlagutSzaj a) {
+		System.out.println("Alagut.RemoveAlagutSzaj()");
+		
+		if(szajA == a){
+			szajA = null;
+		}
+		else{
+			szajB = null;
+		}
+		//if(allapot == AlagutAllapot.VanAlagut){
+			System.out.println("Van alagut? (igen/nem)");
+			Scanner reader = new Scanner(System.in);
+			if(reader.next().equals("igen")) {
+				//Valamelyik alagutSzaj megsemmisult. Le kell bontani az alagutat.
+				System.out.print("Alagut -> ");
+				Terepasztal.getInstance().RemoveSinElem(null);
+			}
+		}
 }
