@@ -19,26 +19,23 @@ public class Menu {//menupontok itt
 	 */
 	public void start() 
 	{//uj Jatek
-		//System.out.println("Menu.start()");	
 		
 		//ide vmi LUT szeru cucc kell hogy melyik palya hanyadik
 		//ezt talaltam ki, lehet mas is TODO
 		palya = "palya" + progress + ".txt";
 		
-		Jatek.getInstance().start(palya);//uj jatek inditasa
+		//uj jatek inditasa
+		Jatek.getInstance().start(palya);
 	}
 	
 	/**
-	 * elmenti a jelenlegi allast
+	 * elmenti a jelenlegi allast fajlba
 	 */
 	public void save() 
-	{//progresst menti
-		//System.out.println("Menu.save()");
-		
-		//progress-t kimenteni fajlba
+	{
 		try
-		{//fajlbol betolt
-			BufferedWriter wr = new BufferedWriter(new FileWriter("progress.txt"));//hiba ha nincs ilyen fajl
+		{//fajlba ment
+			BufferedWriter wr = new BufferedWriter(new FileWriter("progress.txt"));
 			wr.write(progress);
 			wr.close();
 		}
@@ -52,12 +49,10 @@ public class Menu {//menupontok itt
 	
 	/**
 	 * lepteti a progresst, ezt majd grafikus feluleten le lehetne cserelni gombokra TODO
-	 * @return kovi palya szama
+	 * @return kovetkezo palya szama
 	 */
 	public int select() 
 	{//palya szamat adja vissza
-		//System.out.println("Menu.select()");	
-		//System.out.println("Adja meg a palya nevet:");
 		progress++;
 		return progress;
 	}
@@ -67,9 +62,7 @@ public class Menu {//menupontok itt
 	 * @return hanyadik palyanal jarunk
 	 */
 	public int load() 
-	{//meddig jutottunk el
-		//System.out.println("Menu.load()");
-		
+	{
 		try
 		{//fajlbol betolt
 			BufferedReader br = new BufferedReader(new FileReader("progress.txt"));//hiba ha nincs ilyen fajl
@@ -90,9 +83,8 @@ public class Menu {//menupontok itt
 	 * kilep az egeszbol
 	 */
 	public void exit() 
-	{//kilep
-		//System.out.println("Menu.exit()");
-		//otlet: autosave TODO kell?
+	{
+		//otlet: autosave, TODO kell?
 		System.exit(0);
 	}
 }

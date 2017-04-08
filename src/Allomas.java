@@ -12,18 +12,16 @@ public class Allomas extends SinElem {
      * setter SinB-re
      * @param s A beallitando SinElem
      */
-    public void setSinElemB(SinElem s){
-        //System.out.println("Allomas.setSinElemB()");
-        sinB = s; //Beallitjuk sinB-t
+    public void setSinElemB(SinElem s) {
+        sinB = s;
     }
     
     /**
-     * Beallitja a masodik sinElemet
-     * @param s A beallitando SinElem
+     * setter a szinre
+     * @param s Mi legyen a szine
      */
-    public void setSzin(Szin s){
-        //System.out.println("Allomas.setSzin()");
-        szin = s; //Beallitjuk szint
+    public void setSzin(Szin s) {
+        szin = s;
     }
     
 	/**
@@ -31,17 +29,15 @@ public class Allomas extends SinElem {
 	 * @return Az Allomas szine
 	 */
 	public Szin getSzin() {
-		//System.out.println("Allomas.getSzin()");
 		return szin;
 	}
     
     /**
-     * Beallitja, hogy ures-e az allomas
-     * @param u Ures e
+     * setter az uresre
+     * @param u Ures-e
      */
-    public void setUres(boolean u){
-        //System.out.println("Allomas.setUres()");
-        ures = u; //Beallitjuk, hogy ures e
+    public void setUres(boolean u) {
+        ures = u;
     }
     
     

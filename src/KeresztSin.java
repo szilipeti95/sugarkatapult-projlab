@@ -3,7 +3,7 @@
  * KeresztSin osztaly, SinElem leszarmazottja.
  * Szemben levo agra iranyitja a vonatot
  */
-public class KeresztSin extends SinElem{
+public class KeresztSin extends SinElem {
 	private SinElem sinB;
 	private SinElem sinC;
 	private SinElem sinD;
@@ -12,7 +12,7 @@ public class KeresztSin extends SinElem{
      * setter SinB-re
      * @param s A beallitando SinElem
      */
-    public void setSinElemB(SinElem s){
+    public void setSinElemB(SinElem s) {
         sinB = s;
     }
     
@@ -20,7 +20,7 @@ public class KeresztSin extends SinElem{
      * setter SinC-re
      * @param s A beallitando SinElem
      */
-    public void setSinElemC(SinElem s){
+    public void setSinElemC(SinElem s) {
         sinC = s;
     }
     
@@ -28,7 +28,7 @@ public class KeresztSin extends SinElem{
      * setter SinD-re
      * @param s A beallitando SinElem
      */
-    public void setSinElemD(SinElem s){
+    public void setSinElemD(SinElem s) {
         sinD = s;
     }
     
