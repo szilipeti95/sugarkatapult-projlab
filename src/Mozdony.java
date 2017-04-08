@@ -1,74 +1,54 @@
-import java.util.Scanner;
-
+/**
+ * Kerdezgeti az alatta allo SinElemet, hogy melyik lesz a kovetkezo SinElem.
+ * Szol az elso Kocsinak, hogy mozogjon (mozog). 
+ * Megvizsgálja, hogy tortent-e utkozes
+ */
 public class Mozdony extends Szerelveny {
 	private boolean utkozott;
 	
-	//Ez a metódus hívidik meg, ha a mozdony nekimegy egy másik kocsinak.
+	/**
+	 * Ez a metodus hívidik meg, ha a mozdony nekimegy egy másik kocsinak.
+	 * Atallitja az utkozott valtozo erteket true-ra
+	 */
 	public void utkozik() {
-		System.out.println("Mozdony.utkozik()");
 		utkozott = true;
 	}
 	
-	//Ezt a metódost hívja meg a terepasztal a vonatok mozgatásához.
-	//Majd ez felelős a további kocsik mozgatásáért
-	public void mozog() {
-		System.out.println("Mozdony.mozog()");
-		
-		//Lekérdezzük a SinElem-től, amint állunk, hogy melyik a következő, amerre menni kell
-		System.out.print("Mozdony -> ");
+	
+	/**
+	 * Ezt a metodost hivja meg a terepasztal a vonatok mozgatasahoz.
+	 * Majd ez felelos a további kocsik mozgatásáért 
+	 */
+	public void mozog() {		
+		//Lekerdezzuk a SinElem-tol, amint allunk, hogy melyik a kovetkezo, amerre menni kell
 		SinElem kovSin = sinElem.getKovSinElem(elozoSinElem);
-		System.out.println("Mi legyen a kovetkezo sin?: (sin, allomas, valto, alagutszaj)");
-		Scanner reader = new Scanner(System.in);
-		switch (reader.next()) {
-		case "valto":
-			kovSin = new Valto();
-			break;
-		case "allomas":
-			kovSin = new Allomas();
-			break;
-		case "alagutszaj":
-			kovSin = new AlagutSzaj();
-			break;
-		case "sin":
-		default:
-			kovSin = new Sin();
-			break;
-		}
-		//ellépünk a sinElemről, amin állunk
-		System.out.print("Mozdony -> ");
+
+		//ellepunk a sinElemrol, amin allunk
 		sinElem.elLep();
-		//és rálépünk a következőre
-		System.out.print("Mozdony -> ");
+		//és ralrpunk a kovetkezore
 		kovSin.leptet(this, sinElem);
 		
-		System.out.println("Van következő kocsi? (igen/nem): ");
-		if(reader.next().equals("igen")) {
-			kovKocsi = new Kocsi();
-			//Ha van a mozdonyhoz kapcsolódva még kocsi, akkor azt is mozgatjuk
-			System.out.print("Mozdony -> ");
+		if (kovKocsi != null) {
 			kovKocsi.mozog(sinElem);
 		}
-		//Elmetjük, hogy már a következő sinen állunk
+		//Elmetjuk, hogy mar a kovetkezo sinen allunk
 		sinElem = kovSin;
 		
 	}
 	
-	//Ezt a függvényt hívja meg a terepasztal, hogy ellenőrizze az ütközéseket
+	/**
+	 * Ezt a fuggvenyt hivja meg a terepasztal, hogy ellenorizze az utkozeseket
+	 */
 	public void utkozesVizsgal() {
-		System.out.println("Mozdony.utkozesVizsgal()");
-		
 		//Lekérdezzük, hogy a SinElem-en, amin a mozdony van, van-e másik szerelvény.
-		System.out.print("Mozdony -> ");
 		boolean utkozes = sinElem.getUtkozes();
-		Scanner reader = new Scanner(System.in);
-		System.out.println("Volt ütközés? (igen/nem): ");
-		if(reader.next().equals("igen")) {
-			//Volt ütközés
-			System.out.print("Mozdony -> ");
+		
+		if (utkozes)
+		{
 			utkozik();
-			System.out.print("Mozdony -> ");
 			Jatek.getInstance().veszt();
 		}
 	}
+
 
 }
