@@ -3,22 +3,29 @@ public class Sin extends SinElem {
 	private boolean AlagutSin;
 	
         
-        //Beallitja a masik SinElemet
-        public void setSinElem(SinElem s){
+        /**
+         * Beallitja a masodik sinElemet
+         * @param s A beallitando SinElem
+         */
+        public void setSinElemB(SinElem s){
             System.out.println("Sin.setSinElem() ");
-            sinB = s;
+            sinB = s; //Beallitjuk sinB-t
+            
         }
         
 		
-		
-        //Visszater a kovetkezo SinElemmel, attol fuggoen, merrol jon a vonat
+	/**
+         * Visszater a kovetkezo SinElemmel, attol fuggoen, merrol jon a vonat
+         * @param elozo Az elozo SinElem
+         * @return A kovetkezo SinElem
+         */	
 		@Override
 		public SinElem getKovSinElem(SinElem elozo) {
                 System.out.println("Sin.getKovSinElem() ");
-		if(sinA == elozo){
-			return new Sin();
-		}else{
-			return new Sin();
+		if(sinA.equals(elozo)){ //Ha sinA-bol jott
+			return sinB;
+		}else{                  //Ha sinB-bol jott
+			return sinA;
 		}
 		
 	}

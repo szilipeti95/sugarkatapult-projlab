@@ -6,77 +6,117 @@ public class Valto extends SinElem {
 	private SinElem aktivAg;
         private ArrayList<SinElem> kimenetek = new ArrayList<>();
         
-        //Beallitja az adott agat a valton
+        /**
+         * Beallitja az adott agat a parameterkent kapott SinElemre
+         * @param s Melyik SinElemre akarjuk allitani
+         */
 	public void setAktualisAg(SinElem s) {
             
+            if(kimenetek.contains(s)){
+                aktivAg = s;
+            }else{
+                System.out.println("Nincs benne a kimenetek kozott az ag!");
+            }
+                  
             System.out.println("Valto.setAktualisAg()");
             
             
 	}
         
-        //Hozzaadja a sinelemet a kimenetekhez
+        /**
+         * Hozzaadja a parameterkent kapott SinElemet a kimenetekhez
+         * @param s Hozzaadni kivant SinElem
+         */
         public void addSinElem(SinElem s){
-            kimenetek.add(s);
+            if(!kimenetek.contains(s)){ //Ellenorzi, hogy benne van-e
+               kimenetek.add(s); 
+            }else{
+                System.out.println("Mar tartalmazzak a kimenetek ezt a SinElemet");
+            }
+            
              System.out.println("Valto.addSinElem()");
         }
         
-	//Visszaadja a kovetkezo aggal
+	/**
+         * Visszaadja a kovetkezo agat a valton.
+         * @return Kovetkezo SinElem
+         */
 	public SinElem kovAg() {
-            
+                if(!kimenetek.isEmpty() && kimenetek.contains(aktivAg)){
+                    int i = kimenetek.lastIndexOf(aktivAg); //Kell az index, hogy megnezzuk az utolso-e
+                    if(i < kimenetek.size()-1){
+                        return kimenetek.get(i+1); //Ha nem utolso, akk a kovetkezo
+                    }else{
+                        return kimenetek.get(0); //Ha utolso, akkor az elso
+                    }
+                }
                 System.out.println("Valto.kovAg()");
-		return new Sin();
+		return null; //Ha nincs kimenet vagy valami mas baj van
 	}
 	
-        //Valtja a valtot, akkor hivodik meg, ha ranyomnak a valtora
+        /**
+         * Valtja a valtot, a ranyomast szimulalja.
+         */
 	public void onInput() {
                 
                 System.out.println("Valto.onInput()");
 				System.out.print("Valto -> ");
-                SinElem s = kovAg();
+                SinElem s = kovAg(); //Kovetkezore valtunk
                 valt(s);
             
 	}
 	
-        //Valtja a valtot ha nem foglalt
+        /**
+         * Valtja a valtot, ha nem foglalt.
+         * @param s Melyik SinElemre valtson 
+         */
         public void valt(SinElem s){
             
+            if(getSzerelvenyek() < 1){ //Ha nem foglalt
+                aktivAg = s;
+            }else{
+                System.out.println("Ugy probaljuk valtani, hogy vannak rajta!");
+            }
+            
            System.out.println("Valto.valt()");
-           
-           System.out.println("Foglalt a valto? (igen/nem)");
-           Scanner reader = new Scanner(System.in);
-           if(reader.next().equals("nem")) {
-				System.out.print("Valto -> ");
-   				setAktualisAg(kovAg());
-           }
         }
 		
-        //Akkor hivodik meg, ha ralep egy kocsi 
+        /**
+         * Akkor hivodik meg, ha ralep egy kocsi, megnoveli a szerelvenyek szamat.
+         * @param k Melyik kocsi lepett ra
+         */ 
 	public void raLep(Kocsi k) {
             System.out.println("Valto.raLep() ");
             szerelvenyek++;
 	}
         
-        //Atvaltja a valtot, ha nem a bemenetrol jon a vonat
+        /**
+         * Atvaltja a valtot, ha nem a bemenetrol jon.
+         * @param m Mozdony, ami ralep
+         * @param s A SinElem, amirol erkezik a Mozdony
+         */
 	public void leptet(Mozdony m, SinElem s) {
 		System.out.println("Valto.leptet()");
-            //if(sinA != s){
-			 System.out.println("Kapcsolodo agon jon a vonat? (igen/nem)");
-	         Scanner reader = new Scanner(System.in);
-	         if(reader.next().equals("nem")) {
-				System.out.print("Valto -> ");
-                valt(s);
-	         }
+                if(!sinA.equals(s)){
+                    setAktualisAg(s);
+                }
+                
+                
 	}
 
-        //Visszater a kovetkezo sinelemmel, attol fuggoen, hogy honnan jon a vonat
+        /**
+         * Visszater a kovetkezo SinElemmel, attol fuggoen, hogy honnan jon a vonat
+         * @param elozo Az elozo SinElem
+         * @return A kovetkezo SinElem
+         */
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {
                  System.out.println("Valto.getKovSinElem()");
 				 
-		if(aktivAg == elozo){
-			return new Sin();
-		}else{
-			return new Sin();
+		if(sinA.equals(elozo)){ //Ha az elozo a SinA volt
+			return aktivAg;
+		}else{                     //Ha nem
+			return sinA;
 		}
 		
 	}
