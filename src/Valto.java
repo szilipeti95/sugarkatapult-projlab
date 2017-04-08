@@ -91,7 +91,7 @@ public class Valto extends SinElem {
 	}
         
         /**
-         * Atvaltja a valtot, ha nem a bemenetrol jon.
+         * Atvaltja a valtot, ha nem a bemenetrol jon, noveli a szerelvenyek szamat.
          * @param m Mozdony, ami ralep
          * @param s A SinElem, amirol erkezik a Mozdony
          */
@@ -100,7 +100,7 @@ public class Valto extends SinElem {
                 if(!sinA.equals(s)){
                     setAktualisAg(s);
                 }
-                
+                szerelvenyek++;
                 
 	}
 
