@@ -1,69 +1,75 @@
-import java.util.Scanner;
-
+/**
+ * @author Zotya
+ * Allomas osztaly, SinElem leszarmazottja.
+ * utaskocsinak szol a fel-le szallasrol
+ */
 public class Allomas extends SinElem {
-	//szinet tarolja, szol a kocsinak hogy szallitson le
-	
-	private SinElem sinB;//masik irany
+	private SinElem sinB;//masik ag
 	private Szin szin;//allomas szine
+	private boolean ures;//ures e vagy vannak felszallni akaro utasok
 	
-	/*public Allomas(SinElem CsinB, Szin Cszin)
-	{//konstruktor
-		sinB=CsinB;//privat valtozok megadasa itt
-		szin=Cszin;
-	}*/
-	
-	@Override //sinEleme
-	public void raLep(Kocsi k) {
-        System.out.println("Allomas.raLep()");
-		System.out.print("Allomas -> ");
-        k.leszallit(this);//szerelvenynek szol hogy allomasra ert
-	}
-	
-	@Override //sinEleme
-	public void leptet(Mozdony m, SinElem s) {
-		System.out.println("Allomas.leptet()");
-        szerelvenyek++;//SinEleme
-	}
-	
+    /**
+     * setter SinB-re
+     * @param s A beallitando SinElem
+     */
+    public void setSinElemB(SinElem s){
+        //System.out.println("Allomas.setSinElemB()");
+        sinB = s; //Beallitjuk sinB-t
+    }
+    
+    /**
+     * Beallitja a masodik sinElemet
+     * @param s A beallitando SinElem
+     */
+    public void setSzin(Szin s){
+        //System.out.println("Allomas.setSzin()");
+        szin = s; //Beallitjuk szint
+    }
+    
+	/**
+	 * getter az allomas szinehez. Vagonnak kell, hogy eldontse a leszallitast
+	 * @return Az Allomas szine
+	 */
 	public Szin getSzin() {
-		System.out.println("Allomas.getSzin()");
-		
-		//skeleton dolgok
-		Scanner reader = new Scanner(System.in);
-		System.out.println("Adja meg az allomas szinet: ");
-		String valasz = reader.next();
-		reader.close();
-		switch(valasz)
-		{//user alapjan szin kivalasztasa
-		case "piros":
-			szin=Szin.PIROS;
-			break;
-		case "kek":
-			szin=Szin.KEK;
-			break;
-		case "zold":
-			szin=Szin.ZOLD;
-			break;
-		case "sarga":
-			szin=Szin.SARGA;
-			break;
-		default://user nem jo szint adott meg
-			szin=Szin.PIROS;
-			System.out.println("Nem jo szin, piros lesz");
-		}
-		
+		//System.out.println("Allomas.getSzin()");
 		return szin;
 	}
+    
+    /**
+     * Beallitja, hogy ures-e az allomas
+     * @param u Ures e
+     */
+    public void setUres(boolean u){
+        //System.out.println("Allomas.setUres()");
+        ures = u; //Beallitjuk, hogy ures e
+    }
+    
+    
+    /**
+     * kocsirol le-fel szallas
+     * @param k Kocsi ami ralepett
+     */
+	@Override
+	public void raLep(UtasKocsi k) {
+        szerelvenyek++;//szamolja hogy raerkezett vmi, ezt az ososztaly is csinalja
+        k.leszallit(this);//szerelvenynek szol hogy allomasra ert, szallitson le ha akar
+        
+        if(k.GetUres() && !ures && k.GetSzin()==szin)
+        {//ha ures a kocsi es tele az allomas es szinuk azonos
+        	k.felszall();//akkor felszallnak az utasok
+        	ures=true;//es az allomas kiurul
+        }
+	}
 	
-
-	@Override //sinEleme
+    /**
+     * Lekeri a kovetkezo SinElemet
+     * @param elozo Elozo SinElem
+     * @return Kovetkezo SinElem
+     */
+	@Override
 	public SinElem getKovSinElem(SinElem elozo) {
-		System.out.println("Allomas.getKovSinElem()");
-		
 		if(elozo==sinA)
 			return sinB;
 		return sinA;//default, elvileg itt elozo==sinB
 	}
 }
-
-//Zotya
