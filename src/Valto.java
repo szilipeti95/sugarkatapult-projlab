@@ -79,16 +79,7 @@ public class Valto extends SinElem {
             
            System.out.println("Valto.valt()");
         }
-		
-        /**
-         * Akkor hivodik meg, ha ralep egy Vagon, megnoveli a szerelvenyek szamat.
-         * @param v Melyik Vagon lepett ra
-         */ 
-	public void raLep(Vagon v) {
-            System.out.println("Valto.raLep() ");
-            szerelvenyek++;
-	}
-        
+	
         /**
          * Atvaltja a valtot, ha nem a bemenetrol jon, noveli a szerelvenyek szamat.
          * @param m Mozdony, ami ralep

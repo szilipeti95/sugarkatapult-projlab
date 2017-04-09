@@ -43,10 +43,18 @@ public abstract class SinElem {
             }
 	}
     /**
-     * Ralep egy kocsi a SinElemre
-     * @param v Vagon ami ralepett
+     * Ralep egy Utaskocsi a SinElemre
+     * @param utaskocsi Vagon ami ralepett
      */
-	public void raLep(Vagon v) {
+	public void raLep(UtasKocsi utaskocsi) {
+            System.out.println("SinElem.raLep() ");
+            szerelvenyek++;
+	}
+         /**
+     * Ralep egy Szeneskocsi a SinElemre
+     * @param szeneskocsi Szeneskocsi ami ralepett
+     */
+	public void raLep(SzenesKocsi szeneskocsi) {
             System.out.println("SinElem.raLep() ");
             szerelvenyek++;
 	}
