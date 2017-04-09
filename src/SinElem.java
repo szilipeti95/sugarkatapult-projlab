@@ -12,7 +12,7 @@ public abstract class SinElem {
      */
     public void leptet(Mozdony m, SinElem s) {
        System.out.println("SinElem.leptet() ");
-
+       szerelvenyek++;
     }
     /**
      * Beallitja az A sinElemet a parameterkent kapott SinElemre
@@ -44,9 +44,9 @@ public abstract class SinElem {
 	}
     /**
      * Ralep egy kocsi a SinElemre
-     * @param k Kocsi ami ralepett
+     * @param v Vagon ami ralepett
      */
-	public void raLep(Kocsi k) {
+	public void raLep(Vagon v) {
             System.out.println("SinElem.raLep() ");
             szerelvenyek++;
 	}

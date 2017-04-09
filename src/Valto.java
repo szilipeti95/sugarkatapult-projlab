@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Valto extends SinElem {
 	private SinElem aktivAg;
@@ -82,10 +81,10 @@ public class Valto extends SinElem {
         }
 		
         /**
-         * Akkor hivodik meg, ha ralep egy kocsi, megnoveli a szerelvenyek szamat.
-         * @param k Melyik kocsi lepett ra
+         * Akkor hivodik meg, ha ralep egy Vagon, megnoveli a szerelvenyek szamat.
+         * @param v Melyik Vagon lepett ra
          */ 
-	public void raLep(Kocsi k) {
+	public void raLep(Vagon v) {
             System.out.println("Valto.raLep() ");
             szerelvenyek++;
 	}
