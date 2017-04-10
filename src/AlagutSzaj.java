@@ -1,66 +1,65 @@
-import java.util.Scanner;
-
+/**
+ * Szamon tartja, hogy meg van-e epitve. Kezeli az alagut szajra töorteno kattintast.
+ */
 public class AlagutSzaj extends SinElem {
 	private boolean megepitve;
 	private SinElem alagutSin;
 	
-	//Reagál arra, ha a felhasználó rákattint az alagutSzaj-ra
+	/**
+	 * Reagal arra, ha a felhasznalo rakattint az alagutSzaj-ra
+	 */
 	public void onInput() {
-		System.out.println("AlagutSzaj.onInput()");
-		
 		//Elkerjuk a terepasztaltol az alagutat
-		System.out.print("AlagutSzaj -> ");
 		Alagut a = Terepasztal.getInstance().getAlagut();
-		System.out.println("Meg van mar epitve ez az alagutSzaj? (igen/nem)");
-        Scanner reader = new Scanner(System.in);
-        String valasz = reader.next();
-        if (valasz.equals("igen")) {
+        if (megepitve == true) {
         	//A felhasznalo egy mar megepitett alagutSzajra kattintott. Le kell bontani
-    		System.out.print("AlagutSzaj -> ");
 			a.RemoveAlagutSzaj(this);
+			megepitve = false;
 		}
-		else if (valasz.equals("nem")){
+		else if (megepitve == false){
 			//A felhasznalo egy meg nem megepitett alagutSzajra kattintott. fel kell epiteni
-			System.out.print("AlagutSzaj -> ");
 			a.AddAlagutSzaj(this);
+			megepitve = true;
 		}
 	}
 	
-	//
+	/**
+	 * Lepteti a mozdonyt, illetve felrobbantja a vonatot, ha nincs megepitve.
+	 * @param A leptetendo Mozdony
+	 * @param 
+	 */
 	public void leptet(Mozdony m, SinElem s) {
-		System.out.println("AlagutSzaj.leptet()");
-		
-		System.out.println("Meg van epitve az alagut? (igen/nem): ");
-		Scanner reader = new Scanner(System.in);
-		String valasz = reader.next();
-		switch (valasz){
-		case "igen":
-				//Ha az alagut fel van epitve, jelezzuk a mozdony fele, hogy alagutban halad
-				System.out.print("AlagutSzaj -> ");
-				m.alagutValt(); break;
-		case "nem":
-			//Ha nincs megepitve az alagutSzaj. A vonat utkozik
-			System.out.print("AlagutSzaj -> ");
+		Alagut a = Terepasztal.getInstance().getAlagut();
+		if (a.getAllapot().equals(AlagutAllapot.VanAlagut)){
+			//Ha az alagut fel van epitve, jelezzuk a mozdony fele, hogy alagutban halad
+			m.alagutValt();
+			szerelvenyek++;
+		}
+		else {
+			//Ha nincs megepitve az alagut, a vonat utkozik
 			m.utkozik(); 
 			//Es elveszitjuk a jatekot
-			System.out.print("AlagutSzaj -> ");
 			Jatek.getInstance().veszt();
-			break;
 		}
 	}
+	
 	@Override
-	public void raLep(Kocsi k) {
-		System.out.println("AlagutSzaj.raLep()");
-		
+	public void raLep(UtasKocsi k) {
 		//Tudatjuk a kocsikkal, hogy alagutbn haladnak
-		System.out.print("AlagutSzaj -> ");
 		k.alagutValt();
+		szerelvenyek++;
 	}
 	
-
+	@Override
+	public void raLep(SzenesKocsi k) {
+		//Tudatjuk a kocsikkal, hogy alagutbn haladnak
+		k.alagutValt();
+		szerelvenyek++;
+	}
+	
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {
-		System.out.println("AlagutSzaj.getKovSinElem()");
+		//Visszaadja a következo SinElem-et
 		return alagutSin;
 	}
 }
