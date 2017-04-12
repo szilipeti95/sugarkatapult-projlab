@@ -3,7 +3,7 @@
  * alapjan az utasok leszallnak a kocsibol, illetve tarolja,
  * hogy vannak-e utasok a kocsin
  */
-public class UtasKocsi extends Szerelveny {
+public class UtasKocsi extends Vagon {
 	private Szin szin;
 	private boolean ures;
 	private boolean elozoUres;
