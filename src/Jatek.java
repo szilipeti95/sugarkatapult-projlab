@@ -2,32 +2,43 @@ public class Jatek {
 	private static Jatek instance;
 	private Timer timer;
 
-	//Singleton osztály, visszaadja a Jatekot
+
+    /**
+     * //Singleton osztály
+     * @return a Jatek maga
+     */
     public static Jatek getInstance(){
         if(instance == null){
             instance = new Jatek();
         }
         return instance;
     }
-    //Játék elindítása.
-    //A menüben ha a játékos elindítja a játékot meghívódik ez a függvény
-    //Betölti a terepasztalt és elindítja a Timert
-	public void start(String palya) {
-        System.out.println("Jatek.start()");
+
+    /**
+     * Játék elindítása.
+     * A menüben ha a játékos elindítja a játékot meghívódik ez a függvény
+     * Betölti a terepasztalt és elindítja a Timert
+     * @param palya a pályának a neve
+     */
+    public void start(String palya) {
         timer = new Timer();
-		System.out.print("Jatek -> ");
-        Terepasztal.getInstance().init(palya);
-		System.out.print("Jatek -> ");
-        timer.start();
+		Terepasztal.getInstance().init(palya);
+		timer.start();
 	}
-	
+
+    /**
+     * Játékos veszt
+     * két vonat összeütközött a pályán
+     */
 	public void veszt() {
-        System.out.println("Jatek.veszt()");
         System.exit(0);
 	}
-	
+
+    /**
+     * Játékos nyer
+     * elfogytak az utasok
+     */
 	public void nyer() {
-        System.out.println("Jatek.nyert()");
         System.exit(0);
 	}
 }
