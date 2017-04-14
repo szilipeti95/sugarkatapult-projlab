@@ -5,6 +5,11 @@ public class AlagutSzaj extends SinElem {
 	private boolean megepitve;
 	private SinElem alagutSin;
 	
+	
+	AlagutSzaj(String id) 
+    {
+    	super(id);
+    }
 	/**
 	 * Reagal arra, ha a felhasznalo rakattint az alagutSzaj-ra
 	 */

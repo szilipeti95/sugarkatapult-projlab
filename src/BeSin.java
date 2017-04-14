@@ -2,6 +2,11 @@ import java.util.Scanner;
 
 public class BeSin extends SinElem {//vonatok belelepesi pontja
 	
+	
+	BeSin(String id) 
+    {
+    	super(id);
+    }
 	@Override //sinEleme
 	public void leptet(Mozdony m, SinElem s) {
 		//A mozdony ralepett a sinElemre

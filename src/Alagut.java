@@ -9,6 +9,8 @@ public class Alagut {
 	private AlagutAllapot allapot;
 	private ArrayList<SinElem> alagutSinek;
 	
+	
+	
 	/**
 	 * Visszater az Alagut megepultsegenek allapotaval
 	 * @return Alagut megepultsegenek allapota
@@ -32,7 +34,8 @@ public class Alagut {
 			else{
 				szajB = a;
 			}
-			SinElem s = new Sin();
+			//TODO: add more
+			SinElem s = new Sin("as1");
 			//feleptitjuk az alagutat a sinekbol
 			Terepasztal.getInstance().AddSinElem(s);
 			alagutSinek.add(s);

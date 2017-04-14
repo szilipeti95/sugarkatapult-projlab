@@ -3,8 +3,14 @@ public abstract class SinElem {
     protected int x;
     protected int y;
     protected int szerelvenyek;
-    protected boolean lathato;    
+    protected boolean lathato;
+    protected String id;
         
+    
+    SinElem(String id) 
+    {
+    	this.id = id;
+    }
     /**
      * Tovabblepteti a sinen a vonatokat, feluldefinialjak a leszarmazottak
      * @param m Mozdony

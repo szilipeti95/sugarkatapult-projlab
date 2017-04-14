@@ -8,6 +8,30 @@ public class Allomas extends SinElem {
 	private Szin szin;//allomas szine
 	private boolean ures;//ures e vagy vannak felszallni akaro utasok
 	
+	
+	Allomas(String id, String szin, int ures) 
+    {
+    	super(id);
+    	switch (szin) {
+		case "p":
+			this.szin = Szin.PIROS;
+			break;
+		case "k":
+			this.szin = Szin.KEK;
+			break;
+		case "s":
+			this.szin = Szin.SARGA;
+			break;
+		case "z":
+			this.szin = Szin.ZOLD;
+			break;
+		default:
+			this.szin = Szin.PIROS;
+			break;
+		}
+    	this.ures = (ures == 0);
+    	
+    }
     /**
      * setter SinB-re
      * @param s A beallitando SinElem

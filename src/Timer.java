@@ -4,7 +4,7 @@ public class Timer {
         //elindul a Timer
 	//Akkor hívódik meg amikor a játékos elindítja a játékot.
 	public void start() {
-		System.out.println("Timer.start()");
+		/*System.out.println("Timer.start()");
 		
 		Scanner reader = new Scanner(System.in);
 		boolean exit = false;
@@ -32,6 +32,6 @@ public class Timer {
 		if (exit)
 			System.exit(0);
 
-		}
+		}*/
 	}
 }

@@ -9,10 +9,6 @@ public abstract class Szerelveny {
 	protected SinElem elozoSinElem;
 	protected Vagon kovKocsi;
 	
-	public Szerelveny()
-	{
-		sinElem = new Sin();
-	}
 	
 	/**
 	 * Visszater a SinElemmel amin all eppen a szerelveny.

@@ -2,6 +2,14 @@
 import java.util.ArrayList;
 
 public class Valto extends SinElem {
+	
+	
+	
+	Valto(String id) 
+    {
+    	super(id);
+    }
+	
 	private SinElem aktivAg;
         private ArrayList<SinElem> kimenetek = new ArrayList<>();
         

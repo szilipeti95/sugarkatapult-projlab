@@ -8,6 +8,11 @@ public class KeresztSin extends SinElem {
 	private SinElem sinC;
 	private SinElem sinD;
 	
+	
+	KeresztSin(String id) 
+    {
+    	super(id);
+    }
     /**
      * setter SinB-re
      * @param s A beallitando SinElem

@@ -14,21 +14,7 @@ public abstract class Vagon extends Szerelveny {
 	 *  Ez felelős a kocsi mozgatasáért, és a követező kocsi mozgatásáért is
 	 * @param kovSin a sinElem, amire a kovetkezo kocsinak lepnie kell 
 	 */
-	public void mozog(SinElem kovSin) {
-		//Ellepunk az aktuális sínről
-		sinElem.elLep();
-		
-		//rálépünk a paraméterként kapott "következő" sínre
-		kovSin.raLep(this);
-		
-		if (kovKocsi != null) {
-			//Ha van a kocsihoz kapcsolódva még kocsi, akkor azt is mozgatjuk
-			kovKocsi.mozog(sinElem);
-		}
-				
-		//Elmentjük, hogy már a következő sinen állunk
-		sinElem = kovSin;
-	}
+	public abstract void mozog(SinElem kovSin);
 	
 	/**
 	 * Ez a meteodus allitja be, hogy az elozo kocsi ures-e
