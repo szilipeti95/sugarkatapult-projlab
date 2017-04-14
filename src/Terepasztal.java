@@ -108,58 +108,17 @@ public class Terepasztal {
 				String[] elso = attrs[0].split("-");
 				String[] masodik = attrs[1].split("-");
 				
-				Sin sin1 = ListContains(sinlista, elso[0]);
-				if(sin1 != null) {
-					SinElem s = ListContains(sinelemek, masodik[0]);
-					if (elso[1].equals("a")) 
-						sin1.setSinElemA(s);
-					else if (elso[1].equals("b")) 
-						sin1.setSinElemB(s);
-				}
-				Sin sin2 = ListContains(sinlista, masodik[0]);
-				if(sin2 != null) {
-					SinElem s = ListContains(sinelemek, elso[0]);
-					if (masodik[1].equals("a")) 
-						sin2.setSinElemA(s);
-					else if (masodik[1].equals("b")) 
-						sin2.setSinElemB(s);
-				}
-				KeresztSin ksin1 = ListContains(keresztsinlista, elso[0]);
-				if(ksin1 != null) {
-					SinElem s = ListContains(sinelemek, masodik[0]);
-					if (elso[1].equals("a")) 
-						ksin1.setSinElemA(s);
-					else if (elso[1].equals("b")) 
-						ksin1.setSinElemB(s);
-					else if (elso[1].equals("c")) 
-						ksin1.setSinElemB(s);
-					else if (elso[1].equals("d")) 
-						ksin1.setSinElemB(s);
-				}
-				KeresztSin ksin2 = ListContains(keresztsinlista, masodik[0]);
-				if(ksin2 != null) {
-					SinElem s = ListContains(sinelemek, elso[0]);
-					if (masodik[1].equals("a")) 
-						ksin2.setSinElemA(s);
-					else if (masodik[1].equals("b")) 
-						ksin2.setSinElemB(s);
-					else if (masodik[1].equals("c")) 
-						ksin2.setSinElemB(s);
-					else if (masodik[1].equals("d")) 
-						ksin2.setSinElemB(s);
-				}
-				KeresztSin valto1 = ListContains(keresztsinlista, elso[0]);
-				if(valto1 != null) {
-					SinElem s = ListContains(sinelemek, masodik[0]);
-					if (elso[1].equals("a")) 
-						valto1.setSinElemA(s);
-					else if (elso[1].equals("b")) 
-						valto1.setSinElemB(s);
-					else if (elso[1].equals("c")) 
-						valto1.setSinElemB(s);
-					else if (elso[1].equals("d")) 
-						valto1.setSinElemB(s);
-				}
+				SinElem talalat1 = ListContains(sinelemek, elso[0]);
+				SinElem talalat2 = ListContains(sinelemek, masodik[0]);
+				
+				talalat1.setSinElem(talalat2, elso[1].charAt(0));
+				talalat2.setSinElem(talalat1, masodik[1].charAt(0));
+			}
+			while((line = br.readLine())!= null && !line.equals("."))
+			{
+				String[] attrs = line.split(" ");
+				BeSin beSin = ListContains(besinek, attrs[0]);
+				beSin.AddVonat(attrs[2], Integer.parseInt(attrs[1]), attrs[3]);
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("A fajl nem talalhato!");

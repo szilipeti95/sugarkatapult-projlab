@@ -13,6 +13,19 @@ public class KeresztSin extends SinElem {
     {
     	super(id);
     }
+	
+	
+	@Override
+    public void setSinElem(SinElem s, char c){
+        if (c == 'a')
+        	sinA = s;
+        else if (c == 'b')
+        	sinB = s;
+        else if (c == 'c')
+        	sinC = s;
+        else if (c == 'd')
+        	sinD = s;
+    }
     /**
      * setter SinB-re
      * @param s A beallitando SinElem

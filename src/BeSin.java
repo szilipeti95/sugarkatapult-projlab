@@ -27,6 +27,10 @@ public class BeSin extends SinElem {//vonatok belelepesi pontja
 		System.out.println("BeSin.getKovSinElem()");
 		return sinA;//ez jo, mert nincs sinBje a BeSinnek
 	}
+	public void AddVonat(String string, int parseInt, String string2) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 //Zotya

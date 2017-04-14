@@ -2,21 +2,31 @@
 import java.util.ArrayList;
 
 public class Valto extends SinElem {
-	
-	
-	
-	Valto(String id) 
+	private SinElem aktivAg;
+    private ArrayList<SinElem> kimenetek = new ArrayList<>();
+        
+    Valto(String id) 
     {
     	super(id);
     }
-	
-	private SinElem aktivAg;
-        private ArrayList<SinElem> kimenetek = new ArrayList<>();
-        
-        /**
-         * Beallitja az adott agat a parameterkent kapott SinElemre
-         * @param s Melyik SinElemre akarjuk allitani
-         */
+    
+    @Override
+    public void setSinElem(SinElem s, char c){
+        if (c == 'a')
+        	sinA = s;
+        else if (c == 'b') {
+        	aktivAg = s;
+        	kimenetek.set(0, s);
+        }
+        else {
+        	kimenetek.set(c-'a'-1, s);
+        }
+    }
+    
+    /**
+     * Beallitja az adott agat a parameterkent kapott SinElemre
+     * @param s Melyik SinElemre akarjuk allitani
+     */
 	public void setAktualisAg(SinElem s) {
             
             if(kimenetek.contains(s)){

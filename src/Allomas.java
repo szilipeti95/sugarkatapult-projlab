@@ -32,6 +32,16 @@ public class Allomas extends SinElem {
     	this.ures = (ures == 0);
     	
     }
+	
+	
+	@Override
+    public void setSinElem(SinElem s, char c){
+        if (c == 'a')
+        	sinA = s;
+        else if (c == 'b')
+        	sinB = s;
+    }
+	
     /**
      * setter SinB-re
      * @param s A beallitando SinElem

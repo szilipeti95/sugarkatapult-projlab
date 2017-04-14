@@ -10,6 +10,15 @@ public class AlagutSzaj extends SinElem {
     {
     	super(id);
     }
+	
+	@Override
+    public void setSinElem(SinElem s, char c){
+        if (c == 'a')
+        	sinA = s;
+        else if (c == 'b')
+        	alagutSin = s;
+    }
+	
 	/**
 	 * Reagal arra, ha a felhasznalo rakattint az alagutSzaj-ra
 	 */

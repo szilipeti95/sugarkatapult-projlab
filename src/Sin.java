@@ -6,6 +6,15 @@ public class Sin extends SinElem {
     {
     	super(id);
     }
+	
+	
+	@Override
+    public void setSinElem(SinElem s, char c){
+        if (c == 'a')
+        	sinA = s;
+        else if (c == 'b')
+        	sinB = s;
+    }
     /**
      * Beallitja a masodik sinElemet
      * @param s A beallitando SinElem

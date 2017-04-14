@@ -20,12 +20,12 @@ public abstract class SinElem {
        System.out.println("SinElem.leptet() ");
        szerelvenyek++;
     }
-    /**
-     * Beallitja az A sinElemet a parameterkent kapott SinElemre
-     * @param s A beallitando SinElem
-     */
-    public void setSinElemA(SinElem s){
-        sinA = s;
+
+    
+    
+    public void setSinElem(SinElem s, char c){
+        if (c == 'a')
+        	sinA = s;
     }
     
     /**
