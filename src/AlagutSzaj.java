@@ -29,11 +29,13 @@ public class AlagutSzaj extends SinElem {
         	//A felhasznalo egy mar megepitett alagutSzajra kattintott. Le kell bontani
 			a.RemoveAlagutSzaj(this);
 			megepitve = false;
+			System.out.println(id+ " alagutszaj lerombolva");
 		}
 		else if (megepitve == false){
 			//A felhasznalo egy meg nem megepitett alagutSzajra kattintott. fel kell epiteni
 			a.AddAlagutSzaj(this);
 			megepitve = true;
+			System.out.println(id+ " alagutszaj megepitve");
 		}
 	}
 	
@@ -75,5 +77,33 @@ public class AlagutSzaj extends SinElem {
 	public SinElem getKovSinElem(SinElem elozo) {
 		//Visszaadja a következo SinElem-et
 		return alagutSin;
+	}
+	
+	
+	@Override
+	public void GetInfo(String attr) {
+		super.GetInfo(attr);
+		if (attr == null)
+		{
+			System.out.println("megepitve: " + megepitve);
+			System.out.println("alagutSin: " + alagutSin.id);
+		}
+		else
+		{
+			switch (attr) {
+			case "alagutsin":
+				System.out.println(id + ":");
+				System.out.println("alagutSin: " + alagutSin.id);
+				break;
+			case "megepitve":
+				System.out.println(id + ":");
+				System.out.println("megepitve: " + megepitve);
+				break;
+		
+			default:
+				break;
+			}
+		}
+		
 	}
 }

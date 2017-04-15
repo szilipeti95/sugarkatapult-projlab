@@ -4,9 +4,16 @@
  * hogy vannak-e utasok a kocsin
  */
 public class UtasKocsi extends Vagon {
+
 	private Szin szin;
 	private boolean ures;
 	private boolean elozoUres;
+	
+	
+	public UtasKocsi(String id, Vagon kovKocsi, Szin szin) {
+		super(id, kovKocsi);
+		this.szin = szin;
+	}
 
 	/**
 	 * Ez a fuggveny hivodik meg, mikor az utasoknak le kell szallniuk a kocsirol
@@ -17,6 +24,7 @@ public class UtasKocsi extends Vagon {
 		if(szin.equals(a.getSzin()) && elozoUres) {
 			//A ket szin megegyezik, es az elutte lev kocsi is ures
 			ures = true;
+			if(kovKocsi!= null)
 			kovKocsi.SetElozoUres(true);
 			
 			if (kovKocsi == null) {
@@ -52,7 +60,8 @@ public class UtasKocsi extends Vagon {
 	 */
 	public void felszall() {
 		ures = false;
-		kovKocsi.SetElozoUres(false);
+		if(kovKocsi!=null)
+			kovKocsi.SetElozoUres(false);
 	}
 	
 	/**
@@ -78,6 +87,40 @@ public class UtasKocsi extends Vagon {
 	@Override
 	public void SetElozoUres(boolean ures) {
 		elozoUres = ures;
+	}
+	
+	@Override
+	public void GetInfo(String id, String attr) {
+		super.GetInfo(id, attr);
+		if(id.equals(this.id.split("-")[1])) {
+			if (attr == null)
+			{
+				System.out.println("szin: " + szin);
+				System.out.println("ures: " + ures);
+				System.out.println("elozoUres: " + elozoUres);
+			}
+			else
+			{
+				switch (attr) {
+				case "elozoUres":
+					System.out.println(this.id + ":");
+					System.out.println("elozoUres: " + elozoUres);
+					break;
+				case "szin":
+					System.out.println(this.id + ":");
+					System.out.println("szin: " + szin);
+					break;
+				case "ures":
+					System.out.println(this.id + ":");
+					System.out.println("ures: " + ures);
+					break;
+			
+				default:
+					break;
+				}
+			}
+		}
+		
 	}
 	
 }

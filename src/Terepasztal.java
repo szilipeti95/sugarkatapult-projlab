@@ -11,6 +11,7 @@ public class Terepasztal {
 	private ArrayList<SinElem> sinelemek;
 	private ArrayList<BeSin> besinek;
 	private Alagut alagut;
+	private int tck;
 
 	/**
 	 * Terepasztal alapértékeit beállítja, listákat létrehozza
@@ -20,7 +21,7 @@ public class Terepasztal {
         mozdonyok = new ArrayList<>();
         sinelemek = new ArrayList<>();
         besinek = new ArrayList<>();
-        alagut = new Alagut();
+        alagut = new Alagut("t1");
 
 	}
 	/**
@@ -39,9 +40,13 @@ public class Terepasztal {
 	 * Mozgatja a vonatokat, és vizsgálja az ütközéseket
 	 */
 	public void tick() {
+		tck++;
 	    for(Mozdony m: mozdonyok){
             m.mozog();
         }
+	    for (BeSin b : besinek) {
+	    	b.tick(tck);
+	    }
         for(Mozdony m: mozdonyok){
             m.utkozesVizsgal();
         }
@@ -59,8 +64,7 @@ public class Terepasztal {
 		ArrayList<AlagutSzaj> alagutszajlista = new ArrayList();
 		ArrayList<Valto> valtolista = new ArrayList();
 		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("progress.txt"));
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
 			while((line = br.readLine())!= null && !line.equals("."))
 			{
@@ -118,7 +122,7 @@ public class Terepasztal {
 			{
 				String[] attrs = line.split(" ");
 				BeSin beSin = ListContains(besinek, attrs[0]);
-				beSin.AddVonat(attrs[2], Integer.parseInt(attrs[1]), attrs[3]);
+				beSin.VonatBead(attrs[2], Integer.parseInt(attrs[1]), attrs[3]);
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("A fajl nem talalhato!");
@@ -141,6 +145,14 @@ public class Terepasztal {
 				sinelemek.get(i).onInput();
 	    		break;
 			}*/
+		}
+	}
+	
+	public void onInput(String id) {
+		for(int i = 0; i < sinelemek.size(); i++)
+		{
+			if(sinelemek.get(i).id.equals(id))
+				sinelemek.get(i).onInput();
 		}
 	}
 
@@ -209,13 +221,6 @@ public class Terepasztal {
         }
 	}
 
-	/**
-	 * bead egy új vonatot
-	 * @param index besin indexe ahol jön az új vonat
-	 */
-	public void VonatBead(int index) {
-		besinek.get(index).VonatBead();
-	}
 	
 	private <T extends SinElem> T ListContains(ArrayList<T> list, String id)
 	{
@@ -225,6 +230,25 @@ public class Terepasztal {
 				return list.get(i);
 		}
 		return null;
+	}
+	public void GetInfo(String id, String attr) {
+		
+		switch (id.charAt(0)) {
+		case 'm':
+			for (Mozdony mozdony: mozdonyok)
+			{
+				if (mozdony.id.equals(id.split("-")[0]))
+					mozdony.GetInfo(id, attr);
+			}
+			break;
+		case 't':
+			if(attr.equals("alagut"))
+				alagut.GetInfo(null);
+			break;
+		default:
+			ListContains(sinelemek, id).GetInfo(attr);
+			break;
+		}
 	}
 
 }

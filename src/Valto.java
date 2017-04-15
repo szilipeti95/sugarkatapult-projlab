@@ -128,4 +128,27 @@ public class Valto extends SinElem {
 		}
 		
 	}
+	
+	
+	@Override
+	public void GetInfo(String attr) {
+		super.GetInfo(attr);
+		if (attr == null)
+		{
+			System.out.println("aktivag: " + aktivAg.id);
+		}
+		else
+		{
+			switch (attr) {
+			case "aktivag":
+				System.out.println(id + ":");
+				System.out.println("aktivag: " + aktivAg.id);
+				break;
+		
+			default:
+				break;
+			}
+		}
+		
+	}
 }

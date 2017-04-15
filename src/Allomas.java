@@ -102,4 +102,39 @@ public class Allomas extends SinElem {
 			return sinB;
 		return sinA;//default, elvileg itt elozo==sinB
 	}
+	
+	
+	
+	@Override
+	public void GetInfo(String attr) {
+		super.GetInfo(attr);
+		if (attr == null)
+		{
+			System.out.println("sinB: " + sinB.id);
+			System.out.println("szin: " + szin);
+			System.out.println("ures: " + ures);
+		}
+		else
+		{
+			switch (attr) {
+			case "sinb":
+				System.out.println(id + ":");
+				System.out.println("sinB: " + sinB.id);
+				break;
+			case "szin":
+				System.out.println(id + ":");
+				System.out.println("szin: " + szin);
+				break;
+			case "ures":
+				System.out.println(id + ":");
+				System.out.println("ures: " + ures);
+				break;
+			
+			
+			default:
+				break;
+			}
+		}
+		
+	}
 }

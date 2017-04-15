@@ -14,16 +14,11 @@ public class Menu {//menupontok itt
 	private int progress=0;//hanyadik palya
 	private String palya = "";//palya neve
 	
-	/*
+	/**
 	 * progress alapjan eloallitja a palya nevet es elinditja a jatekot
 	 */
 	public void start() 
 	{//uj Jatek
-		
-		//ide vmi LUT szeru cucc kell hogy melyik palya hanyadik
-		//ezt talaltam ki, lehet mas is TODO
-		palya = "palya" + progress + ".txt";
-		
 		//uj jatek inditasa
 		Jatek.getInstance().start(palya);
 	}
@@ -86,5 +81,9 @@ public class Menu {//menupontok itt
 	{
 		//otlet: autosave, TODO kell?
 		System.exit(0);
+	}
+
+	public void loadMap(String p) {
+		palya = p;
 	}
 }

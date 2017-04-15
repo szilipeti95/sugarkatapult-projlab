@@ -5,7 +5,8 @@
  */
 public class SzenesKocsi extends Vagon {
 
-	public SzenesKocsi() {
+	public SzenesKocsi(String id, Vagon kovKocsi) {
+		super(id, kovKocsi);
 	}
 	
 	/**
@@ -16,7 +17,8 @@ public class SzenesKocsi extends Vagon {
 	 */
 	@Override
 	public void SetElozoUres(boolean ures) {
-		kovKocsi.SetElozoUres(ures);
+		if(kovKocsi!= null)
+			kovKocsi.SetElozoUres(ures);
 	}
 	
 	/** Ezt a függvényt hívja meg az előző szerelvény
@@ -38,6 +40,11 @@ public class SzenesKocsi extends Vagon {
 				
 		//Elmentjük, hogy már a következő sinen állunk
 		sinElem = kovSin;
+	}
+	
+	public void GetInfo(String id, String attr) {
+		super.GetInfo(id, attr);
+		
 	}
 
 }

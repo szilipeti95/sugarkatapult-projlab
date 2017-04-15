@@ -9,4 +9,5 @@ public enum Szin {
 	ZOLD,
 	KEK,
 	SARGA
+	
 }

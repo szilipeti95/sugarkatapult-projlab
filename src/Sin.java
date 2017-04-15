@@ -33,11 +33,36 @@ public class Sin extends SinElem {
      */	
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {
-        System.out.println("Sin.getKovSinElem() ");
 		if(sinA.equals(elozo)){ //Ha sinA-bol jott
 			return sinB;
 		}else{                  //Ha sinB-bol jott
 			return sinA;
 		}
+	}
+	
+	@Override
+	public void GetInfo(String attr) {
+		super.GetInfo(attr);
+		if (attr == null)
+		{
+			System.out.println("sinb: " + sinB.id);
+			System.out.println("alagutsin: " + AlagutSin);
+		}
+		else
+		{
+			switch (attr) {
+			case "sinb":
+				System.out.println(id + ":");
+				System.out.println("sinb: " + sinB.id);
+				break;
+			case "alagutsin":
+				System.out.println(id + ":");
+				System.out.println("alagutsin: " + AlagutSin);
+				break;
+			default:
+				break;
+			}
+		}
+		
 	}
 }

@@ -17,7 +17,6 @@ public abstract class SinElem {
      * @param s Elozo SinElem
      */
     public void leptet(Mozdony m, SinElem s) {
-       System.out.println("SinElem.leptet() ");
        szerelvenyek++;
     }
 
@@ -33,7 +32,6 @@ public abstract class SinElem {
      * @return Szerelvenyek szama
      */
     public int getSzerelvenyek() {
-        System.out.println("SinElem.getSzerelvenyek() ");
         return szerelvenyek;
     }
         
@@ -41,19 +39,15 @@ public abstract class SinElem {
      * Ellep a szerelveny innen, csokkenti a szerelvenyek szamat
      */    
 	public void elLep() {
-            System.out.println("SinElem.elLep() ");
-            if(szerelvenyek>0){
-                szerelvenyek--;
-            }else{
-                System.out.println("Hiba van az Ellepesnel!");
-            }
+        szerelvenyek--;
+        if(szerelvenyek <0)
+        	szerelvenyek = 0;
 	}
     /**
      * Ralep egy Utaskocsi a SinElemre
      * @param utaskocsi Vagon ami ralepett
      */
 	public void raLep(UtasKocsi utaskocsi) {
-            System.out.println("SinElem.raLep() ");
             szerelvenyek++;
 	}
          /**
@@ -61,7 +55,6 @@ public abstract class SinElem {
      * @param szeneskocsi Szeneskocsi ami ralepett
      */
 	public void raLep(SzenesKocsi szeneskocsi) {
-            System.out.println("SinElem.raLep() ");
             szerelvenyek++;
 	}
     /**
@@ -69,7 +62,6 @@ public abstract class SinElem {
      */
 
     public void onInput() {
-        System.out.println("SinElem.onInput() ");
     }
 
     /**
@@ -77,7 +69,6 @@ public abstract class SinElem {
      * @return true - tobb mint 1 szerelveny van rajta, false - nincs tobb mint 1
      */
     public boolean getUtkozes() {
-            System.out.println("SinElem.getUtkozes() ");
             return szerelvenyek > 1;
     }
 
@@ -87,4 +78,40 @@ public abstract class SinElem {
      * @return Kovetkezo SinElem
      */
     public abstract SinElem getKovSinElem(SinElem elozo);
+    
+    
+    String GetId()
+    {
+    	return id;
+    }
+    
+	public void GetInfo(String attr) {
+		if (attr == null)
+		{
+			System.out.println(id + ":");
+			System.out.println("sina: " + sinA.id);
+			System.out.println("szerelvenyek: " + szerelvenyek);
+			System.out.println("lathato: " + lathato);
+		}
+		else
+		{
+			switch (attr) {
+			case "sina":
+				System.out.println(id + ":");
+				System.out.println("sina: " + sinA.id);
+				break;
+			case "szerelvenyek":
+				System.out.println(id + ":");
+				System.out.println("szerelvenyek: " + szerelvenyek);
+				break;
+			case "lathato":
+				System.out.println(id + ":");
+				System.out.println("lathato: " + lathato);
+				break;
+			default:
+				break;
+			}
+		}
+		
+	}
 }

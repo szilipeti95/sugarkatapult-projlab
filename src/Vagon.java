@@ -6,8 +6,8 @@ import java.util.Scanner;
  */
 public abstract class Vagon extends Szerelveny {
 
-	public Vagon() {
-		
+	public Vagon(String id, Vagon kovKocsi) {
+		super(id, kovKocsi);
 	}
 	
 	/** Ezt a függvényt hívja meg az előző szerelvény
@@ -21,5 +21,16 @@ public abstract class Vagon extends Szerelveny {
 	 * @param ures true, ha az elozo kocsi ures, kulonben false
 	 */
 	public abstract void SetElozoUres(boolean ures);
+	
+	@Override
+	public void GetInfo(String id, String attr) {
+		if(id.equals(this.id.split("-")[1])) {
+			super.GetInfo(id, attr);
+		}
+		else {
+			if (kovKocsi != null)
+				kovKocsi.GetInfo(id, attr);
+		}
+	}
 
 }

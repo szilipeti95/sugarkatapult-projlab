@@ -6,6 +6,14 @@
 public class Mozdony extends Szerelveny {
 	private boolean utkozott;
 	
+	
+	Mozdony(String id, Vagon kovKocsi, SinElem s)
+	{
+		super(id, kovKocsi);
+		if(kovKocsi!=null)
+			kovKocsi.SetElozoUres(true);
+		this.sinElem = s;
+	}
 	/**
 	 * Ez a metodus hívidik meg, ha a mozdony nekimegy egy másik kocsinak.
 	 * Atallitja az utkozott valtozo erteket true-ra
@@ -31,6 +39,7 @@ public class Mozdony extends Szerelveny {
 		if (kovKocsi != null) {
 			kovKocsi.mozog(sinElem);
 		}
+		elozoSinElem = sinElem;
 		//Elmetjuk, hogy mar a kovetkezo sinen allunk
 		sinElem = kovSin;
 		
@@ -48,6 +57,36 @@ public class Mozdony extends Szerelveny {
 			utkozik();
 			Jatek.getInstance().veszt();
 		}
+	}
+	
+	@Override
+	public void GetInfo(String id, String attr) {
+		if(id.equals(this.id)) {
+			super.GetInfo(id, attr);
+			if (attr == null)
+			{
+				System.out.println("utkozott: " + utkozott);
+				if (id.split("-").length > 1)
+				kovKocsi.GetInfo(id.split("-")[1], attr);
+			}
+			else
+			{
+				switch (attr) {
+				case "utkozott":
+					System.out.println(this.id + ":");
+					System.out.println("utkozott: " + utkozott);
+					break;
+			
+				default:
+					break;
+				}
+			}
+		}
+		else if (id.split("-").length > 1) {
+			if(kovKocsi != null)
+				kovKocsi.GetInfo(id.split("-")[1], attr);
+		}
+		
 	}
 
 

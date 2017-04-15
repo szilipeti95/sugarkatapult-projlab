@@ -31,7 +31,8 @@ public class Jatek {
      * két vonat összeütközött a pályán
      */
 	public void veszt() {
-        System.exit(0);
+        //System.exit(0);
+        System.out.println("vege vesztett");
 	}
 
     /**
@@ -39,6 +40,7 @@ public class Jatek {
      * elfogytak az utasok
      */
 	public void nyer() {
-        System.exit(0);
+      //  System.exit(0);
+		System.out.println("vege nyert");
 	}
 }
