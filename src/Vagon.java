@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /** Absztrakt osztaly amely a mozdony utan allo vagonokat testesiti meg. Feladata, hogy
  * a kovetkezo SinElemre mozogjon, illetve ertesitse a vonatban a következo vagont,
  * hogy melyik SinElemre kell lepnie

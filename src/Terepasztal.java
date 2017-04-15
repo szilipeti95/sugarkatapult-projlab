@@ -57,12 +57,12 @@ public class Terepasztal {
 	 * @param fileName a fájl neve amiből a beolvasás történik
 	 */
 	public void init(String fileName) {
-		ArrayList<BeSin> besinlista = new ArrayList();
-		ArrayList<Sin> sinlista = new ArrayList();
-		ArrayList<KeresztSin> keresztsinlista = new ArrayList();
-		ArrayList<Allomas> allomaslista = new ArrayList();
-		ArrayList<AlagutSzaj> alagutszajlista = new ArrayList();
-		ArrayList<Valto> valtolista = new ArrayList();
+		ArrayList<BeSin> besinlista = new ArrayList<BeSin>();
+		ArrayList<Sin> sinlista = new ArrayList<Sin>();
+		ArrayList<KeresztSin> keresztsinlista = new ArrayList<KeresztSin>();
+		ArrayList<Allomas> allomaslista = new ArrayList<Allomas>();
+		ArrayList<AlagutSzaj> alagutszajlista = new ArrayList<AlagutSzaj>();
+		ArrayList<Valto> valtolista = new ArrayList<Valto>();
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
