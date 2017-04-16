@@ -4,18 +4,41 @@
  * Tarolja, hogy alagatban van-e. Jelre tovabb mozog
  */
 public abstract class Szerelveny {
+	/**
+	 * Megadja melyik sinElemen talalhato a szerelveny
+	 */
 	protected SinElem sinElem;
+	/**
+	 * Alagutban van-e az adott szerlveny, vagy sem
+	 */
 	private boolean alagutban;
+	/**
+	 * Melyik sinrol erkezik
+	 */
 	protected SinElem elozoSinElem;
+	/**
+	 * Referencia a szerelvenyt koveto vagonra
+	 */
 	protected Vagon kovKocsi;
+	/**
+	 * A Szerelveny azonositoja
+	 */
 	protected String id;
 	
-	
+	/**
+	 * Konstruktor, inicializalja az adattagokat
+	 * @param id a szerelveny azonositoja
+	 * @param kovKocsi a kovetkezo kocsira mutato referencia
+	 */
 	Szerelveny(String id, Vagon kovKocsi) {
 		this.id = id;
 		this.kovKocsi = kovKocsi;
 	}
 	
+	/**
+	 * Visszater a szerelveny szonositojaval
+	 * @return az azonosito
+	 */
 	String GetId() {return id;}
 	
 	/**
@@ -41,18 +64,19 @@ public abstract class Szerelveny {
 		return alagutban;
 	}
 	
+	/**
+	 * Kiirja az osszes, vagy a megadott attributum ertekeit
+	 * @param id
+	 * @param attr
+	 */
 	public void GetInfo(String id, String attr) {
 		if (attr == null)
 		{
 			System.out.println(this.id + ":");
-			System.out.println("sinElem: " + sinElem.GetId());
+			System.out.println("sinElem: " + ((sinElem == null) ? "null" : sinElem.GetId()));
 			System.out.println("alagutban: " + alagutban);
-			//BeSin miatt
-			if (elozoSinElem != null)
-				System.out.println("elozoSinElem: " + elozoSinElem.GetId());
-			//Ha nincs kovKocsi nem irjuk ki
-			if (kovKocsi != null)
-				System.out.println("kovKocsi: " + kovKocsi.GetId());
+			System.out.println("elozoSinElem: " +((elozoSinElem == null) ? "null" : elozoSinElem.GetId()));
+			System.out.println("kovKocsi: " + ((kovKocsi == null) ? "null" : kovKocsi.GetId()));
 			
 		}
 		else
@@ -64,7 +88,7 @@ public abstract class Szerelveny {
 				break;
 			case "elozosinelem":
 				System.out.println(this.id + ":");
-				System.out.println("elozoSinElem: " + alagutban);
+				System.out.println("elozoSinElem: " +((elozoSinElem == null) ? "null" : elozoSinElem.GetId()));
 				break;
 			case "allapot":
 				System.out.println(this.id + ":");
@@ -72,7 +96,7 @@ public abstract class Szerelveny {
 				break;
 			case "kovkocsi":
 				System.out.println(this.id + ":");
-				System.out.println("kovKocsi: " + kovKocsi.GetId());
+				System.out.println("kovKocsi: " + ((kovKocsi == null) ? "null" : kovKocsi.GetId()));
 				break;
 		
 			default:
@@ -82,6 +106,10 @@ public abstract class Szerelveny {
 		
 	}
 	
+	/**
+	 * A sinelem-et allitja be, amin a szerelveny epp tartozkodik
+	 * @param s a eallitando sinElem
+	 */
 	public void SetSinElem(SinElem s){
 		this.sinElem = s;
 	}

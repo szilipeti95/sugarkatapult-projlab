@@ -5,6 +5,11 @@
  */
 public class SzenesKocsi extends Vagon {
 
+	/**
+	 * Konstrukor, inicializalja az adattagokat
+	 * @param id a szerelveny azonositoja
+	 * @param kovKocsi a kovetkezo kocsira mutato referencia
+	 */
 	public SzenesKocsi(String id, Vagon kovKocsi) {
 		super(id, kovKocsi);
 	}
@@ -42,6 +47,11 @@ public class SzenesKocsi extends Vagon {
 		sinElem = kovSin;
 	}
 	
+	/**
+	 * Kiirja az osszes, vagy a megadott attributum ertekeit
+	 * @param id az azonosit, amire az infot kertek
+	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
+	 */
 	public void GetInfo(String id, String attr) {
 		super.GetInfo(id, attr);
 		

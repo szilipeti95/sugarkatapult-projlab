@@ -4,12 +4,26 @@
  * hogy vannak-e utasok a kocsin
  */
 public class UtasKocsi extends Vagon {
-
+	/**
+	 * Az UtasKocsi szine. Ez alapjan szallnak le rola az utasok
+	 */
 	private Szin szin;
+	/**
+	 * Megadja, hogy a kocsi ures-e
+	 */
 	private boolean ures;
+	/**
+	 * Megadja, hogy az elozo kocsi ures-e
+	 */
 	private boolean elozoUres;
 	
-	
+
+	/**
+	 * Konstrukor, inicializalja az adattagokat
+	 * @param id a szerelveny azonositoja
+	 * @param kovKocsi a kovetkezo kocsira mutato referencia
+	 * @param szin a beallitando szin
+	 */
 	public UtasKocsi(String id, Vagon kovKocsi, Szin szin) {
 		super(id, kovKocsi);
 		this.szin = szin;
@@ -89,6 +103,11 @@ public class UtasKocsi extends Vagon {
 		elozoUres = ures;
 	}
 	
+	/**
+	 * Kiirja az osszes, vagy a megadott attributum ertekeit
+	 * @param id az azonosit, amire az infot kertek
+	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
+	 */
 	@Override
 	public void GetInfo(String id, String attr) {
 		super.GetInfo(id, attr);

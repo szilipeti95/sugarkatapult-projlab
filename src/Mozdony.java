@@ -4,9 +4,17 @@
  * Megvizsgálja, hogy tortent-e utkozes
  */
 public class Mozdony extends Szerelveny {
+	/**
+	 * True, ha a mozdony utkozott, kulonben false
+	 */
 	private boolean utkozott;
 	
-	
+	/**
+	 * Konstrukor, inicializalja az adattagokat
+	 * @param id a szerelveny azonositoja
+	 * @param kovKocsi a kovetkezo kocsira mutato referencia
+	 * @param s a beallitando sinElem amin a Mozdony eppen tartozkodik
+	 */
 	Mozdony(String id, Vagon kovKocsi, SinElem s)
 	{
 		super(id, kovKocsi);
@@ -59,6 +67,12 @@ public class Mozdony extends Szerelveny {
 		}
 	}
 	
+	
+	/**
+	 * Kiirja az osszes, vagy a megadott attributum ertekeit
+	 * @param id az azonosit, amire az infot kertek
+	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
+	 */
 	@Override
 	public void GetInfo(String id, String attr) {
 		if(id.equals(this.id)) {
