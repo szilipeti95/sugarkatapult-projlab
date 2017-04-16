@@ -29,8 +29,7 @@ public class Alagut {
 	 * konstruktor
 	 * @param id alagut azonositoja
 	 */
-	Alagut(String id)
-	{
+	Alagut(String id){
 		this.id = id;
 	}
 	
@@ -120,6 +119,20 @@ public class Alagut {
 			szajB = null;
 		}
 	}
+	
+	/**
+	 * Megadja, hogy az alagutban van-e szerelveny
+	 * @return <code>true</code> az alagutban van szerelveny, <code>false</code> az alagutban nincs szerelvény
+	 */
+	public boolean isFoglalt(){
+		for(SinElem sinElem : alagutSinek){
+			if (sinElem.GetSzerelvenyek() > 0){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * Alagut info-janak lekerdezese, parameter fuggvenyeben
 	 * @param attr lekerdezes attributuma
@@ -152,21 +165,5 @@ public class Alagut {
 			}
 		}
 		
-	}
-	
-	/**
-	 * Megadja, hogy az alagutban avn-e szerelveny
-	 * @return True, ha az alagutban van szerelveny, kulonben false
-	 */
-	public boolean isFoglalt()
-	{
-		for(SinElem sinElem : alagutSinek)
-		{
-			if (sinElem.GetSzerelvenyek() > 0)
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 }

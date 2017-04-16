@@ -79,6 +79,10 @@ public class AlagutSzaj extends SinElem {
 		}
 	}
 	
+	/**
+	 * Ralep egy utaskocsi az AlagutSzaj-ra
+	 * @param k UtasKocsi ami ralepett
+	 */
 	@Override
 	public void raLep(UtasKocsi k) {
 		//Tudatjuk a kocsikkal, hogy alagutbn haladnak
@@ -86,6 +90,10 @@ public class AlagutSzaj extends SinElem {
 		szerelvenyek++;
 	}
 	
+	/**
+	 * Ralep egy szeneskocsi az AlagutSzaj-ra
+	 * @param k SzenesKocsi ami ralepett
+	 */
 	@Override
 	public void raLep(SzenesKocsi k) {
 		//Tudatjuk a kocsikkal, hogy alagutbn haladnak
@@ -93,6 +101,11 @@ public class AlagutSzaj extends SinElem {
 		szerelvenyek++;
 	}
 	
+	/**
+     * Lekeri a kovetkezo SinElemet
+     * @param elozo Elozo SinElem
+     * @return Kovetkezo SinElem
+     */
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {
 		//Visszaadja a következo SinElem-et
@@ -104,17 +117,19 @@ public class AlagutSzaj extends SinElem {
 		}
 	}
 	
-	
+	/**
+	 * AlagutSzaj info-janak lekerdezese, parameter fuggvenyeben
+	 * @param attr lekerdezes attributuma
+	 */
 	@Override
 	public void GetInfo(String attr) {
 		super.GetInfo(attr);
-		if (attr == null)
-		{
+		if (attr == null){
+			//ha nincs attributum mindent kiirunk
 			System.out.println("megepitve: " + megepitve);
 			System.out.println("alagutSin: " + alagutSin.id);
 		}
-		else
-		{
+		else{
 			switch (attr) {
 			case "alagutsin":
 				System.out.println(id + ":");
