@@ -76,7 +76,12 @@ public class AlagutSzaj extends SinElem {
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {
 		//Visszaadja a következo SinElem-et
-		return alagutSin;
+		if(sinA.equals(elozo)){
+			return alagutSin;
+		}
+		else{
+			return sinA;
+		}
 	}
 	
 	
