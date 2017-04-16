@@ -22,7 +22,6 @@ public class App {
 				break;
 			case "play":
 				menu.start();
-				System.out.println("jatek elindult");
 				break;
 			case "tick":
 				int n = 1;

@@ -4,19 +4,26 @@
  * Szemben levo agra iranyitja a vonatot
  */
 public class KeresztSin extends SinElem {
-	private SinElem sinB;
+	private SinElem sinB;//agak
 	private SinElem sinC;
 	private SinElem sinD;
 	
-	
+	/**
+	 * konstruktor
+	 * @param id Azonosito
+	 */
 	KeresztSin(String id) 
     {
     	super(id);
     }
 	
-	
+	/**
+	 * Agak osszekotesere
+	 * @param s SinElem
+	 * @param c karakter (a,b,c,d)
+	 */
 	@Override
-    public void setSinElem(SinElem s, char c){
+    public void setSinElem(SinElem s, char c) {
         if (c == 'a')
         	sinA = s;
         else if (c == 'b')
@@ -25,29 +32,6 @@ public class KeresztSin extends SinElem {
         	sinC = s;
         else if (c == 'd')
         	sinD = s;
-    }
-    /**
-     * setter SinB-re
-     * @param s A beallitando SinElem
-     */
-    public void setSinElemB(SinElem s) {
-        sinB = s;
-    }
-    
-    /**
-     * setter SinC-re
-     * @param s A beallitando SinElem
-     */
-    public void setSinElemC(SinElem s) {
-        sinC = s;
-    }
-    
-    /**
-     * setter SinD-re
-     * @param s A beallitando SinElem
-     */
-    public void setSinElemD(SinElem s) {
-        sinD = s;
     }
     
     /**
@@ -68,14 +52,15 @@ public class KeresztSin extends SinElem {
 		return sinA;//ez a default, ha rossz az elozo, de elv ilyen ne legyen
 	}
 	
-	
-	
-	
+	/**
+	 * Attributumok lekerdezesere
+	 * @param attr Melyik attributumot akarjuk lekerdezni. ha null, akkor mindet
+	 */
 	@Override
 	public void GetInfo(String attr) {
-		super.GetInfo(attr);
+		super.GetInfo(attr);//sinelem os dolgait kiirjuk eloszor
 		if (attr == null)
-		{
+		{//nincs megadva hogy melyik attributumot keri, akkor mindet adjuk
 			System.out.println("sinb: " + sinB.id);
 			System.out.println("sinc: " + sinC.id);
 			System.out.println("sind: " + sinD.id);
@@ -95,12 +80,9 @@ public class KeresztSin extends SinElem {
 				System.out.println(id + ":");
 				System.out.println("sind: " + sinD.id);
 				break;
-			
 			default:
 				break;
 			}
 		}
-		
 	}
-
 }

@@ -114,6 +114,7 @@ public class Terepasztal {
 				BeSin beSin = ListContains(besinek, attrs[0]);
 				beSin.VonatBead(attrs[2], Integer.parseInt(attrs[1]), attrs[3]);
 			}
+			System.out.println("jatek elindult");
 		} catch (FileNotFoundException e) {
 			System.out.println("A fajl nem talalhato!");
 		} catch (IOException e) {

@@ -20,7 +20,12 @@ public class Menu {//menupontok itt
 	public void start() 
 	{//uj Jatek
 		//uj jatek inditasa
-		Jatek.getInstance().start(palya);
+		if(palya!="")
+		{
+			Jatek.getInstance().start(palya);
+		}
+		else
+			System.out.println("valasszon egy palyat eloszor (loadmap)");
 	}
 	
 	/**
@@ -70,7 +75,6 @@ public class Menu {//menupontok itt
 			//esetleg messagebox a hibarol TODO
 			System.out.println("hiba betoltes");
 		}
-		
 		return progress;
 	}
 	
@@ -83,6 +87,10 @@ public class Menu {//menupontok itt
 		System.exit(0);
 	}
 
+	/**
+	 * csak eltarolja a map fajl nevet, foleg protoban kell
+	 * @param p Eleresi ut
+	 */
 	public void loadMap(String p) {
 		palya = p;
 	}
