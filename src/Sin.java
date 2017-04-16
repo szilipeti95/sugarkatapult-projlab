@@ -7,6 +7,12 @@ public class Sin extends SinElem {
     	super(id);
     }
 	
+    /**
+     * Beallitja a SinElemet a megfelelo helyre
+     * @param s Melyik SinElem
+     * @param c Melyik helyre allitsa be:
+     *          a: SinA, b: SinB
+     */    
 	
 	@Override
     public void setSinElem(SinElem s, char c){
@@ -15,18 +21,8 @@ public class Sin extends SinElem {
         else if (c == 'b')
         	sinB = s;
     }
+    	
     /**
-     * Beallitja a masodik sinElemet
-     * @param s A beallitando SinElem
-     */
-    public void setSinElemB(SinElem s){
-        System.out.println("Sin.setSinElem() ");
-        sinB = s; //Beallitjuk sinB-t
-        
-    }
-    
-	
-	/**
      * Visszater a kovetkezo SinElemmel, attol fuggoen, merrol jon a vonat
      * @param elozo Az elozo SinElem
      * @return A kovetkezo SinElem
@@ -40,21 +36,31 @@ public class Sin extends SinElem {
 		}
 	}
 	
+        /**
+         * Kiirja a szukseges lekerdezett infokat a Sinrol ha van attributum, akkor csak azt.
+         * @param attr A lekerdezett attributum
+         */
+        
 	@Override
 	public void GetInfo(String attr) {
+                //Ososztaly GetInfoja
 		super.GetInfo(attr);
+                //Ha nincs kulon lekert attributum
 		if (attr == null)
 		{
-			System.out.println("sinb: " + sinB.id);
+			System.out.println("sinb: " + (sinB!=null?sinB.id : "null"));
 			System.out.println("alagutsin: " + AlagutSin);
 		}
+                //Ha van kulon lekert attributum
 		else
 		{
 			switch (attr) {
+                        //Lekert attributum a sinB
 			case "sinb":
 				System.out.println(id + ":");
-				System.out.println("sinb: " + sinB.id);
+				System.out.println("sinb: " + (sinB!=null?sinB.id : "null"));
 				break;
+                        //Lekert attributum az alagutSin
 			case "alagutsin":
 				System.out.println(id + ":");
 				System.out.println("alagutsin: " + AlagutSin);

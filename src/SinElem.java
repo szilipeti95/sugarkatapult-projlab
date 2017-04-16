@@ -20,7 +20,11 @@ public abstract class SinElem {
        szerelvenyek++;
     }
 
-    
+    /**
+     * Beallitja a SinElem attributumot a megfelelo attribútumra
+     * @param s Beallitando attributum
+     * @param c 'a' - SinA
+     */
     
     public void setSinElem(SinElem s, char c){
         if (c == 'a')
@@ -84,12 +88,16 @@ public abstract class SinElem {
     {
     	return id;
     }
+    /**
+     * Kiirja a szukseges lekerdezett infokat a SinElemrol, ha van attributum, akkor csak azt.
+     * @param attr A lekerdezett attributum
+     */
     
 	public void GetInfo(String attr) {
 		if (attr == null)
 		{
 			System.out.println(id + ":");
-			System.out.println("sina: " + sinA.id);
+			System.out.println("sina: " + (sinA!=null?sinA.id:"null"));
 			System.out.println("szerelvenyek: " + szerelvenyek);
 			System.out.println("lathato: " + lathato);
 		}
@@ -98,7 +106,7 @@ public abstract class SinElem {
 			switch (attr) {
 			case "sina":
 				System.out.println(id + ":");
-				System.out.println("sina: " + sinA.id);
+				System.out.println("sina: " + (sinA!=null?sinA.id:"null"));
 				break;
 			case "szerelvenyek":
 				System.out.println(id + ":");
