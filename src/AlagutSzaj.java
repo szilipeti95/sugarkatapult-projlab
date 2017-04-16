@@ -2,15 +2,29 @@
  * Szamon tartja, hogy meg van-e epitve. Kezeli az alagut szajra töorteno kattintast.
  */
 public class AlagutSzaj extends SinElem {
+	/**
+	 * alagutSzaj megepultsegenek allapota
+	 */
 	private boolean megepitve;
+	/**
+	 * hozza kapcsolodo alagutsin
+	 */
 	private SinElem alagutSin;
 	
-	
+	/**
+	 * konstruktor
+	 * @param id alagutSzaj azonositoja
+	 */
 	AlagutSzaj(String id) 
     {
     	super(id);
     }
 	
+	/**
+	 * alagutsin vegenek bekotese
+	 * @param s amit hozza akarunk kotni
+	 * @param c melyik felehez akarjuk kotni (<code>a</code> sinA / <code>b</code> alagutSin)
+	 */
 	@Override
     public void setSinElem(SinElem s, char c){
         if (c == 'a')
@@ -31,19 +45,23 @@ public class AlagutSzaj extends SinElem {
 			megepitve = false;
 			System.out.println(id+ " alagutszaj lerombolva");
 		}
-		else if (megepitve == false){
+		else if (megepitve == false && !a.getAllapot().equals(AlagutAllapot.VanAlagut)){
 			//A felhasznalo egy meg nem megepitett alagutSzajra kattintott. fel kell epiteni
 			a.AddAlagutSzaj(this);
 			megepitve = true;
 			System.out.println(id+ " alagutszaj megepitve");
 		}
+		else if(a.getAllapot().equals(AlagutAllapot.VanAlagut)){
+			System.out.println("nem epitheto meg az alagutszaj");
+		}
 	}
 	
 	/**
 	 * Lepteti a mozdonyt, illetve felrobbantja a vonatot, ha nincs megepitve.
-	 * @param A leptetendo Mozdony
-	 * @param 
+	 * @param m A leptetendo Mozdony
+	 * @param s Elozo sinelem
 	 */
+	@Override
 	public void leptet(Mozdony m, SinElem s) {
 		Alagut a = Terepasztal.getInstance().getAlagut();
 		if (a.getAllapot().equals(AlagutAllapot.VanAlagut)){

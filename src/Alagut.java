@@ -4,14 +4,31 @@ import java.util.ArrayList;
  * Alagut megepultsegenek, es az alagut szajak illetve a koztuk meno SinElemek szamontartasa.
  */
 public class Alagut {
+	/**
+	 * Alagut egyik szaja
+	 */
 	private AlagutSzaj szajA;
+	/**
+	 * Alagut masik szaja
+	 */
 	private AlagutSzaj szajB;
+	/**
+	 * Alagut megepultsegenek allapota
+	 */
 	private AlagutAllapot allapot = AlagutAllapot.NincsAlagutSzaj;
+	/**
+	 * Az alagut belsejeben levo sinek tarolasa
+	 */
 	private ArrayList<SinElem> alagutSinek = new ArrayList<>();
+	/**
+	 * Alagut id-je
+	 */
 	private String id;
 	
-	
-	
+	/**
+	 * konstruktor
+	 * @param id alagut azonositoja
+	 */
 	Alagut(String id)
 	{
 		this.id = id;
@@ -19,22 +36,25 @@ public class Alagut {
 	
 	/**
 	 * Visszater az Alagut megepultsegenek allapotaval
-	 * @return Alagut megepultsegenek allapota
+	 * @return megepultsegenek allapota
 	 */
 	public AlagutAllapot getAllapot(){
 		return allapot;
 	}
 	
 	/**
-	 * A paraméterben kapott AlagutSzaj-at hozzáadja az Alaguthoz
+	 * A parameterben kapott AlagutSzaj-at hozzaadja az Alaguthoz
 	 * @param A hozzaadando AlagutSzaj
 	 */
 	public void AddAlagutSzaj(AlagutSzaj a) {
-		if(allapot.equals(AlagutAllapot.NincsAlagutSzaj)){
+		int length = 5;
+		if(allapot.equals(AlagutAllapot.NincsAlagutSzaj)){ 
+			//ha meg nincs megepult alagutszaj
 			szajA = a;
 			allapot = AlagutAllapot.EgyAlagutSzaj;
 		}
-		else if (allapot.equals(AlagutAllapot.EgyAlagutSzaj)){
+		else if (allapot.equals(AlagutAllapot.EgyAlagutSzaj)){ 
+			//ha egy alagutszaj van megepulve
 			if(szajA == null){
 				szajA = a;				
 			}
@@ -42,36 +62,57 @@ public class Alagut {
 				szajB = a;
 			}
 			allapot = AlagutAllapot.VanAlagut;
-			//TODO: add more
-			SinElem s = new Sin("as1");
-			s.setSinElem(szajA, 'a');
-			s.setSinElem(szajB, 'b');
-			szajA.setSinElem(s, 'b');
-			szajB.setSinElem(s, 'b');
-			//feleptitjuk az alagutat a sinekbol
-			Terepasztal.getInstance().AddSinElem(s);
-			alagutSinek.add(s);
+			
+			for (int i = 0; i < length; i++) {
+				//letrehozzuk a sineket es berakjuk az alagutba
+				SinElem s = new Sin(("as" + (i+1)));
+				alagutSinek.add(s);
+			}
+			for(int i = 0; i < length; i++){
+				//sineket osszekotogetjuk egymassal
+				if(i == 0){
+					//az elso sint be kell kotni az alagutSzajA-ba
+					alagutSinek.get(i).setSinElem(szajA, 'a');
+					alagutSinek.get(i).setSinElem(alagutSinek.get(i+1), 'b');
+					szajA.setSinElem(alagutSinek.get(i), 'b');
+				}
+				else if(i == length-1){
+					//az utolso sint be kell kotni az alagutSzajB-be
+					alagutSinek.get(i).setSinElem(szajB, 'b');
+					alagutSinek.get(i).setSinElem(alagutSinek.get(i-1), 'a');
+					szajB.setSinElem(alagutSinek.get(i), 'b');
+				}
+				else{
+					alagutSinek.get(i).setSinElem(alagutSinek.get(i-1), 'a');
+					alagutSinek.get(i).setSinElem(alagutSinek.get(i+1), 'b');
+				}
+			}
+			for(SinElem s : alagutSinek){
+				//alagutsinek hozzaadasa a terepasztalhoz
+				Terepasztal.getInstance().AddSinElem(s);
+			}
 		}
 	}
 	
 	/**
-	 * A paraméterben kapott AlagutSzaj-at eltávolítja az Alagutból
+	 * A parameterben kapott AlagutSzaj-at eltavolitja az Alagutbol
 	 * @param Az eltavolitando AlagutSzaj  
 	 */
 	public void RemoveAlagutSzaj(AlagutSzaj a) {
 		//Valamelyik alagutSzaj megsemmisult. Le kell bontani az alagutat.
 		if(allapot == AlagutAllapot.VanAlagut){
-
+			//ha van alagut, akkor toroljuk az alagutsineket
 			for(SinElem s : alagutSinek){
 				Terepasztal.getInstance().RemoveSinElem(s);
 			}
 			alagutSinek.clear();
 			allapot = AlagutAllapot.EgyAlagutSzaj;
 		}
-		else
-		{
+		else{
+			//ha csak egy alagut szaj van akkor csak azt toroljuk
 			allapot = AlagutAllapot.NincsAlagutSzaj;
 		}
+		//kinullazzuk a megfelelo alagutSzaj-at
 		if(szajA == a){
 			szajA = null;
 		}
@@ -79,17 +120,19 @@ public class Alagut {
 			szajB = null;
 		}
 	}
-	
+	/**
+	 * Alagut info-janak lekerdezese, parameter fuggvenyeben
+	 * @param attr lekerdezes attributuma
+	 */
 	public void GetInfo(String attr) {
-		if (attr == null)
-		{
+		if (attr == null){
+			//ha nincs attributum mindent kiirunk
 			System.out.println(id + ":");
 			System.out.println("szajA: " + ((szajA== null)? "null" : szajA.id));
 			System.out.println("szajB: " + ((szajB== null)? "null" : szajB.id));
 			System.out.println("Allapot: " + allapot);
 		}
-		else
-		{
+		else{
 			switch (attr) {
 			case "szaja":
 				System.out.println(id + ":");
