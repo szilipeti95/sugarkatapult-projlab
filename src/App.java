@@ -48,7 +48,7 @@ public class App {
 				System.out.println("reset done");
 				break;
 			case "info":
-				if (attrs.length > 1)
+				if (attrs.length > 2)
 					Terepasztal.getInstance().GetInfo(attrs[1], attrs[2]);
 				else if(attrs.length == 2)
 					Terepasztal.getInstance().GetInfo(attrs[1], null);

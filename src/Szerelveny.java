@@ -66,8 +66,8 @@ public abstract class Szerelveny {
 	
 	/**
 	 * Kiirja az osszes, vagy a megadott attributum ertekeit
-	 * @param id
-	 * @param attr
+	 * @param id az azonosit, amire az infot kertek
+	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
 	 */
 	public void GetInfo(String id, String attr) {
 		if (attr == null)
@@ -108,7 +108,7 @@ public abstract class Szerelveny {
 	
 	/**
 	 * A sinelem-et allitja be, amin a szerelveny epp tartozkodik
-	 * @param s a eallitando sinElem
+	 * @param s a beallitando sinElem
 	 */
 	public void SetSinElem(SinElem s){
 		this.sinElem = s;
