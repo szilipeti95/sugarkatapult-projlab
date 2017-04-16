@@ -9,9 +9,10 @@ public class App {
 		Scanner reader = new Scanner(System.in);
 		String line = null;
 		while ((line = reader.nextLine()) != null) {
-			String[] attrs = line.split(" ");
+			String[] attrs = line.toLowerCase().split(" ");
 			switch (attrs[0]) {
 			case "loadmap":
+			case "load"://mindkettot elfogadjuk
 				if(attrs.length > 1) {
 					menu.loadMap(attrs[1]);
 					System.out.println(attrs[1] + " palya kivalasztva");

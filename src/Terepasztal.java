@@ -57,13 +57,6 @@ public class Terepasztal {
 	 * @param fileName a fájl neve amiből a beolvasás történik
 	 */
 	public void init(String fileName) {
-		ArrayList<BeSin> besinlista = new ArrayList<BeSin>();
-		ArrayList<Sin> sinlista = new ArrayList<Sin>();
-		ArrayList<KeresztSin> keresztsinlista = new ArrayList<KeresztSin>();
-		ArrayList<Allomas> allomaslista = new ArrayList<Allomas>();
-		ArrayList<AlagutSzaj> alagutszajlista = new ArrayList<AlagutSzaj>();
-		ArrayList<Valto> valtolista = new ArrayList<Valto>();
-		
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
 			while((line = br.readLine())!= null && !line.equals("."))
@@ -72,33 +65,30 @@ public class Terepasztal {
 				switch (attrs[0]) {
 				case "besin":
 					BeSin beSin = new BeSin(attrs[1]);
-					besinlista.add(beSin);
 					AddBeSin(beSin);
 					AddSinElem(beSin);
 					break;
 				case "valto":
 					Valto valto = new Valto(attrs[1]); 
-					valtolista.add(valto);
 					AddSinElem(valto);
 					break;
 				case "alagutszaj":
 					AlagutSzaj alagutSzaj = new AlagutSzaj(attrs[1]);
-					alagutszajlista.add(alagutSzaj);
 					AddSinElem(alagutSzaj);
 					break;
 				case "allomas":
-					Allomas allomas = new Allomas(attrs[1], attrs[2], Integer.parseInt(attrs[3]));
-					allomaslista.add(allomas);
+					int ures=1;
+					if(attrs.length==4)//ha meg van adva hogy ures-e, akkor beallitjuk. default ures
+						ures=Integer.parseInt(attrs[3]);
+					Allomas allomas = new Allomas(attrs[1], attrs[2], ures);
 					AddSinElem(allomas);
 					break;
 				case "normalsin":
 					Sin sin = new Sin(attrs[1]);
-					sinlista.add(sin);
 					AddSinElem(sin);
 					break;
 				case "keresztsin":
 					KeresztSin keresztSin = new KeresztSin(attrs[1]);
-					keresztsinlista.add(keresztSin);
 					AddSinElem(keresztSin);
 					break;
 
