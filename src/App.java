@@ -12,8 +12,12 @@ public class App {
 			String[] attrs = line.split(" ");
 			switch (attrs[0]) {
 			case "loadmap":
-				menu.loadMap(attrs[1]);
-				System.out.println(attrs[1] + " palya kivalasztva");
+				if(attrs.length > 1) {
+					menu.loadMap(attrs[1]);
+					System.out.println(attrs[1] + " palya kivalasztva");
+				}
+				else
+					System.out.println("nem adtal meg parametert");
 				break;
 			case "play":
 				menu.start();
@@ -28,20 +32,28 @@ public class App {
 					Terepasztal.getInstance().tick();
 				break;
 			case "valto":
-				Terepasztal.getInstance().onInput(attrs[1]);
+				if(attrs.length > 1)
+					Terepasztal.getInstance().onInput(attrs[1]);
+				else
+					System.out.println("nem adtal meg parametert");
 				break;
 			case "alagutszaj":
-				Terepasztal.getInstance().onInput(attrs[1]);
+				if(attrs.length > 1)
+					Terepasztal.getInstance().onInput(attrs[1]);
+				else
+					System.out.println("nem adtal meg parametert");
 				break;
 			case "reset":
 				menu.start();
 				System.out.println("reset done");
 				break;
 			case "info":
-				if (attrs.length > 2)
+				if (attrs.length > 1)
 					Terepasztal.getInstance().GetInfo(attrs[1], attrs[2]);
-				else
+				else if(attrs.length == 2)
 					Terepasztal.getInstance().GetInfo(attrs[1], null);
+				else
+					System.out.println("nem adtal meg parametert");
 				break;
 
 			default:
