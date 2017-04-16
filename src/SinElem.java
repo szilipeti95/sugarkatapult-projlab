@@ -122,4 +122,14 @@ public abstract class SinElem {
 		}
 		
 	}
+	
+	
+	/**
+	 * Visszaadja a sinElem-en tartozkodo szerelvenyek szamat
+	 * @return a szerelvenyek szama
+	 */
+	public int GetSzerelvenyek()
+	{
+		return szerelvenyek;
+	}
 }

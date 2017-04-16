@@ -39,7 +39,7 @@ public class AlagutSzaj extends SinElem {
 	public void onInput() {
 		//Elkerjuk a terepasztaltol az alagutat
 		Alagut a = Terepasztal.getInstance().getAlagut();
-        if (megepitve == true) {
+        if (megepitve == true && !a.isFoglalt()) {
         	//A felhasznalo egy mar megepitett alagutSzajra kattintott. Le kell bontani
 			a.RemoveAlagutSzaj(this);
 			megepitve = false;

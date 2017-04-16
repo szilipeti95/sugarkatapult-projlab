@@ -153,4 +153,20 @@ public class Alagut {
 		}
 		
 	}
+	
+	/**
+	 * Megadja, hogy az alagutban avn-e szerelveny
+	 * @return True, ha az alagutban van szerelveny, kulonben false
+	 */
+	public boolean isFoglalt()
+	{
+		for(SinElem sinElem : alagutSinek)
+		{
+			if (sinElem.GetSzerelvenyek() > 0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
