@@ -1,0 +1,8 @@
+besin b1
+besin b2
+normalsin n1
+.
+b1-a n1-a
+n1-b b2-a
+.
+b1 2 m1 p
