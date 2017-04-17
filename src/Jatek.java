@@ -1,5 +1,15 @@
+/**
+ * Tartalmazza a terepasztalt és a timert.
+ * A timer működteti a terepasztalt.
+ */
 public class Jatek {
+    /**
+     * Játék egyetlen példánya
+     */
 	private static Jatek instance;
+    /**
+     * Az időzítő referenciája
+     */
 	private Timer timer;
 
 
@@ -22,6 +32,7 @@ public class Jatek {
      */
     public void start(String palya) {
         timer = new Timer();
+        Terepasztal.getInstance().reset();
 		Terepasztal.getInstance().init(palya);
 		timer.start();
 	}

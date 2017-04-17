@@ -4,13 +4,40 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Terepasztalon valósul meg az egész játék.
+ * Eltárolja a Mozdonyokat, síneket, állomásokat, alagutat
+ * Nézi, hogy hány olyan vonat van még a terepasztalon ami rendelkezik utassal,
+ * ezzel kezelve a játék nyerését.
+ */
 public class Terepasztal {
+	/**
+	 * Nem üres vonatok száma a terepasztalon
+	 */
 	private int teliVonatSzam;
+	/**
+	 * Terepasztal egyetlen példánya
+	 */
 	private static Terepasztal instance;
+	/**
+	 * Összes Mozdony referenciája ami a terepasztalon van
+	 */
 	private ArrayList<Mozdony> mozdonyok;
+	/**
+	 *	Összes SinElem referenciája ami a terepasztalon van
+	 */
 	private ArrayList<SinElem> sinelemek;
+	/**
+	 *	BeSinek tárolása
+	 */
 	private ArrayList<BeSin> besinek;
+	/**
+	 *	A terepasztalon levő alagút referenciája
+	 */
 	private Alagut alagut;
+	/**
+	 *	tickek számlálója
+	 */
 	private int tck;
 
 	/**
@@ -22,7 +49,7 @@ public class Terepasztal {
         sinelemek = new ArrayList<>();
         besinek = new ArrayList<>();
         alagut = new Alagut("t1");
-
+        tck = 0;
 	}
 	/**
 	 * Singleton osztály, lekérdezi a Terepasztalt
@@ -33,6 +60,18 @@ public class Terepasztal {
 			instance = new Terepasztal();
 		}
 		return instance;
+	}
+
+	/**
+	 * Törli a terepasztal elemeit.
+	 */
+	public void reset(){
+		teliVonatSzam = 0;
+		mozdonyok.clear();
+		sinelemek.clear();
+		besinek.clear();
+		alagut = new Alagut("t1");
+		tck = 0;
 	}
 
 	/**
@@ -145,16 +184,6 @@ public class Terepasztal {
 			if(sinelemek.get(i).id.equals(id))
 				sinelemek.get(i).onInput();
 		}
-	}
-
-	/**
-	 *
-	 */
-	@Deprecated
-	public void AddAlagutSzaj() {
-	    System.out.println("Terepasztal.AddAlagutSzaj()");
-	    //TODO: implement
-        //Amugy ez mi?
 	}
 
 	/**
