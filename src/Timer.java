@@ -1,6 +1,6 @@
-ï»¿public class Timer {
+public class Timer {
         //elindul a Timer
-	//Akkor hÃ­vÃ³dik meg amikor a jÃ¡tÃ©kos elindÃ­tja a jÃ¡tÃ©kot.
+	//Akkor hívódik meg amikor a játékos elindítja a játékot.
 	public void start() {
 	}
 }
