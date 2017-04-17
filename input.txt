@@ -1,0 +1,86 @@
+loadmap besinpalya.txt
+play
+tick 3
+info m1
+.
+loadmap alagutteszt.txt
+play
+alagutszaj a1
+alagutszaj a2
+alagutszaj a1
+info t1 alagut
+.
+loadmap alagutteszt.txt
+play
+alagutszaj a1
+alagutszaj a2
+info t1 alagut
+.
+loadmap alagutteszt.txt
+play
+alagutszaj a1
+alagutszaj a2
+tick 5
+info m1
+.
+loadmap utkozes.txt
+play
+tick 3
+info m1 sinelem
+info m2 sinelem
+tick 1
+.
+loadmap allomas1.txt
+play
+tick 4
+info m1-u1 ures
+tick 1
+info m1-u1 sinelem
+info m1-u1 ures
+.
+loadmap allomas2.txt
+play
+tick 6
+info m1-u2 ures
+info m1-u2 sinelem
+tick 1
+info m1-u2 ures
+.
+loadmap allomas3.txt
+play
+tick 5
+info m1-u1 ures
+tick 2
+info m1-u1 ures
+info m1-u1 sinelem
+.
+loadmap allomas4.txt
+play
+tick 5
+info m1-u1 ures
+tick 2
+info m1-u1 ures
+info m1-u1 sinelem
+.
+loadmap szajnalrobban.txt
+play
+tick 2
+.
+loadmap valto.txt
+play
+tick 2
+valto v1
+.
+loadmap valto.txt
+play
+valto v1
+tick 3
+info m1 sinElem
+.
+loadmap jateknyer.txt
+play
+tick 3
+.
+load jatekfut.txt
+play
+tick

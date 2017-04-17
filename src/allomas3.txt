@@ -15,4 +15,4 @@ n3-b a2-a
 a2-b n4-a
 b2-a n4-b
 .
-b1 1 m1 p
+b1 1 m1 pk

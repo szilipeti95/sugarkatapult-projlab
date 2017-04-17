@@ -61,7 +61,7 @@ public class Alagut {
 				szajB = a;
 			}
 			allapot = AlagutAllapot.VanAlagut;
-			
+			                 System.out.println("alagut megepitve");
 			for (int i = 0; i < length; i++) {
 				//letrehozzuk a sineket es berakjuk az alagutba
 				SinElem s = new Sin(("as" + (i+1)));
@@ -106,10 +106,12 @@ public class Alagut {
 			}
 			alagutSinek.clear();
 			allapot = AlagutAllapot.EgyAlagutSzaj;
+                        System.out.println("alagut lerombolva");
 		}
 		else{
 			//ha csak egy alagut szaj van akkor csak azt toroljuk
 			allapot = AlagutAllapot.NincsAlagutSzaj;
+                        
 		}
 		//kinullazzuk a megfelelo alagutSzaj-at
 		if(szajA == a){

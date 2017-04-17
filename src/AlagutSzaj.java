@@ -42,16 +42,18 @@ public class AlagutSzaj extends SinElem {
         if (megepitve == true) {
         	if(!a.isFoglalt()) {
 	        	//A felhasznalo egy mar megepitett alagutSzajra kattintott. Le kell bontani
+                                System.out.println(id+ " alagutszaj lerombolva");
 				a.RemoveAlagutSzaj(this);
 				megepitve = false;
-				System.out.println(id+ " alagutszaj lerombolva");
+				
         	}
 		}
 		else if (megepitve == false && !a.getAllapot().equals(AlagutAllapot.VanAlagut)){
 			//A felhasznalo egy meg nem megepitett alagutSzajra kattintott. fel kell epiteni
+                        System.out.println(id+ " alagutszaj megepitve");
 			a.AddAlagutSzaj(this);
 			megepitve = true;
-			System.out.println(id+ " alagutszaj megepitve");
+			
 		}
 		else if(a.getAllapot().equals(AlagutAllapot.VanAlagut)){
 			System.out.println("nem epitheto meg az alagutszaj");
