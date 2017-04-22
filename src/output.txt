@@ -1,0 +1,123 @@
+besinpalya.txt palya kivalasztva
+jatek elindult
+3 tick megtortent
+m1:
+sinElem: n1 
+alagutban: false 
+elozoSinElem: b1 
+kovKocsi: k1,
+utkozott: false
+.
+alagutteszt.txt palya kivalasztva
+jatek elindult
+a1 alagutszaj megepitve
+a2 alagutszaj megepitve
+alagut megepitve
+a1 alagutszaj lerombolva
+alagut lerombolva
+t1:
+szajA: null
+szajB: a2
+allapot: EgyAlagutSzaj
+.
+alagutteszt.txt palya kivalasztva
+jatek elindult
+a1 alagutszaj megepitve
+a2 alagutszaj megepitve
+alagut megepitve
+t1:
+szajA: a1
+szajB: a2
+allapot: VanAlagut
+.
+alagutteszt.txt palya kivalasztva
+jatek elindult
+a1 alagutszaj megepitve
+a2 alagutszaj megepitve
+alagut megepitve
+5 tick megtortent
+m1:
+sinElem: as1 
+alagutban: true 
+elozoSinElem: a1 
+kovKocsi: k1,
+utkozott: false
+.
+utkozes.txt palya kivalasztva
+Jatek elindult
+3 tick megtortent
+m1:
+sinElem: n2
+m2:
+sinElem n4
+1 tick megtortent
+Utkozes tortent
+.
+allomas1.txt palya kivalasztva
+Jatek elindult
+4 tick megtortent
+m1-u1:
+ures: false
+1 tick megtortent
+m1-u1:
+sinElem: a1
+m1-u1:
+ures: true
+.
+allomas2.txt palya kivalasztva
+Jatek elindult
+4 tick megtortent
+m1-u2:
+ures: false
+m1-u2:
+sinElem: a1
+1 tick megtortent
+m1-u2:
+ures: false
+.
+allomas3.txt palya kivalasztva
+Jatek elindult
+4 tick megtortent
+m1-u1:
+ures: true
+2 tick megtortent
+m1-u1:
+ures: false
+m1-u1:
+sinElem: a2
+.
+allomas3.txt palya kivalasztva
+Jatek elindult
+4 tick megtortent
+m1-u1:
+ures: true
+2 tick megtortent
+m1-u1:
+ures: true
+m1-u1:
+sinElem: a2
+.
+szajnalrobban.txt kivalasztva
+jatek elindult
+2 tick megtortent
+vege vesztett
+.
+valto.txt kivalasztva
+jatek elindult
+2 tick megtortent
+.
+valto.txt kivalasztva
+jatek elindult
+v1 valto atvaltott a c agba
+3 tick megtortent
+m1:
+sinElem: n2
+.
+jateknyer.txt kivalasztva
+jatek elindult
+3 tick megtörtént
+vege nyert
+.
+jatekfut.txt kivalasztva
+jatek elindult
+1 tick megtortent

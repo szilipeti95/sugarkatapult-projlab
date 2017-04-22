@@ -1,0 +1,6 @@
+besin b1
+alagutszaj s1
+.
+b1-a s1-a
+.
+b1 1 m1 p

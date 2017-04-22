@@ -1,24 +1,60 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
+/**
+ * Terepasztalon valósul meg az egész játék.
+ * Eltárolja a Mozdonyokat, síneket, állomásokat, alagutat
+ * Nézi, hogy hány olyan vonat van még a terepasztalon ami rendelkezik utassal,
+ * ezzel kezelve a játék nyerését.
+ */
 public class Terepasztal {
+	/**
+	 * Nem üres vonatok száma a terepasztalon
+	 */
 	private int teliVonatSzam;
+	/**
+	 * Terepasztal egyetlen példánya
+	 */
 	private static Terepasztal instance;
+	/**
+	 * Összes Mozdony referenciája ami a terepasztalon van
+	 */
 	private ArrayList<Mozdony> mozdonyok;
+	/**
+	 *	Összes SinElem referenciája ami a terepasztalon van
+	 */
 	private ArrayList<SinElem> sinelemek;
+	/**
+	 *	BeSinek tárolása
+	 */
 	private ArrayList<BeSin> besinek;
+	/**
+	 *	A terepasztalon levő alagút referenciája
+	 */
 	private Alagut alagut;
+	/**
+	 *	tickek számlálója
+	 */
+	private int tck;
 
-	//Terepasztal alapértékeit beállítja, listákat létrehozza
+	/**
+	 * Terepasztal alapértékeit beállítja, listákat létrehozza
+	 */
 	private Terepasztal(){
         teliVonatSzam = 0;
         mozdonyok = new ArrayList<>();
         sinelemek = new ArrayList<>();
         besinek = new ArrayList<>();
-        alagut = new Alagut();
-
+        alagut = new Alagut("t1");
+        tck = 0;
 	}
-    //Singleton osztály, lekérdezi a Terepasztalt
+	/**
+	 * Singleton osztály, lekérdezi a Terepasztalt
+	 * @return Terepasztal referencia
+	 */
 	public static Terepasztal getInstance(){
 		if(instance == null){
 			instance = new Terepasztal();
@@ -26,112 +62,213 @@ public class Terepasztal {
 		return instance;
 	}
 
-	//Timer tickre ez a függvény hívódik meg.
-    //Mozgatja a vonatokat, és vizsgálja az ütközéseket
+	/**
+	 * Törli a terepasztal elemeit.
+	 */
+	public void reset(){
+		teliVonatSzam = 0;
+		mozdonyok.clear();
+		sinelemek.clear();
+		besinek.clear();
+		alagut = new Alagut("t1");
+		tck = 0;
+	}
+
+	/**
+	 * Timer tickre ez a függvény hívódik meg.
+	 * Mozgatja a vonatokat, és vizsgálja az ütközéseket
+	 */
 	public void tick() {
-        System.out.println("Terepasztal.tick()");
+		tck++;
 	    for(Mozdony m: mozdonyok){
-			System.out.print("Terepasztal -> ");
             m.mozog();
         }
+	    for (BeSin b : besinek) {
+	    	b.tick(tck);
+	    }
         for(Mozdony m: mozdonyok){
-			System.out.print("Terepasztal -> ");
             m.utkozesVizsgal();
         }
 	}
 
-	//Inicializálja a Terepasztal elemeit (mozdonyok, sinek, besinek)
+	/**
+	 * Inicializálja a Terepasztal elemeit
+	 * @param fileName a fájl neve amiből a beolvasás történik
+	 */
 	public void init(String fileName) {
-		System.out.println("Terepasztal.init()");
-		System.out.print("Terepasztal -> ");
-		AddMozdony(new Mozdony());
-		System.out.print("Terepasztal -> ");
-		AddSinElem(new Sin());
-		BeSin besin = new BeSin();
-		System.out.print("Terepasztal -> ");
-		AddBeSin(besin);
-		besinek.add(besin);
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+			String line = null;
+			while((line = br.readLine())!= null && !line.equals("."))
+			{
+				String[] attrs = line.split(" ");
+				switch (attrs[0]) {
+				case "besin":
+					BeSin beSin = new BeSin(attrs[1]);
+					AddBeSin(beSin);
+					AddSinElem(beSin);
+					break;
+				case "valto":
+					Valto valto = new Valto(attrs[1]); 
+					AddSinElem(valto);
+					break;
+				case "alagutszaj":
+					AlagutSzaj alagutSzaj = new AlagutSzaj(attrs[1]);
+					AddSinElem(alagutSzaj);
+					break;
+				case "allomas":
+					int ures=1;
+					if(attrs.length==4)//ha meg van adva hogy ures-e, akkor beallitjuk. default ures
+						ures=Integer.parseInt(attrs[3]);
+					Allomas allomas = new Allomas(attrs[1], attrs[2], ures);
+					AddSinElem(allomas);
+					break;
+				case "normalsin":
+					Sin sin = new Sin(attrs[1]);
+					AddSinElem(sin);
+					break;
+				case "keresztsin":
+					KeresztSin keresztSin = new KeresztSin(attrs[1]);
+					AddSinElem(keresztSin);
+					break;
+
+				default:
+					break;
+				}
+			}
+			while((line = br.readLine())!= null && !line.equals("."))
+			{
+				String[] attrs = line.split(" ");
+				String[] elso = attrs[0].split("-");
+				String[] masodik = attrs[1].split("-");
+				
+				SinElem talalat1 = ListContains(sinelemek, elso[0]);
+				SinElem talalat2 = ListContains(sinelemek, masodik[0]);
+				
+				talalat1.setSinElem(talalat2, elso[1].charAt(0));
+				talalat2.setSinElem(talalat1, masodik[1].charAt(0));
+			}
+			while((line = br.readLine())!= null && !line.equals("."))
+			{
+				String[] attrs = line.split(" ");
+				BeSin beSin = ListContains(besinek, attrs[0]);
+				beSin.VonatBead(attrs[2], Integer.parseInt(attrs[1]), attrs[3]);
+			}
+			System.out.println("jatek elindult");
+		} catch (FileNotFoundException e) {
+			System.out.println("A fajl nem talalhato!");
+		} catch (IOException e) {
+			System.out.println("Hiba a fajlban!");
+		}
 	}
 
-	//Kattintásra hívódik meg a függvény
-    //Meghívja annak a SinElemnek az onClickjét amire kattintott a játékos
+	/**
+	 * Kattintásra hívódik meg a függvény
+	 * Meghívja annak a SinElemnek az onClickjét amire kattintott a játékos
+	 * @param x a kattintás x koordinátája
+	 * @param y a kattintás y koordinátája
+	 */
 	public void onInput(int x, int y) {
-	    System.out.println("Terepasztal.onInput()");
-        
-	    System.out.println("Mire kattintott: (valto, alagutszaj)");
-		Scanner reader = new Scanner(System.in);
-		String valasz = reader.next();
-		SinElem s = null;
-		boolean jo = false;
-		while(!jo) {
-			if (valasz.equals("valto")){
-				jo = true;
-				s = new Valto();
-			}
-			else if (valasz.equals("alagutszaj")){
-				jo = true;
-				s = new AlagutSzaj();
-			}
+		//megkeresi a sinelemet aminek x,y koordinátája megegyezik az inputtal
+	    for(int i=0; i<sinelemek.size(); i++){
+	    	// ha megegyezik meghívja az onInput függvényt
+	    	/*if(sinelemek.get(i).getX() == x && sinelemek.get(i).getY() == y){
+				sinelemek.get(i).onInput();
+	    		break;
+			}*/
 		}
-		System.out.print("Terepasztal -> ");
-		s.onInput();
 	}
 	
-	public void AddAlagutSzaj() {
-	    System.out.println("Terepasztal.AddAlagutSzaj()");
-	    //TODO: implement
-        //Amugy ez mi?
+	public void onInput(String id) {
+		for(int i = 0; i < sinelemek.size(); i++)
+		{
+			if(sinelemek.get(i).id.equals(id))
+				sinelemek.get(i).onInput();
+		}
 	}
-	//Mozdony hozzáadás a listához
+
+	/**
+	 * Mozdony hozzáadás a listához
+	 * @param m a mozdony amit hozzá kell adni a terepasztalhoz
+	 */
 	public void AddMozdony(Mozdony m) {
-	    System.out.println("Terepasztal.AddMozdony()");
 	    mozdonyok.add(m);
+	    teliVonatSzam++;
 	}
-	//BeSin hozzáadás a listához
+
+	/**
+	 * BeSin hozzáadás a listához
+	 * @param b BeSin refrerencia ami hozzáadódik a listához
+	 */
 	public void AddBeSin(BeSin b) {
-        System.out.println("Terepasztal.AddBeSin()");
         besinek.add(b);
     }
-	//SinElem hozzáadás a listához
+
+	/**
+	 * SinElem hozzáadás a listához
+	 * @param s SinElem referencia ami hozzáadódik a listához
+	 */
 	public void AddSinElem(SinElem s) {
-        System.out.println("Terepasztal.AddSinElem()");
         sinelemek.add(s);
 	}
-	//SinElem törlése listából.
-    //Visszatérési érték boolean az alapján hogy sikerült-e vagy se.
+	/**
+	 * SinElem törlése listából.
+	 * @param s SinElem referencia amit törölni kell a listából
+	 * @return true ha sikerült a törlés, false ha nem
+	 */
 	public boolean RemoveSinElem(SinElem s) {
-	    System.out.println("Terepasztal.RemoveSinElem()");
 	    return sinelemek.remove(s);
 	}
 
-	//Visszaadja a terepasztal alagútját
+	/**
+	 * Visszaadja a terepasztal alagútját
+	 * @return Alagut referencia
+	 */
 	public Alagut getAlagut() {
-	    System.out.println("Terepasztal.getAlagut()");
 		return alagut;
 	}
 
-	//teliVonatSzam számontartja hogy hány vonat van a terepasztalon
-    //aminek még van utasa.
-    //Ahogy egy kiürül meghívódik a függvény és csökkenti ezt a számot
-    //Ha ez a szám 0 a játéknak vége és a játékos nyert.
+	/**
+	 * teliVonatSzam számontartja hogy hány vonat van a terepasztalon
+	 * aminek még van utasa.
+	 * Ha ez a szám 0 a játéknak vége és a játékos nyert.
+	 */
 	public void vonatKiurult() {
 	    teliVonatSzam--;
-	    System.out.println("Terepasztal.vonatKiurult()");
-	    //System.out.println("teli vonatok szama: " + teliVonatSzam);
-	    System.out.println("Mindegyik vonat ures? (igen/nem)");
-	    Scanner reader = new Scanner(System.in);
-	    //if(teliVonatSzam == 0)
-	    if (reader.next().equals("igen"))
+	    //ha elfogytak a vonatok
+	    if (teliVonatSzam == 0)
 	    {
-			System.out.print("Terepasztal -> ");
-            Jatek.getInstance().nyer();
+			Jatek.getInstance().nyer();
         }
 	}
+
 	
-	public void VonatBead() {
-		System.out.println("Terepasztal.VonatBead()");
-		System.out.print("Terepasztal -> ");
-		besinek.get(0).VonatBead();
+	private <T extends SinElem> T ListContains(ArrayList<T> list, String id)
+	{
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).id.equals(id))
+				return list.get(i);
+		}
+		return null;
+	}
+	public void GetInfo(String id, String attr) {
+		
+		switch (id.charAt(0)) {
+		case 'm':
+			for (Mozdony mozdony: mozdonyok)
+			{
+				if (mozdony.id.equals(id.split("-")[0]))
+					mozdony.GetInfo(id, attr);
+			}
+			break;
+		case 't':
+			if(attr.equals("alagut"))
+				alagut.GetInfo(null);
+			break;
+		default:
+			ListContains(sinelemek, id).GetInfo(attr);
+			break;
+		}
 	}
 
 }

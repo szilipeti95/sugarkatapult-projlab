@@ -1,0 +1,18 @@
+besin b1
+besin b2
+normalsin n1
+normalsin n2
+normalsin n3
+normalsin n4
+normalsin n5
+allomas a1 p 0
+.
+b1-a n1-a
+n1-b n2-a
+n2-b a1-a
+a1-b n3-a
+n3-b n4-a
+n4-b n5-a
+b2-a n5-b
+.
+b1 1 m1 kp
