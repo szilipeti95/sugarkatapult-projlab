@@ -12,6 +12,12 @@ public class Jatek {
      */
 	private Timer timer;
 
+    /**
+     * privát konstruktor
+     */
+    private Jatek(){
+
+    }
 
     /**
      * //Singleton osztály
