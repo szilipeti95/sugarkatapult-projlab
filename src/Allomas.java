@@ -137,4 +137,9 @@ public class Allomas extends SinElem {
 		}
 		
 	}
+	
+	@Override
+	public void rajzol(Rajzolo r) {
+		r.rajzol(this);
+	}
 }

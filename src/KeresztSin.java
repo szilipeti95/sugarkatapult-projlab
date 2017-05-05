@@ -85,4 +85,9 @@ public class KeresztSin extends SinElem {
 			}
 		}
 	}
+	
+	@Override
+	public void rajzol(Rajzolo r) {
+		r.rajzol(this);
+	}
 }

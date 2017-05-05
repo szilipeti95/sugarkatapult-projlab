@@ -11,6 +11,9 @@ public class Jatek {
      * Az időzítő referenciája
      */
 	private Timer timer;
+	
+	private Controller controller;
+	private Rajzolo rajzolo;
 
     /**
      * privát konstruktor
@@ -37,6 +40,7 @@ public class Jatek {
      * @param palya a pályának a neve
      */
     public void start(String palya) {
+    	rajzolo.loadImages();
         timer = new Timer();
         Terepasztal.getInstance().reset();
 		Terepasztal.getInstance().init(palya);
@@ -60,4 +64,20 @@ public class Jatek {
       //  System.exit(0);
 		System.out.println("vege nyert");
 	}
+	
+	public void setRajzolo(Rajzolo r1)
+	{
+		rajzolo=r1;
+	}
+	
+	public void setController(Controller c1)
+	{
+		controller=c1;
+	}
+	
+	public Rajzolo getRajzolo()
+	{
+		return rajzolo;
+	}
+	
 }

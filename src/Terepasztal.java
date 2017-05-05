@@ -91,6 +91,12 @@ public class Terepasztal {
         }
 	}
 
+	public void rajzol()
+	{
+		//Jatek.getInstance().getRajzolo().rajzol();
+		Jatek.getInstance().getRajzolo().repaint();
+	}
+	
 	/**
 	 * Inicializálja a Terepasztal elemeit
 	 * @param fileName a fájl neve amiből a beolvasás történik
@@ -104,15 +110,18 @@ public class Terepasztal {
 				switch (attrs[0]) {
 				case "besin":
 					BeSin beSin = new BeSin(attrs[1]);
+					beSin.setCoords(Integer.parseInt(attrs[2]), Integer.parseInt(attrs[3]));
 					AddBeSin(beSin);
 					AddSinElem(beSin);
 					break;
 				case "valto":
-					Valto valto = new Valto(attrs[1]); 
+					Valto valto = new Valto(attrs[1]);
+					valto.setCoords(Integer.parseInt(attrs[2]), Integer.parseInt(attrs[3]));
 					AddSinElem(valto);
 					break;
 				case "alagutszaj":
 					AlagutSzaj alagutSzaj = new AlagutSzaj(attrs[1]);
+					alagutSzaj.setCoords(Integer.parseInt(attrs[2]), Integer.parseInt(attrs[3]));
 					AddSinElem(alagutSzaj);
 					break;
 				case "allomas":
@@ -120,14 +129,17 @@ public class Terepasztal {
 					if(attrs.length==4)//ha meg van adva hogy ures-e, akkor beallitjuk. default ures
 						ures=Integer.parseInt(attrs[3]);
 					Allomas allomas = new Allomas(attrs[1], attrs[2], ures);
+					allomas.setCoords(Integer.parseInt(attrs[3]), Integer.parseInt(attrs[4]));
 					AddSinElem(allomas);
 					break;
 				case "normalsin":
 					Sin sin = new Sin(attrs[1]);
+					sin.setCoords(Integer.parseInt(attrs[2]), Integer.parseInt(attrs[3]));
 					AddSinElem(sin);
 					break;
 				case "keresztsin":
 					KeresztSin keresztSin = new KeresztSin(attrs[1]);
+					keresztSin.setCoords(Integer.parseInt(attrs[2]), Integer.parseInt(attrs[3]));
 					AddSinElem(keresztSin);
 					break;
 
@@ -135,7 +147,7 @@ public class Terepasztal {
 					break;
 				}
 			}
-			while((line = br.readLine())!= null && !line.equals("."))
+			while((line = br.readLine())!= null/* && !line.equals(".")*/)
 			{
 				String[] attrs = line.split(" ");
 				String[] elso = attrs[0].split("-");
@@ -147,12 +159,12 @@ public class Terepasztal {
 				talalat1.setSinElem(talalat2, elso[1].charAt(0));
 				talalat2.setSinElem(talalat1, masodik[1].charAt(0));
 			}
-			while((line = br.readLine())!= null && !line.equals("."))
+			/*while((line = br.readLine())!= null && !line.equals("."))
 			{
 				String[] attrs = line.split(" ");
 				BeSin beSin = ListContains(besinek, attrs[0]);
 				beSin.VonatBead(attrs[2], Integer.parseInt(attrs[1]), attrs[3]);
-			}
+			}*/ //ez a vonat beolvasas
 			System.out.println("jatek elindult");
 		} catch (FileNotFoundException e) {
 			System.out.println("A fajl nem talalhato!");
@@ -239,6 +251,11 @@ public class Terepasztal {
 	    {
 			Jatek.getInstance().nyer();
         }
+	}
+	
+	public ArrayList<SinElem> getSinelemek()
+	{
+		return sinelemek;
 	}
 
 	

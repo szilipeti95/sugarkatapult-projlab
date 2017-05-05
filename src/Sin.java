@@ -71,4 +71,9 @@ public class Sin extends SinElem {
 		}
 		
 	}
+	
+	@Override
+	public void rajzol(Rajzolo r) {
+		r.rajzol(this);
+	}
 }

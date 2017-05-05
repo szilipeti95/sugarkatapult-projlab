@@ -1,10 +1,28 @@
-public abstract class SinElem {
+import javax.swing.JPanel;
+
+public abstract class SinElem{
     protected SinElem sinA;
     protected int x;
     protected int y;
     protected int szerelvenyek;
     protected boolean lathato;
     protected String id;
+    
+    public void setCoords(int xin, int yin)
+    {
+    	x=xin;
+    	y=yin;
+    }
+    
+    public int getX()
+    {
+    	return x;
+    }
+    
+    public int getY()
+    {
+    	return y;
+    }
         
     
     SinElem(String id) 
@@ -82,6 +100,9 @@ public abstract class SinElem {
      * @return Kovetkezo SinElem
      */
     public abstract SinElem getKovSinElem(SinElem elozo);
+    
+    public abstract void rajzol(Rajzolo r);
+    
     
     
     String GetId()

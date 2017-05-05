@@ -122,4 +122,9 @@ public class BeSin extends SinElem {
 			}
 		}
 	}
+	
+	@Override
+	public void rajzol(Rajzolo r) {
+		r.rajzol(this);
+	}
 }

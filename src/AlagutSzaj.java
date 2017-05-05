@@ -148,4 +148,9 @@ public class AlagutSzaj extends SinElem {
 		}
 		
 	}
+
+	@Override
+	public void rajzol(Rajzolo r) {
+		r.rajzol(this);
+	}
 }
