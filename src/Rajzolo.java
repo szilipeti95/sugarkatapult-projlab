@@ -63,6 +63,15 @@ public class Rajzolo extends JPanel{
 	}
 	
 	public void rajzol(Sin s) {
+		if(!s.lathato)
+			return;
+		int index = 0;
+		if(s.getX() == s.getAgasdasdasd('a').getX() && s.getX() == s.getAg('b').getX()){
+			index = 0;
+		}
+		else if(s.getY() == s.getAg('a').getY() && s.getY() == s.getAg('b').getY()){
+			
+		}
 		graphics.drawImage(SinKep, s.getX()*48, s.getY()*48, 48, 48, null);
 	}
 	

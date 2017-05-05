@@ -1,3 +1,5 @@
+import javax.swing.JComponent;
+
 public class Sin extends SinElem {
 	private SinElem sinB;
 	private boolean AlagutSin;
