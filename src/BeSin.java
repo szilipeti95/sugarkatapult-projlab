@@ -72,17 +72,6 @@ public class BeSin extends SinElem {
 		beadando.add(new Vonat(azon, tck, vagonok));
 	}
 	
-	
-	/**
-	 * Attributumok lekerdezesere
-	 * @param attr Milyen attributumot kerdezunk le
-	 */
-	@Override
-	public void GetInfo(String attr) {
-		super.GetInfo(attr);
-		
-	}
-	
 	/**
 	 * Terepasztal hivja meg, bead vonatot ha indul ebben a tickben
 	 * @param t Hanyadik ticknel jarunk

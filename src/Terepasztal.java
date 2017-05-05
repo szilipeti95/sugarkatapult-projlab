@@ -93,7 +93,6 @@ public class Terepasztal {
 
 	public void rajzol()
 	{
-		//Jatek.getInstance().getRajzolo().rajzol();
 		Jatek.getInstance().getRajzolo().repaint();
 	}
 	
@@ -125,11 +124,8 @@ public class Terepasztal {
 					AddSinElem(alagutSzaj);
 					break;
 				case "allomas":
-					int ures=1;
-					if(attrs.length==4)//ha meg van adva hogy ures-e, akkor beallitjuk. default ures
-						ures=Integer.parseInt(attrs[3]);
-					Allomas allomas = new Allomas(attrs[1], attrs[2], ures);
-					allomas.setCoords(Integer.parseInt(attrs[3]), Integer.parseInt(attrs[4]));
+					Allomas allomas = new Allomas(attrs[1], attrs[2], Integer.parseInt(attrs[3]));
+					allomas.setCoords(Integer.parseInt(attrs[4]), Integer.parseInt(attrs[5]));
 					AddSinElem(allomas);
 					break;
 				case "normalsin":
@@ -183,21 +179,14 @@ public class Terepasztal {
 		//megkeresi a sinelemet aminek x,y koordinátája megegyezik az inputtal
 	    for(int i=0; i<sinelemek.size(); i++){
 	    	// ha megegyezik meghívja az onInput függvényt
-	    	/*if(sinelemek.get(i).getX() == x && sinelemek.get(i).getY() == y){
+	    	if(sinelemek.get(i).getX() == x && sinelemek.get(i).getY() == y){
 				sinelemek.get(i).onInput();
 	    		break;
-			}*/
+			}
 		}
+		Jatek.getInstance().getRajzolo().repaint();
 	}
 	
-	public void onInput(String id) {
-		for(int i = 0; i < sinelemek.size(); i++)
-		{
-			if(sinelemek.get(i).id.equals(id))
-				sinelemek.get(i).onInput();
-		}
-	}
-
 	/**
 	 * Mozdony hozzáadás a listához
 	 * @param m a mozdony amit hozzá kell adni a terepasztalhoz
@@ -267,25 +256,6 @@ public class Terepasztal {
 				return list.get(i);
 		}
 		return null;
-	}
-	public void GetInfo(String id, String attr) {
-		
-		switch (id.charAt(0)) {
-		case 'm':
-			for (Mozdony mozdony: mozdonyok)
-			{
-				if (mozdony.id.equals(id.split("-")[0]))
-					mozdony.GetInfo(id, attr);
-			}
-			break;
-		case 't':
-			if(attr.equals("alagut"))
-				alagut.GetInfo(null);
-			break;
-		default:
-			ListContains(sinelemek, id).GetInfo(attr);
-			break;
-		}
 	}
 
 }

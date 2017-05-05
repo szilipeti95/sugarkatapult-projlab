@@ -1,8 +1,7 @@
-import javax.swing.JComponent;
-
 public class Sin extends SinElem {
 	private SinElem sinB;
 	private boolean AlagutSin;
+	private boolean lathato=true;
 	
 	Sin(String id) 
     {
@@ -38,44 +37,28 @@ public class Sin extends SinElem {
 		}
 	}
 	
-        /**
-         * Kiirja a szukseges lekerdezett infokat a Sinrol ha van attributum, akkor csak azt.
-         * @param attr A lekerdezett attributum
-         */
-        
-	@Override
-	public void GetInfo(String attr) {
-                //Ososztaly GetInfoja
-		super.GetInfo(attr);
-                //Ha nincs kulon lekert attributum
-		if (attr == null)
-		{
-			System.out.println("sinb: " + (sinB!=null?sinB.id : "null"));
-			System.out.println("alagutsin: " + AlagutSin);
-		}
-                //Ha van kulon lekert attributum
-		else
-		{
-			switch (attr) {
-                        //Lekert attributum a sinB
-			case "sinb":
-				System.out.println(id + ":");
-				System.out.println("sinb: " + (sinB!=null?sinB.id : "null"));
-				break;
-                        //Lekert attributum az alagutSin
-			case "alagutsin":
-				System.out.println(id + ":");
-				System.out.println("alagutsin: " + AlagutSin);
-				break;
-			default:
-				break;
-			}
-		}
-		
-	}
-	
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
 	}
+	
+	
+	public SinElem getAg(char a)
+	{
+        if (a == 'a')
+        	return sinA;
+        else if (a == 'b')
+        	return sinB;
+        return null;
+	}
+	
+    public void setLathato(boolean l)
+    {
+    	lathato=l;
+    }
+    
+    public boolean getLathato()
+    {
+    	return lathato;
+    }
 }

@@ -127,36 +127,23 @@ public class Valto extends SinElem {
 		}
 	}
 	
-	/**
-     * Kiirja a szukseges lekerdezett infokat a Valtorol, ha van attributum, akkor csak azt.
-     * @param attr A lekerdezett attributum
-     */
-	@Override
-	public void GetInfo(String attr) {
-        //Ososztaly GetInfoja
-		super.GetInfo(attr);
-        //Ha nem kertuk le kulon, hogy melyik attributum:
-		if (attr == null)
-		{
-			System.out.println("aktivag: " + ((aktivAg!=null)? aktivAg.id : "null"));
-		}
-        //Ha csak egy attributum erdekel:
-		else
-		{
-			switch (attr) {
-            //Aktivag attributum
-			case "aktivag":
-				System.out.println(id + ":");
-				System.out.println("aktivag: " + ((aktivAg!=null)? aktivAg.id : "null"));
-				break;
-			default:
-				break;
-			}
-		}
-	}
-	
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
+	}
+	
+	@Override
+	public SinElem getAg(char c)
+	{
+        if (c == 'a')
+        	return sinA;
+        else {
+        	return kimenetek.get(c-'a'-1);
+        }
+	}
+	
+	public SinElem getAktivAg()
+	{
+		return aktivAg;
 	}
 }

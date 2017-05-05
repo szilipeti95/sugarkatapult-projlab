@@ -119,38 +119,22 @@ public class AlagutSzaj extends SinElem {
 		}
 	}
 	
-	/**
-	 * AlagutSzaj info-janak lekerdezese, parameter fuggvenyeben
-	 * @param attr lekerdezes attributuma
-	 */
-	@Override
-	public void GetInfo(String attr) {
-		super.GetInfo(attr);
-		if (attr == null){
-			//ha nincs attributum mindent kiirunk
-			System.out.println("megepitve: " + megepitve);
-			System.out.println("alagutSin: " + alagutSin.id);
-		}
-		else{
-			switch (attr) {
-			case "alagutsin":
-				System.out.println(id + ":");
-				System.out.println("alagutSin: " + alagutSin.id);
-				break;
-			case "megepitve":
-				System.out.println(id + ":");
-				System.out.println("megepitve: " + megepitve);
-				break;
-		
-			default:
-				break;
-			}
-		}
-		
+	public boolean getMegeptive()
+	{
+		return megepitve;
 	}
 
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
+	}
+	
+	public SinElem getAg(char a)
+	{
+        if (a == 'a')
+        	return sinA;
+        else if (a == 'b')
+        	return alagutSin;
+        return null;
 	}
 }

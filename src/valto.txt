@@ -1,14 +1,16 @@
-besin b1
-valto v1
-normalsin n1
-normalsin n2
-besin b2
-besin b3
+besin b1 -1 5
+valto v1 0 5
+normalsin n1 1 5
+normalsin n2 0 6
+besin b2 2 5
+besin b3 0 7
+normalsin n3 0 4
+besin b4 0 3
 .
 b1-a v1-a
 v1-b n1-a
 n1-b b2-a
 v1-c n2-a
 n2-b b3-a
-.
-b1 1 m1 p
+v1-d n3-a
+n3-b b4-a

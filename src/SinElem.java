@@ -5,7 +5,6 @@ public abstract class SinElem{
     protected int x;
     protected int y;
     protected int szerelvenyek;
-    protected boolean lathato;
     protected String id;
     
     public void setCoords(int xin, int yin)
@@ -23,6 +22,8 @@ public abstract class SinElem{
     {
     	return y;
     }
+    
+    public SinElem getAg(char a){return null;} //am abstract legyen
         
     
     SinElem(String id) 
@@ -109,40 +110,6 @@ public abstract class SinElem{
     {
     	return id;
     }
-    /**
-     * Kiirja a szukseges lekerdezett infokat a SinElemrol, ha van attributum, akkor csak azt.
-     * @param attr A lekerdezett attributum
-     */
-    
-	public void GetInfo(String attr) {
-		if (attr == null)
-		{
-			System.out.println(id + ":");
-			System.out.println("sina: " + (sinA!=null?sinA.id:"null"));
-			System.out.println("szerelvenyek: " + szerelvenyek);
-			System.out.println("lathato: " + lathato);
-		}
-		else
-		{
-			switch (attr) {
-			case "sina":
-				System.out.println(id + ":");
-				System.out.println("sina: " + (sinA!=null?sinA.id:"null"));
-				break;
-			case "szerelvenyek":
-				System.out.println(id + ":");
-				System.out.println("szerelvenyek: " + szerelvenyek);
-				break;
-			case "lathato":
-				System.out.println(id + ":");
-				System.out.println("lathato: " + lathato);
-				break;
-			default:
-				break;
-			}
-		}
-		
-	}
 	
 	
 	/**

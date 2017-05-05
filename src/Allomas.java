@@ -74,6 +74,14 @@ public class Allomas extends SinElem {
         ures = u;
     }
     
+    /**
+     * setter az uresre
+     * @param u Ures-e
+     */
+    public boolean getUres() {
+        return ures;
+    }
+    
     
     /**
      * kocsirol le-fel szallas
@@ -103,43 +111,17 @@ public class Allomas extends SinElem {
 		return sinA;//default, elvileg itt elozo==sinB
 	}
 	
-	
-	
-	@Override
-	public void GetInfo(String attr) {
-		super.GetInfo(attr);
-		if (attr == null)
-		{
-			System.out.println("sinB: " + sinB.id);
-			System.out.println("szin: " + szin);
-			System.out.println("ures: " + ures);
-		}
-		else
-		{
-			switch (attr) {
-			case "sinb":
-				System.out.println(id + ":");
-				System.out.println("sinB: " + sinB.id);
-				break;
-			case "szin":
-				System.out.println(id + ":");
-				System.out.println("szin: " + szin);
-				break;
-			case "ures":
-				System.out.println(id + ":");
-				System.out.println("ures: " + ures);
-				break;
-			
-			
-			default:
-				break;
-			}
-		}
-		
-	}
-	
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
+	}
+	
+	public SinElem getAg(char a)
+	{
+        if (a == 'a')
+        	return sinA;
+        else if (a == 'b')
+        	return sinB;
+        return null;
 	}
 }

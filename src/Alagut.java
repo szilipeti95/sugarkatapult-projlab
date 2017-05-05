@@ -46,7 +46,6 @@ public class Alagut {
 	 * @param A hozzaadando AlagutSzaj
 	 */
 	public void AddAlagutSzaj(AlagutSzaj a) {
-		int length = 5;
 		if(allapot.equals(AlagutAllapot.NincsAlagutSzaj)){ 
 			//ha meg nincs megepult alagutszaj
 			szajA = a;
@@ -62,9 +61,11 @@ public class Alagut {
 			}
 			allapot = AlagutAllapot.VanAlagut;
 			                 System.out.println("alagut megepitve");
+			int length = Math.abs(szajA.getX()-szajB.getX())+Math.abs(szajA.getY()-szajB.getY());
 			for (int i = 0; i < length; i++) {
 				//letrehozzuk a sineket es berakjuk az alagutba
-				SinElem s = new Sin(("as" + (i+1)));
+				Sin s = new Sin(("as" + (i+1)));
+				s.setLathato(false);
 				alagutSinek.add(s);
 			}
 			for(int i = 0; i < length; i++){
@@ -135,37 +136,12 @@ public class Alagut {
 		return false;
 	}
 	
-	/**
-	 * Alagut info-janak lekerdezese, parameter fuggvenyeben
-	 * @param attr lekerdezes attributuma
-	 */
-	public void GetInfo(String attr) {
-		if (attr == null){
-			//ha nincs attributum mindent kiirunk
-			System.out.println(id + ":");
-			System.out.println("szajA: " + ((szajA== null)? "null" : szajA.id));
-			System.out.println("szajB: " + ((szajB== null)? "null" : szajB.id));
-			System.out.println("Allapot: " + allapot);
-		}
-		else{
-			switch (attr) {
-			case "szaja":
-				System.out.println(id + ":");
-				System.out.println("szajA: " + ((szajA== null)? "null" : szajA.id));
-				break;
-			case "szajb":
-				System.out.println(id + ":");
-				System.out.println("szajB: " + ((szajB== null)? "null" : szajB.id));
-				break;
-			case "allapot":
-				System.out.println(id + ":");
-				System.out.println("allapot: " + allapot);
-				break;
-		
-			default:
-				break;
-			}
-		}
-		
+	public AlagutSzaj getSzaj(char c)
+	{
+		if(c=='a')
+			return szajA;
+		else if(c=='b')
+			return szajB;
+		return null;
 	}
 }
