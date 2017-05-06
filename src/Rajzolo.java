@@ -15,16 +15,17 @@ public class Rajzolo extends JPanel{
 	Graphics graphics;
 	
 	private BufferedImage MozdonyKep;
-	private BufferedImage UtasKocsiKep;
-	private BufferedImage SzenesKocsiKep;
+	private BufferedImage KocsiKep;
+	//private BufferedImage SzenesKocsiKep;
 	private BufferedImage AllomasKep;
 	private BufferedImage AlagutSzajKep;
 	private BufferedImage SinKep;
 	//private BufferedImage KanyarKep;
 	private BufferedImage KeresztSinKep;
 	//private BufferedImage ValtoKep;
-	private BufferedImage BeSinKep;
+	//private BufferedImage BeSinKep;
 	private BufferedImage fuKep;
+        private BufferedImage robbanasKep;
 	public void loadImages() {
 		try
 		{
@@ -33,6 +34,10 @@ public class Rajzolo extends JPanel{
 			KeresztSinKep = ImageIO.read(new File("assets\\keresztsin.png"));
 			AlagutSzajKep = ImageIO.read(new File("assets\\alagutszaj.png"));
 			fuKep = ImageIO.read(new File("assets\\fu.png"));
+                        MozdonyKep = ImageIO.read(new File("assets\\mozdonyok.png"));
+                        KocsiKep = ImageIO.read(new File("assets\\utasok.png"));
+                        robbanasKep = ImageIO.read(new File("assets\\kabumm.png"));
+                        
 		}
 		catch(IOException e){System.out.println(e.getMessage());}
 	}
@@ -46,6 +51,10 @@ public class Rajzolo extends JPanel{
 			s.rajzol(this);
 		}
 		
+                for(Mozdony m : Terepasztal.getInstance().getMozdonyok()){
+                    m.rajzol(this);
+                }
+                
 		//alagutszajakat megint kirajzoljuk, mert a vonatok fole jonnek
 		Alagut al = Terepasztal.getInstance().getAlagut();
 		if(al.getSzaj('a')!=null)
@@ -66,12 +75,131 @@ public class Rajzolo extends JPanel{
     }
 	
 	public void rajzol(Mozdony m) {
+            int index1 = 0;
+            int ferde = 0;
+           
+           if(m.getElozoSin().getY() == m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+               //balra megy
+               index1 = 3;
+           }else if(m.getElozoSin().getY() == m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+               //jobbra megy
+               index1 = 1;
+           }else if(m.getElozoSin().getX() == m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+               //felfele megy
+               index1 = 0;
+           }else if(m.getElozoSin().getX() == m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+               //lefele megy
+               index1 = 2;
+           }else if(m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+               //balra fel
+               index1 = 3;
+               ferde = 1;
+               
+           }else if(m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+               //jobbra le
+               index1 = 1;
+               ferde = 1;
+           }else if(m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+               //balra le
+               index1 = 2;
+               ferde = 1;
+           }else if(m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+               //jobbra fel
+               index1 = 0;
+               ferde = 1;
+           }
+           
+           
+            graphics.drawImage(MozdonyKep, m.getSin().getX()*48, m.getSin().getY()*48,m.getSin().getX()*48+ 48,m.getSin().getY()*48+ 48,48*index1,0+ferde*48,48*index1+48,48+ferde*48,null);
+            if(m.getUtkozott()){
+                graphics.drawImage(robbanasKep, m.getSin().getX()*48, m.getSin().getY()*48, null);
+            }
+            
 	}
 	
 	public void rajzol(UtasKocsi u) {
+            
+            int index1 = 0;
+            int ferde = 0;
+            
+             if(u.getElozoSin().getY() == u.getSin().getKovSinElem(u.getElozoSin()).getY() && u.getElozoSin().getX() > u.getSin().getKovSinElem(u.getElozoSin()).getX()  ){
+               //balra megy
+               index1 = 1;
+           }else if(u.getElozoSin().getY() == u.getSin().getKovSinElem(u.getElozoSin()).getY() && u.getElozoSin().getX() < u.getSin().getKovSinElem(u.getElozoSin()).getX()  ){
+               //jobbra megy
+               index1 = 1;
+           }else if(u.getElozoSin().getX() == u.getSin().getKovSinElem(u.getElozoSin()).getX() && u.getElozoSin().getY() > u.getSin().getKovSinElem(u.getElozoSin()).getY()  ){
+               //felfele megy
+               index1 = 0;
+           }else if(u.getElozoSin().getX() == u.getSin().getKovSinElem(u.getElozoSin()).getX() && u.getElozoSin().getY() < u.getSin().getKovSinElem(u.getElozoSin()).getY()  ){
+               //lefele megy
+               index1 = 0;
+           }else if(u.getElozoSin().getY() > u.getSin().getKovSinElem(u.getElozoSin()).getY() && u.getElozoSin().getX() > u.getSin().getKovSinElem(u.getElozoSin()).getX()  ){
+               //balra fel
+               index1 = 5;
+               
+               
+           }else if(u.getElozoSin().getY() < u.getSin().getKovSinElem(u.getElozoSin()).getY() && u.getElozoSin().getX() < u.getSin().getKovSinElem(u.getElozoSin()).getX()  ){
+               //jobbra le
+               index1 = 3;
+               
+           }else if(u.getElozoSin().getX() > u.getSin().getKovSinElem(u.getElozoSin()).getX() && u.getElozoSin().getY() < u.getSin().getKovSinElem(u.getElozoSin()).getY()  ){
+               //balra le
+               index1 = 4;
+               
+           }else if(u.getElozoSin().getX() < u.getSin().getKovSinElem(u.getElozoSin()).getX() && u.getElozoSin().getY() > u.getSin().getKovSinElem(u.getElozoSin()).getY()  ){
+               //jobbra fel
+               index1 = 2;
+               
+           }
+             
+             ferde = u.GetSzin().ordinal();
+          
+            graphics.drawImage(KocsiKep, u.getSin().getX()*48, u.getSin().getY()*48,u.getSin().getX()*48+ 48,u.getSin().getY()*48+ 48,48*index1,0+ferde*48,48*index1+48,48+ferde*48,null);
+ 
 	}
 	
 	public void rajzol(SzenesKocsi sz) {
+                       
+            int index1 = 0;
+            
+            //int ferde = 0;
+            
+             if(sz.getElozoSin().getY() == sz.getSin().getKovSinElem(sz.getElozoSin()).getY() && sz.getElozoSin().getX() > sz.getSin().getKovSinElem(sz.getElozoSin()).getX()  ){
+               //balra megy
+               index1 = 1;
+           }else if(sz.getElozoSin().getY() == sz.getSin().getKovSinElem(sz.getElozoSin()).getY() && sz.getElozoSin().getX() < sz.getSin().getKovSinElem(sz.getElozoSin()).getX()  ){
+               //jobbra megy
+               index1 = 1;
+           }else if(sz.getElozoSin().getX() == sz.getSin().getKovSinElem(sz.getElozoSin()).getX() && sz.getElozoSin().getY() > sz.getSin().getKovSinElem(sz.getElozoSin()).getY()  ){
+               //felfele megy
+               index1 = 0;
+           }else if(sz.getElozoSin().getX() == sz.getSin().getKovSinElem(sz.getElozoSin()).getX() && sz.getElozoSin().getY() < sz.getSin().getKovSinElem(sz.getElozoSin()).getY()  ){
+               //lefele megy
+               index1 = 0;
+           }else if(sz.getElozoSin().getY() > sz.getSin().getKovSinElem(sz.getElozoSin()).getY() && sz.getElozoSin().getX() > sz.getSin().getKovSinElem(sz.getElozoSin()).getX()  ){
+               //balra fel
+               index1 = 5;
+     
+           }else if(sz.getElozoSin().getY() < sz.getSin().getKovSinElem(sz.getElozoSin()).getY() && sz.getElozoSin().getX() < sz.getSin().getKovSinElem(sz.getElozoSin()).getX()  ){
+               //jobbra le
+               index1 = 3;
+               
+           }else if(sz.getElozoSin().getX() > sz.getSin().getKovSinElem(sz.getElozoSin()).getX() && sz.getElozoSin().getY() < sz.getSin().getKovSinElem(sz.getElozoSin()).getY()  ){
+               //balra le
+               index1 = 4;
+               
+           }else if(sz.getElozoSin().getX() < sz.getSin().getKovSinElem(sz.getElozoSin()).getX() && sz.getElozoSin().getY() > sz.getSin().getKovSinElem(sz.getElozoSin()).getY()  ){
+               //jobbra fel
+               index1 = 2;
+               
+           }
+           int  ferde = 4;
+          
+            graphics.drawImage(KocsiKep, sz.getSin().getX()*48, sz.getSin().getY()*48,sz.getSin().getX()*48+ 48,sz.getSin().getY()*48+ 48,48*index1,0+ferde*48,48*index1+48,48+ferde*48,null);
+ 
+            
+            
 	}
 	
 	public void rajzol(Allomas a) {

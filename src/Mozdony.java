@@ -1,3 +1,6 @@
+
+import java.awt.image.BufferedImage;
+
 /**
  * Kerdezgeti az alatta allo SinElemet, hogy melyik lesz a kovetkezo SinElem.
  * Szol az elso Kocsinak, hogy mozogjon (mozog). 
@@ -30,7 +33,7 @@ public class Mozdony extends Szerelveny {
 		utkozott = true;
 	}
 	
-	
+        
 	/**
 	 * Ezt a metodost hivja meg a terepasztal a vonatok mozgatasahoz.
 	 * Majd ez felelos a további kocsik mozgatásáért 
@@ -64,9 +67,13 @@ public class Mozdony extends Szerelveny {
 		{
 			utkozik();
 			Jatek.getInstance().veszt();
+                        
 		}
 	}
 	
+        public boolean getUtkozott(){
+            return utkozott;
+        }
 	
 	/**
 	 * Kiirja az osszes, vagy a megadott attributum ertekeit
@@ -102,6 +109,17 @@ public class Mozdony extends Szerelveny {
 		}
 		
 	}
+        @Override
+        public void rajzol(Rajzolo r){
+            r.rajzol(this);
+            if(kovKocsi != null){
+                if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15){
+                    kovKocsi.rajzol(r);
+                }
+                
+            }
+            
+        }
 
 
 }

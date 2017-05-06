@@ -53,7 +53,9 @@ public class Jatek {
      */
 	public void veszt() {
         //System.exit(0);
+        timer.stop();
         System.out.println("vege vesztett");
+        
 	}
 
     /**

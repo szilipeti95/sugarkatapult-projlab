@@ -1,11 +1,17 @@
 import java.awt.CardLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -23,7 +29,8 @@ public class Menu extends JPanel{//menupontok itt
 	//ezeket jo ha megjegyezzuk, grafikus feluleten akkor ki lehet majd jelezni
 	private int progress=0;//hanyadik palya
 	private String palya = "";//palya neve
-	
+	private BufferedImage hatter;
+        
 	JButton bPlay;
 	JButton bLoad;
 	JButton bSave;
@@ -51,9 +58,28 @@ public class Menu extends JPanel{//menupontok itt
 		bExit = new JButton("Exit");
 		this.add(bExit);
 		bExit.addActionListener(new Gombnyomasok());
+                
+                this.addKeyListener(new Gombnyomasok());
+                
+                try{
+                    hatter = ImageIO.read(new File("assets\\menu.png"));
+                }catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
+                
+                
+                
 	}
+        
+        @Override
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            if(hatter != null){
+                g.drawImage(hatter, 0, 0, null);
+            }
+        }
 	
-	class Gombnyomasok implements ActionListener
+	class Gombnyomasok implements ActionListener, KeyListener
 	{
 
 		@Override
@@ -79,8 +105,33 @@ public class Menu extends JPanel{//menupontok itt
 				exit();
 			}
 		}
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+           
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_M){
+                quitToMenu();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            
+        
 	}
+        
+        }
 	
+        private void quitToMenu(){
+            Jatek.getInstance().veszt();
+            CardLayout cardl = (CardLayout) this.getParent().getLayout();
+	    cardl.show(this.getParent(), "menu");
+        }
+        
 	/**
 	 * progress alapjan eloallitja a palya nevet es elinditja a jatekot
 	 */
@@ -89,6 +140,8 @@ public class Menu extends JPanel{//menupontok itt
 		//uj jatek inditasa
 		if(palya!="")
 		{
+                    setFocusable(true);
+                    requestFocusInWindow();
 			Jatek.getInstance().start(palya);
 			CardLayout cardl = (CardLayout) this.getParent().getLayout();
 			cardl.show(this.getParent(), "rajzolo");

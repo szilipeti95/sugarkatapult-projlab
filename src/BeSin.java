@@ -51,6 +51,10 @@ public class BeSin extends SinElem {
 	public void leptet(Mozdony m, SinElem s) {
 		//A mozdony ralepett a sinElemre
         szerelvenyek++;//SinEleme
+        //Ha rálép egy vonat, akkor ütközik
+        if(s != this){
+            m.utkozik();
+        }
 	}
 	
 	/**
@@ -103,10 +107,12 @@ public class BeSin extends SinElem {
 						break;
 					}
 					u.SetSinElem(this);
+                                        u.SetElozoElem(this);
 					vonat.add(u);
 					kovKocsi = u;
 				}
-				Mozdony m = new Mozdony(v.id, kovKocsi, this);//vegen az egeszet egy mozdonyra kapcsoljuk
+				Mozdony m = new Mozdony(v.id, kovKocsi, sinA);//vegen az egeszet egy mozdonyra kapcsoljuk
+                                m.SetElozoElem(this);
 				Terepasztal.getInstance().AddMozdony(m);//elinditjuk itt
 			}
 		}
@@ -116,4 +122,13 @@ public class BeSin extends SinElem {
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
 	}
+        
+        @Override
+        public SinElem getAg(char c){
+            if(c == 'a' || c == 'b'){
+                return sinA;
+            }
+            return null;
+        }
+        
 }

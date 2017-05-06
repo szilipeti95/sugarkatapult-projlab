@@ -64,7 +64,7 @@ public class UtasKocsi extends Vagon {
 			//Ha van a kocsihoz kapcsolódva még kocsi, akkor azt is mozgatjuk
 			kovKocsi.mozog(sinElem);
 		}
-				
+		elozoSinElem = sinElem;
 		//Elmentjük, hogy már a következő sinen állunk
 		sinElem = kovSin;
 	}
@@ -141,5 +141,15 @@ public class UtasKocsi extends Vagon {
 		}
 		
 	}
+        
+        @Override
+        public void rajzol(Rajzolo r){
+            r.rajzol(this);
+            if(kovKocsi != null){
+                if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15){
+                    kovKocsi.rajzol(r);
+                }
+            }
+        }
 	
 }

@@ -48,6 +48,10 @@ public abstract class Szerelveny {
 	public SinElem getSin() {
 		return sinElem;
 	}
+        
+        public SinElem getElozoSin(){
+            return elozoSinElem;
+        }
 		
 	/**
 	 * Ezt a fuggveny hivja meg az alagtSzaj, mikor a szerelveny belep az alaguttba.
@@ -113,4 +117,13 @@ public abstract class Szerelveny {
 	public void SetSinElem(SinElem s){
 		this.sinElem = s;
 	}
+        
+        public void SetElozoElem(SinElem s){
+		this.elozoSinElem = s;
+	}
+        
+        
+        public abstract void rajzol(Rajzolo r);
+        
+        
 }

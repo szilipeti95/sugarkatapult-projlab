@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Terepasztalon valósul meg az egész játék.
@@ -39,7 +40,11 @@ public class Terepasztal {
 	 *	tickek számlálója
 	 */
 	private int tck;
-
+        
+        private int mozdonyokSzama = 0;
+        
+        private final String lehetsegesKocsik = "kpzsx";
+        
 	/**
 	 * Terepasztal alapértékeit beállítja, listákat létrehozza
 	 */
@@ -201,7 +206,21 @@ public class Terepasztal {
 	 * @param b BeSin refrerencia ami hozzáadódik a listához
 	 */
 	public void AddBeSin(BeSin b) {
-        besinek.add(b);
+         mozdonyokSzama++;
+         String s = "m" + Integer.toString(mozdonyokSzama);
+         Random r = new Random();
+         int db = r.nextInt(5); //max 5 kocsi
+          db = Math.max(db, 1); //legyen minimum 1 db;
+         StringBuilder sb = new StringBuilder();
+         for(int i = 0; i < db; i++){
+             int index = r.nextInt(lehetsegesKocsik.length());
+             sb.append(lehetsegesKocsik.charAt(index));
+         }
+         
+         int tick = r.nextInt(3)+1;
+            System.out.println("Db: " + db + ", kocsik: " + sb.toString() + ", Tick: " + tick);
+         b.VonatBead(s, tick, sb.toString());
+         besinek.add(b);
     }
 
 	/**
@@ -245,6 +264,11 @@ public class Terepasztal {
 	public ArrayList<SinElem> getSinelemek()
 	{
 		return sinelemek;
+	}
+        
+        public ArrayList<Mozdony> getMozdonyok()
+	{
+		return mozdonyok;
 	}
 
 	
