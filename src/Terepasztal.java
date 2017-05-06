@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 /**
  * Terepasztalon valósul meg az egész játék.
  * Eltárolja a Mozdonyokat, síneket, állomásokat, alagutat
@@ -168,9 +170,9 @@ public class Terepasztal {
 			}*/ //ez a vonat beolvasas
 			System.out.println("jatek elindult");
 		} catch (FileNotFoundException e) {
-			System.out.println("A fajl nem talalhato!");
+			JOptionPane.showMessageDialog(null, "A fajl nem talalhato! Lepjen vissza a menube, es valasszon egy valid palyat.");
 		} catch (IOException e) {
-			System.out.println("Hiba a fajlban!");
+			JOptionPane.showMessageDialog(null, "Hiba olvasas soran! Lepjen vissza a menube, es valasszon egy valid palyat.");
 		}
 	}
 
@@ -198,7 +200,7 @@ public class Terepasztal {
 	 */
 	public void AddMozdony(Mozdony m) {
 	    mozdonyok.add(m);
-	    teliVonatSzam++;
+	    //teliVonatSzam++; ezt inkabb az addbesinben, hogy ne nyerjunk ha meg nem jott be egy vonat
 	}
 
 	/**
@@ -207,6 +209,7 @@ public class Terepasztal {
 	 */
 	public void AddBeSin(BeSin b) {
          mozdonyokSzama++;
+ 	     teliVonatSzam++;//ezt itt csinaljuk, hogy ne nyerjunk ha egy vonat meg nem jott be
          String s = "m" + Integer.toString(mozdonyokSzama);
          Random r = new Random();
          int db = r.nextInt(5); //max 5 kocsi
@@ -217,7 +220,7 @@ public class Terepasztal {
              sb.append(lehetsegesKocsik.charAt(index));
          }
          
-         int tick = r.nextInt(3)+1;
+         int tick = r.nextInt(3)+1 + (r.nextInt(2)==0?20:0);
             System.out.println("Db: " + db + ", kocsik: " + sb.toString() + ", Tick: " + tick);
          b.VonatBead(s, tick, sb.toString());
          besinek.add(b);
@@ -254,6 +257,7 @@ public class Terepasztal {
 	 */
 	public void vonatKiurult() {
 	    teliVonatSzam--;
+	    System.out.println(teliVonatSzam);
 	    //ha elfogytak a vonatok
 	    if (teliVonatSzam == 0)
 	    {

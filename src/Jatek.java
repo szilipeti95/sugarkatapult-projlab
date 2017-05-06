@@ -63,8 +63,11 @@ public class Jatek {
      * elfogytak az utasok
      */
 	public void nyer() {
-      //  System.exit(0);
 		System.out.println("vege nyert");
+		timer.stop();
+		if(Menu.progress<3)//max 3 map
+			Menu.progress++;
+		
 	}
 	
 	public void setRajzolo(Rajzolo r1)

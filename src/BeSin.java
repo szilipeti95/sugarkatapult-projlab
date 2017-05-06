@@ -89,16 +89,16 @@ public class BeSin extends SinElem {
 					Vagon u = null;
 					switch (v.vagonok.charAt(i)) {//mi a tipusa a vagonnak
 					case 'p':
-						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.PIROS);
+						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.PIROS, false);
 						break;
 					case 'k':
-						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.KEK);
+						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.KEK, false);
 						break;
 					case 'z':
-						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.ZOLD);
+						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.ZOLD, false);
 						break;
 					case 's':
-						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.SARGA);
+						u = new UtasKocsi(v.id+"-u"+(i+1), kovKocsi, Szin.SARGA, false);
 						break;
 					case 'x':
 						u = new SzenesKocsi(v.id+"-s"+(i+1), kovKocsi);
@@ -107,7 +107,7 @@ public class BeSin extends SinElem {
 						break;
 					}
 					u.SetSinElem(this);
-                                        u.SetElozoElem(this);
+                    u.SetElozoElem(this);
 					vonat.add(u);
 					kovKocsi = u;
 				}
@@ -123,12 +123,12 @@ public class BeSin extends SinElem {
 		r.rajzol(this);
 	}
         
-        @Override
-        public SinElem getAg(char c){
-            if(c == 'a' || c == 'b'){
-                return sinA;
-            }
-            return null;
+    @Override
+    public SinElem getAg(char c){
+        if(c == 'a' || c == 'b'){
+            return sinA;
         }
+        return null;
+    }
         
 }

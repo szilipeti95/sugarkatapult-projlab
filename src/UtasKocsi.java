@@ -24,9 +24,10 @@ public class UtasKocsi extends Vagon {
 	 * @param kovKocsi a kovetkezo kocsira mutato referencia
 	 * @param szin a beallitando szin
 	 */
-	public UtasKocsi(String id, Vagon kovKocsi, Szin szin) {
+	public UtasKocsi(String id, Vagon kovKocsi, Szin szin, boolean ures) {
 		super(id, kovKocsi);
 		this.szin = szin;
+		this.ures = ures;
 	}
 
 	/**

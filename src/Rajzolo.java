@@ -1,13 +1,19 @@
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Rajzolo extends JPanel{
+public class Rajzolo extends JPanel {
 	private static final long serialVersionUID = 1L;//ez kell JPanel miatt..
 	
 	final int height=15, width=15;
@@ -25,7 +31,25 @@ public class Rajzolo extends JPanel{
 	//private BufferedImage ValtoKep;
 	//private BufferedImage BeSinKep;
 	private BufferedImage fuKep;
-        private BufferedImage robbanasKep;
+    private BufferedImage robbanasKep;
+    
+    JButton KilepGomb;
+    
+    public Rajzolo()
+    {
+    	KilepGomb = new JButton("Menu");
+		this.add(KilepGomb);
+		Rajzolo tmp = this;
+		KilepGomb.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+		    	System.out.println("jajajaj");
+		        Jatek.getInstance().veszt();
+		        CardLayout cardl = (CardLayout) tmp.getParent().getLayout();
+		        cardl.show(tmp.getParent(), "menu");
+			}});
+    }
+    
 	public void loadImages() {
 		try
 		{
@@ -153,9 +177,9 @@ public class Rajzolo extends JPanel{
                
            }
              
-             ferde = u.GetSzin().ordinal();
+           ferde = u.GetSzin().ordinal();
           
-            graphics.drawImage(KocsiKep, u.getSin().getX()*48, u.getSin().getY()*48,u.getSin().getX()*48+ 48,u.getSin().getY()*48+ 48,48*index1,0+ferde*48,48*index1+48,48+ferde*48,null);
+           graphics.drawImage(KocsiKep, u.getSin().getX()*48, u.getSin().getY()*48,u.getSin().getX()*48+ 48,u.getSin().getY()*48+ 48,48*index1,0+ferde*48,48*index1+48,48+ferde*48,null);
  
 	}
 	
