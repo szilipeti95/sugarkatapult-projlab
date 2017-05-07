@@ -61,10 +61,10 @@ public class Jatek {
 	public void veszt() {
         //System.exit(0);
         if(!nyert){
+            Terepasztal.getInstance().Vege();
             nyert = true; //lezárjuk
             timer.stop();
             System.out.println("vege vesztett");
-            Terepasztal.getInstance().Vege();
             //JOptionPane.showMessageDialog(menu, "VESZTETTÉL!", "Defeat is unacceptable!", JOptionPane.WARNING_MESSAGE);
         }
         
