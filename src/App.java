@@ -38,6 +38,7 @@ public class App extends JFrame {
 		
 		Jatek.getInstance().setController(controller);
 		Jatek.getInstance().setRajzolo(rajzolo);
+                Jatek.getInstance().setMenu(menu);
 		
 		rajzolo.addMouseListener(controller);
 	}

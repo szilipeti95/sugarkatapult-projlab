@@ -31,7 +31,7 @@ public class Menu extends JPanel{//menupontok itt
 	private static final long serialVersionUID = 1L;//ez kell JPanel miatt..
 	
 	//ezeket jo ha megjegyezzuk, grafikus feluleten akkor ki lehet majd jelezni
-	public static int progress=0;//hanyadik palya
+	public int progress=0;//hanyadik palya
 	private String palya = "1. palya.txt";//palya neve
 	private BufferedImage hatter;
     
@@ -42,6 +42,15 @@ public class Menu extends JPanel{//menupontok itt
 	JComboBox cSelect;
 	JButton bExit;
 	
+        public void addProgress(){
+            progress++;
+            cSelect.addItem((progress+1)+". palya");
+        }
+        
+        public int getProgress(){
+            return progress;
+        }
+        
 	public Menu()
 	{
 		bPlay = new JButton("Play");
@@ -129,7 +138,7 @@ public class Menu extends JPanel{//menupontok itt
 	public void start() 
 	{//uj Jatek
 		//uj jatek inditasa
-		if(palya!="" && cSelect.getSelectedIndex()<=progress)
+		if(!"".equals(palya) && cSelect.getSelectedIndex()<=progress)
 		{
 			Jatek.getInstance().start(palya);
 			CardLayout cardl = (CardLayout) this.getParent().getLayout();

@@ -47,6 +47,8 @@ public class Terepasztal {
         
         private final String lehetsegesKocsik = "kpzsx";
         
+        private boolean vege = false;
+        
 	/**
 	 * Terepasztal alapértékeit beállítja, listákat létrehozza
 	 */
@@ -79,6 +81,7 @@ public class Terepasztal {
 		besinek.clear();
 		alagut = new Alagut("t1");
 		tck = 0;
+                vege = false;
 	}
 
 	/**
@@ -89,7 +92,7 @@ public class Terepasztal {
 		tck++;
 	    for(Mozdony m: mozdonyok){
             m.mozog();
-        }
+         }
 	    for (BeSin b : besinek) {
 	    	b.tick(tck);
 	    }
@@ -101,6 +104,14 @@ public class Terepasztal {
 	public void rajzol()
 	{
 		Jatek.getInstance().getRajzolo().repaint();
+                if(vege){
+                    if(Jatek.getInstance().getNyert()){
+                       JOptionPane.showMessageDialog(null, "NYERTÉL!", "Victory lies ahead!", JOptionPane.WARNING_MESSAGE); 
+                    }else{
+                        JOptionPane.showMessageDialog(null, "VESZTETTÉL!", "Defeat is unacceptable!", JOptionPane.WARNING_MESSAGE);
+                    }
+                    
+                }
 	}
 	
 	/**
@@ -302,4 +313,7 @@ public class Terepasztal {
 		return null;
 	}
 
+        public void Vege(){
+            vege = true;
+        }
 }

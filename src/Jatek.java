@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /**
  * Tartalmazza a terepasztalt és a timert.
  * A timer működteti a terepasztalt.
@@ -11,15 +14,17 @@ public class Jatek {
      * Az időzítő referenciája
      */
 	private Timer timer;
-	
+	private boolean nyert = false;
 	private Controller controller;
 	private Rajzolo rajzolo;
+        private Menu menu;
+        private int currentProgress = 0;
 
     /**
      * privát konstruktor
      */
     private Jatek(){
-
+           
     }
 
     /**
@@ -40,8 +45,10 @@ public class Jatek {
      * @param palya a pályának a neve
      */
     public void start(String palya) {
+        nyert = false;
     	rajzolo.loadImages();
         timer = new Timer();
+        currentProgress = menu.getProgress();
         Terepasztal.getInstance().reset();
 		Terepasztal.getInstance().init(palya);
 		timer.start();
@@ -53,8 +60,14 @@ public class Jatek {
      */
 	public void veszt() {
         //System.exit(0);
-        timer.stop();
-        System.out.println("vege vesztett");
+        if(!nyert){
+            nyert = true; //lezárjuk
+            timer.stop();
+            System.out.println("vege vesztett");
+            Terepasztal.getInstance().Vege();
+            //JOptionPane.showMessageDialog(menu, "VESZTETTÉL!", "Defeat is unacceptable!", JOptionPane.WARNING_MESSAGE);
+        }
+        
         
 	}
 
@@ -65,8 +78,13 @@ public class Jatek {
 	public void nyer() {
 		System.out.println("vege nyert");
 		timer.stop();
-		if(Menu.progress<3)//max 3 map
-			Menu.progress++;
+                nyert = true;
+                Terepasztal.getInstance().Vege();
+		if(currentProgress == menu.getProgress() && menu.getProgress() < 3 ){
+                    menu.addProgress();
+                    //JOptionPane.showMessageDialog(menu, "NYERTÉL!", "Victory lies ahead!", JOptionPane.WARNING_MESSAGE);
+                }//max 3 map
+			
 		
 	}
 	
@@ -84,5 +102,13 @@ public class Jatek {
 	{
 		return rajzolo;
 	}
+        
+        public void setMenu(Menu m){
+            menu = m;
+        }
 	
+        public boolean getNyert(){
+            return nyert;
+        }
+        
 }

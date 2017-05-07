@@ -36,7 +36,7 @@ public class UtasKocsi extends Vagon {
 	 * @param a az allamos, amelyiken el kell donteni, hogy le kell-e szallni az utasoknak
 	 */
 	public void leszallit(Allomas a) {
-		if(szin.equals(a.getSzin()) && elozoUres && a.getUres()) {
+		if(szin.equals(a.getSzin()) && elozoUres && a.getUres() && !ures) {
 			//A ket szin megegyezik, es az elutte lev kocsi is ures
 			ures = true;
 			if(kovKocsi!= null){

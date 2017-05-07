@@ -33,6 +33,7 @@ public class Rajzolo extends JPanel {
 	private BufferedImage fuKep;
         private BufferedImage utasKep;
     private BufferedImage robbanasKep;
+       private boolean end = false;
     
     JButton KilepGomb;
     
