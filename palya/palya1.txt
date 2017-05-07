@@ -38,7 +38,7 @@ normalsin n29 13 0
 normalsin n30 14 0
 besin b2 15 0
 normalsin n31 8 1
-allomas n32 z 0 7 1
+allomas z 0 n32 7 1
 normalsin n33 6 1
 normalsin n34 5 1
 valto v6 4 1
@@ -55,7 +55,7 @@ normalsin n42 0 5
 normalsin n43 0 6
 normalsin n44 4 2
 normalsin n45 4 3
-allomas n46 s 0 5 3
+allomas s 0 n46 5 3
 normalsin n47 6 3
 normalsin n48 6 4
 valto v8 6 6
@@ -63,7 +63,7 @@ normalsin n49 5 6
 normalsin n50 4 6
 normalsin n51 3 6
 normalsin n52 3 7
-allomas n53 p 1 3 8
+allomas p 1 n53 3 8
 normalsin n54 3 9
 normalsin n55 4 9
 normalsin n56 5 9
@@ -72,8 +72,8 @@ normalsin n57 7 9
 normalsin n58 8 9
 normalsin n59 8 8
 allomas n60 k 0 8 7
-normalsin n61 8 6
-normalsin n62 7 6
+normalsin n61 7 6
+normalsin n62 6 6
 normalsin n63 6 10
 keresztsin k2 6 11
 normalsin n64 6 12
@@ -109,7 +109,7 @@ normalsin n87 11 10
 normalsin n88 10 10
 allomas n89 p 0 10 9
 normalsin n90 10 8
-alagutszaj s3 10 7
+alagutszaj s1 10 7
 normalsin n91 12 9
 normalsin n92 12 8
 normalsin n93 12 7
@@ -118,9 +118,9 @@ normalsin n94 12 6
 b1-a n1-a
 n1-b n2-a
 n2-b n3-a
-v1-a n4-a
 n3-b v1-b
 v1-c n71-a
+v1-a n4-a
 n4-b n5-a
 n5-b n6-a
 n6-b n7-a
@@ -132,8 +132,9 @@ n9-b n10-a
 n10-b n11-a
 n11-b n12-a
 n12-b k1-a
-k1-c n13-a
-k1-b n48-b
+k1-b n13-a
+k1-c n48-b
+k1-d v8-c
 n13-b n14-a
 n14-b n15-a
 n15-b n16-a
@@ -142,32 +143,32 @@ n17-b v3-a
 v3-b n18-a
 v3-c n94-b
 n18-b v4-a
-v4-b n21-a
 v4-c n19-a
 n19-b n20-a
 n20-b s1-a
+v4-b n21-a
 n21-b n22-a
 n22-b n23-a
 n23-b n24-a
 n24-b v5-a
-v5-b n31-a
 v5-c n25-a
 n25-b n26-a
 n26-b n27-a
 n27-b n28-a
 n28-b n29-a
 n29-b n30-a
-n30-b b2-a
+n30-b b1-a
+v5-b n31-a
 n31-b n32-a
 n32-b n33-a
 n33-b n34-a
-v6-a n35-a
 n34-b v6-b
+v6-a n35-a
 n35-b n36-a
-v7-a n38-a
 n36-b v7-b
 v7-c n37-a
 n37-b s2-a
+v7-a n38-a
 n38-b n39-a
 n39-b n40-a
 n40-b n41-a
@@ -194,11 +195,10 @@ n59-b n60-a
 n60-b n61-a
 n61-b n62-a
 n62-b v8-b
-k1-d v8-c
 n63-a v9-c
-n63-b k2-b
+n63-b k2-c
 k2-a n73-b
-k2-c n74-a
+k2-b n74-a
 k2-d n64-a
 n64-b n65-a
 v10-a n66-a
@@ -209,8 +209,8 @@ n67-b n68-a
 n68-b n69-a
 n69-b n70-a
 v11-a n71-b
-v11-b n72-a
 n70-b v11-c
+v11-c n72-a
 n72-b n73-a
 n74-b n75-a
 n75-b n76-a
@@ -237,3 +237,4 @@ n90-b s3-a
 n91-b n92-a
 n92-b n93-a
 n93-b n94-a
+

@@ -15,9 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class Terepasztal {
 	/**
-	 * Nem üres vonatok száma a terepasztalon
+	 * Nem üres kocsik száma a terepasztalon
 	 */
-	private int teliVonatSzam;
+	private int teliKocsiSzam;
 	/**
 	 * Terepasztal egyetlen példánya
 	 */
@@ -51,7 +51,7 @@ public class Terepasztal {
 	 * Terepasztal alapértékeit beállítja, listákat létrehozza
 	 */
 	private Terepasztal(){
-        teliVonatSzam = 0;
+        teliKocsiSzam = 0;
         mozdonyok = new ArrayList<>();
         sinelemek = new ArrayList<>();
         besinek = new ArrayList<>();
@@ -73,7 +73,7 @@ public class Terepasztal {
 	 * Törli a terepasztal elemeit.
 	 */
 	public void reset(){
-		teliVonatSzam = 0;
+		teliKocsiSzam = 0;
 		mozdonyok.clear();
 		sinelemek.clear();
 		besinek.clear();
@@ -158,6 +158,8 @@ public class Terepasztal {
 				
 				SinElem talalat1 = ListContains(sinelemek, elso[0]);
 				SinElem talalat2 = ListContains(sinelemek, masodik[0]);
+                                
+                                System.out.println(elso[0] + " " + masodik[0]);
 				
 				talalat1.setSinElem(talalat2, elso[1].charAt(0));
 				talalat2.setSinElem(talalat1, masodik[1].charAt(0));
@@ -209,15 +211,25 @@ public class Terepasztal {
 	 */
 	public void AddBeSin(BeSin b) {
          mozdonyokSzama++;
- 	     teliVonatSzam++;//ezt itt csinaljuk, hogy ne nyerjunk ha egy vonat meg nem jott be
+ 	     
          String s = "m" + Integer.toString(mozdonyokSzama);
          Random r = new Random();
-         int db = r.nextInt(5); //max 5 kocsi
+         int db = r.nextInt(2); //max 5 kocsi
           db = Math.max(db, 1); //legyen minimum 1 db;
          StringBuilder sb = new StringBuilder();
          for(int i = 0; i < db; i++){
              int index = r.nextInt(lehetsegesKocsik.length());
-             sb.append(lehetsegesKocsik.charAt(index));
+             if(i == 0){
+                 sb.append(lehetsegesKocsik.charAt(Math.max(0,index-1))); //elso
+                 teliKocsiSzam++;//ezt itt csinaljuk, hogy ne nyerjunk ha egy vonat meg nem jott be
+             }else{
+                 char c = lehetsegesKocsik.charAt(index);
+                 sb.append(c);
+                 if(c!='x'){
+                     teliKocsiSzam++;//ezt itt csinaljuk, hogy ne nyerjunk ha egy vonat meg nem jott be
+                 }
+             }
+             
          }
          
          int tick = r.nextInt(3)+1 + (r.nextInt(2)==0?20:0);
@@ -255,15 +267,19 @@ public class Terepasztal {
 	 * aminek még van utasa.
 	 * Ha ez a szám 0 a játéknak vége és a játékos nyert.
 	 */
-	public void vonatKiurult() {
-	    teliVonatSzam--;
-	    System.out.println(teliVonatSzam);
+	public void vonatrolLeszalltak() {
+	    teliKocsiSzam--;
+	    System.out.println("TeliKocsiszam: " + teliKocsiSzam);
 	    //ha elfogytak a vonatok
-	    if (teliVonatSzam == 0)
+	    if (teliKocsiSzam == 0)
 	    {
 			Jatek.getInstance().nyer();
-        }
+            }
 	}
+        
+        public void vonatraFelszalltak(){
+            teliKocsiSzam++;
+        }
 	
 	public ArrayList<SinElem> getSinelemek()
 	{

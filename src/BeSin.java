@@ -52,9 +52,11 @@ public class BeSin extends SinElem {
 		//A mozdony ralepett a sinElemre
         szerelvenyek++;//SinEleme
         //Ha rálép egy vonat, akkor ütközik
-        if(s != this){
-            m.utkozik();
-        }
+        //if(s != this){
+        //    m.utkozik();
+        //}
+        Jatek.getInstance().veszt();
+        
 	}
 	
 	/**

@@ -36,15 +36,15 @@ public class UtasKocsi extends Vagon {
 	 * @param a az allamos, amelyiken el kell donteni, hogy le kell-e szallni az utasoknak
 	 */
 	public void leszallit(Allomas a) {
-		if(szin.equals(a.getSzin()) && elozoUres) {
+		if(szin.equals(a.getSzin()) && elozoUres && a.getUres()) {
 			//A ket szin megegyezik, es az elutte lev kocsi is ures
 			ures = true;
-			if(kovKocsi!= null)
+			if(kovKocsi!= null){
 			kovKocsi.SetElozoUres(true);
-			
+                        }
 			if (kovKocsi == null) {
 				//Nincs kovetkezo kocsi, ez a vonat kiurult
-				Terepasztal.getInstance().vonatKiurult();
+				Terepasztal.getInstance().vonatrolLeszalltak();
 			}
 		}
 	}
@@ -74,6 +74,7 @@ public class UtasKocsi extends Vagon {
 	 * Az allomasnal uj utasok szallnak a kocsira ennek a fugvenynek a meghivasaval
 	 */
 	public void felszall() {
+                Terepasztal.getInstance().vonatraFelszalltak();
 		ures = false;
 		if(kovKocsi!=null)
 			kovKocsi.SetElozoUres(false);
@@ -97,11 +98,11 @@ public class UtasKocsi extends Vagon {
 	
 	/**
 	 * Ez a meteodus allitja be, hogy az elozo kocsi ures-e
-	 * @param ures true, ha az elozo kocsi ures, kulonben false
+	 * @param urese true, ha az elozo kocsi ures, kulonben false
 	 */
 	@Override
-	public void SetElozoUres(boolean ures) {
-		elozoUres = ures;
+	public void SetElozoUres(boolean urese) {
+		elozoUres = urese;
 	}
 	
 	/**
@@ -147,7 +148,7 @@ public class UtasKocsi extends Vagon {
         public void rajzol(Rajzolo r){
             r.rajzol(this);
             if(kovKocsi != null){
-                if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15){
+                if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15 &&kovKocsi.getSin().getY()>=0 && kovKocsi.getSin().getY()<15 ){
                     kovKocsi.rajzol(r);
                 }
             }

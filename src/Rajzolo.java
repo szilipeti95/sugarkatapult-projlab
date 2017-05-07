@@ -31,6 +31,7 @@ public class Rajzolo extends JPanel {
 	//private BufferedImage ValtoKep;
 	//private BufferedImage BeSinKep;
 	private BufferedImage fuKep;
+        private BufferedImage utasKep;
     private BufferedImage robbanasKep;
     
     JButton KilepGomb;
@@ -43,7 +44,7 @@ public class Rajzolo extends JPanel {
 		KilepGomb.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-		    	System.out.println("jajajaj");
+		    	//System.out.println("jajajaj");
 		        Jatek.getInstance().veszt();
 		        CardLayout cardl = (CardLayout) tmp.getParent().getLayout();
 		        cardl.show(tmp.getParent(), "menu");
@@ -61,6 +62,7 @@ public class Rajzolo extends JPanel {
                         MozdonyKep = ImageIO.read(new File("assets\\mozdonyok.png"));
                         KocsiKep = ImageIO.read(new File("assets\\utasok.png"));
                         robbanasKep = ImageIO.read(new File("assets\\kabumm.png"));
+                        utasKep = ImageIO.read(new File("assets\\MyNameIsSmileyFace.png"));
                         
 		}
 		catch(IOException e){System.out.println(e.getMessage());}
@@ -102,6 +104,10 @@ public class Rajzolo extends JPanel {
             int index1 = 0;
             int ferde = 0;
            
+            if(m.alagutbanVan()){
+                return;
+            }
+            
            if(m.getElozoSin().getY() == m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
                //balra megy
                index1 = 3;
@@ -146,6 +152,10 @@ public class Rajzolo extends JPanel {
             int index1 = 0;
             int ferde = 0;
             
+            if(u.alagutbanVan()){
+                return;
+            }
+            
              if(u.getElozoSin().getY() == u.getSin().getKovSinElem(u.getElozoSin()).getY() && u.getElozoSin().getX() > u.getSin().getKovSinElem(u.getElozoSin()).getX()  ){
                //balra megy
                index1 = 1;
@@ -180,7 +190,10 @@ public class Rajzolo extends JPanel {
            ferde = u.GetSzin().ordinal();
           
            graphics.drawImage(KocsiKep, u.getSin().getX()*48, u.getSin().getY()*48,u.getSin().getX()*48+ 48,u.getSin().getY()*48+ 48,48*index1,0+ferde*48,48*index1+48,48+ferde*48,null);
- 
+           if(!u.GetUres()){
+               graphics.drawImage(utasKep, u.getSin().getX()*48, u.getSin().getY()*48, null);
+           }
+           
 	}
 	
 	public void rajzol(SzenesKocsi sz) {
@@ -188,6 +201,10 @@ public class Rajzolo extends JPanel {
             int index1 = 0;
             
             //int ferde = 0;
+            
+            if(sz.alagutbanVan()){
+                return;
+            }
             
              if(sz.getElozoSin().getY() == sz.getSin().getKovSinElem(sz.getElozoSin()).getY() && sz.getElozoSin().getX() > sz.getSin().getKovSinElem(sz.getElozoSin()).getX()  ){
                //balra megy

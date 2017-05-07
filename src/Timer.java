@@ -13,7 +13,7 @@ public class Timer {
 			    Terepasztal.getInstance().tick();
 			    Terepasztal.getInstance().rajzol();
 			  }
-		}, 0,300);
+		}, 0,500);
 	}
         
         public void stop(){
