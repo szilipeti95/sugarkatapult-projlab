@@ -120,6 +120,7 @@ public class Terepasztal {
 	 * @param fileName a fájl neve amiből a beolvasás történik
 	 */
 	public void init(String fileName) {
+		tck=0;
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
 			while((line = br.readLine())!= null && !line.equals("."))
@@ -230,7 +231,7 @@ public class Terepasztal {
              }
              
          }
-         int tick = r.nextInt(mozdonyokSzama*10);//10 tickenkent jon egy vonat kb
+         int tick = r.nextInt(mozdonyokSzama*10)+1;//10 tickenkent jon egy vonat kb
          b.VonatBead(s, tick, sb.toString());
          besinek.add(b);
     }

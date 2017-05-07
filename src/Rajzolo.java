@@ -128,36 +128,38 @@ public class Rajzolo extends JPanel {
                 return;
             }
             
-           if(m.getElozoSin().getY() == m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
-               //balra megy
-               index1 = 3;
-           }else if(m.getElozoSin().getY() == m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
-               //jobbra megy
-               index1 = 1;
-           }else if(m.getElozoSin().getX() == m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
-               //felfele megy
-               index1 = 0;
-           }else if(m.getElozoSin().getX() == m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
-               //lefele megy
-               index1 = 2;
-           }else if(m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
-               //balra fel
-               index1 = 3;
-               ferde = 1;
-               
-           }else if(m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
-               //jobbra le
-               index1 = 1;
-               ferde = 1;
-           }else if(m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
-               //balra le
-               index1 = 2;
-               ferde = 1;
-           }else if(m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
-               //jobbra fel
-               index1 = 0;
-               ferde = 1;
-           }
+            if(m.getSin().getKovSinElem(m.getElozoSin()) != null)
+            {
+	           if(m.getElozoSin().getY() == m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+	               //balra megy
+	               index1 = 3;
+	           }else if(m.getElozoSin().getY() == m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+	               //jobbra megy
+	               index1 = 1;
+	           }else if(m.getElozoSin().getX() == m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+	               //felfele megy
+	               index1 = 0;
+	           }else if(m.getElozoSin().getX() == m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+	               //lefele megy
+	               index1 = 2;
+	           }else if(m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+	               //balra fel
+	               index1 = 3;
+	               ferde = 1;
+	           }else if(m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY() && m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX()  ){
+	               //jobbra le
+	               index1 = 1;
+	               ferde = 1;
+	           }else if(m.getElozoSin().getX() > m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() < m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+	               //balra le
+	               index1 = 2;
+	               ferde = 1;
+	           }else if(m.getElozoSin().getX() < m.getSin().getKovSinElem(m.getElozoSin()).getX() && m.getElozoSin().getY() > m.getSin().getKovSinElem(m.getElozoSin()).getY()  ){
+	               //jobbra fel
+	               index1 = 0;
+	               ferde = 1;
+	           }
+            }
            
            
             graphics.drawImage(MozdonyKep, m.getSin().getX()*48, m.getSin().getY()*48,m.getSin().getX()*48+ 48,m.getSin().getY()*48+ 48,48*index1,0+ferde*48,48*index1+48,48+ferde*48,null);
@@ -193,10 +195,10 @@ public class Rajzolo extends JPanel {
 	       index1 = 0;
 		}else if(u.getElozoSin().getY() > u.getSin().getKovSinElem(u.getElozoSin()).getY() && u.getElozoSin().getX() > u.getSin().getKovSinElem(u.getElozoSin()).getX()  ){
 	       //balra fel
-	       index1 = 5;
+	       index1 = 3;
 		}else if(u.getElozoSin().getY() < u.getSin().getKovSinElem(u.getElozoSin()).getY() && u.getElozoSin().getX() < u.getSin().getKovSinElem(u.getElozoSin()).getX()  ){
 	       //jobbra le
-	       index1 = 3;
+	       index1 = 5;
 		}else if(u.getElozoSin().getX() > u.getSin().getKovSinElem(u.getElozoSin()).getX() && u.getElozoSin().getY() < u.getSin().getKovSinElem(u.getElozoSin()).getY()  ){
 	       //balra le
 			index1=4;
