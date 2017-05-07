@@ -38,7 +38,7 @@ normalsin n29 13 0
 normalsin n30 14 0
 besin b2 15 0
 normalsin n31 8 1
-allomas n32 z 0 7 1
+allomas n32 k 0 7 1
 normalsin n33 6 1
 normalsin n34 5 1
 valto v6 4 1
@@ -71,7 +71,7 @@ valto v9 6 9
 normalsin n57 7 9
 normalsin n58 8 9
 normalsin n59 8 8
-allomas n60 k 0 8 7
+allomas n60 z 0 8 7
 normalsin n61 8 6
 normalsin n62 7 6
 normalsin n63 6 10
