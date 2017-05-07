@@ -1,0 +1,239 @@
+besin b1 1 15
+normalsin n1 1 14
+normalsin n2 1 13
+normalsin n3 1 12
+valto v1 1 11
+normalsin n4 1 10
+allomas n5 s 0 1 9
+normalsin n6 1 8
+normalsin n7 1 7
+valto v2 1 6
+normalsin n8 1 5
+normalsin n9 2 5
+normalsin n10 3 5
+normalsin n11 4 5
+normalsin n12 5 5
+keresztsin k1 6 5
+normalsin n13 7 5
+normalsin n14 8 5
+normalsin n15 9 5
+allomas n16 k 1 10 5
+normalsin n17 11 5
+valto v3 12 5
+normalsin n18 12 4
+valto v4 12 3
+normalsin n19 11 3
+normalsin n20 10 3
+alagutszaj s1 9 3
+normalsin n21 12 2
+normalsin n22 12 1
+normalsin n23 11 1
+normalsin n24 10 1
+valto v5 9 1
+normalsin n25 9 0
+normalsin n26 10 0
+normalsin n27 11 0
+normalsin n28 12 0
+normalsin n29 13 0
+normalsin n30 14 0
+besin b2 15 0
+normalsin n31 8 1
+allomas n32 z 0 7 1
+normalsin n33 6 1
+normalsin n34 5 1
+valto v6 4 1
+normalsin n35 3 1
+normalsin n36 2 1
+valto v7 1 1
+normalsin n37 1 2
+alagutszaj s2 2 2
+normalsin n38 0 1
+normalsin n39 0 2
+normalsin n40 0 3
+normalsin n41 0 4
+normalsin n42 0 5
+normalsin n43 0 6
+normalsin n44 4 2
+normalsin n45 4 3
+allomas n46 s 0 5 3
+normalsin n47 6 3
+normalsin n48 6 4
+valto v8 6 6
+normalsin n49 5 6
+normalsin n50 4 6
+normalsin n51 3 6
+normalsin n52 3 7
+allomas n53 p 1 3 8
+normalsin n54 3 9
+normalsin n55 4 9
+normalsin n56 5 9
+valto v9 6 9
+normalsin n57 7 9
+normalsin n58 8 9
+normalsin n59 8 8
+allomas n60 k 0 8 7
+normalsin n61 8 6
+normalsin n62 7 6
+normalsin n63 6 10
+keresztsin k2 6 11
+normalsin n64 6 12
+normalsin n65 6 13
+valto v10 6 14
+normalsin n66 5 14
+normalsin n67 4 14
+normalsin n68 3 14
+normalsin n69 3 13
+normalsin n70 3 12
+valto v11 3 11
+normalsin n71 2 11
+normalsin n72 4 11
+normalsin n73 5 11
+normalsin n74 7 11
+allomas n75 k 0 8 11
+normalsin n76 9 11
+normalsin n77 10 11
+valto v12 10 12
+normalsin n78 10 13
+normalsin n79 9 13
+normalsin n80 9 14
+normalsin n81 8 14
+normalsin n82 7 14
+normalsin n83 11 12
+valto v13 12 12
+normalsin n84 13 12
+normalsin n85 14 12
+besin b3 15 12
+normalsin n86 12 11
+valto v14 12 10
+normalsin n87 11 10
+normalsin n88 10 10
+allomas n89 p 0 10 9
+normalsin n90 10 8
+alagutszaj s3 10 7
+normalsin n91 12 9
+normalsin n92 12 8
+normalsin n93 12 7
+normalsin n94 12 6
+.
+b1-a n1-a
+n1-b n2-a
+n2-b n3-a
+v1-a n4-a
+n3-b v1-b
+v1-c n71-a
+n4-b n5-a
+n5-b n6-a
+n6-b n7-a
+n7-b v2-a
+v2-b n8-a
+v2-c n43-b
+n8-b n9-a
+n9-b n10-a
+n10-b n11-a
+n11-b n12-a
+n12-b k1-a
+k1-c n13-a
+k1-b n48-b
+n13-b n14-a
+n14-b n15-a
+n15-b n16-a
+n16-b n17-a
+n17-b v3-a
+v3-b n18-a
+v3-c n94-b
+n18-b v4-a
+v4-b n21-a
+v4-c n19-a
+n19-b n20-a
+n20-b s1-a
+n21-b n22-a
+n22-b n23-a
+n23-b n24-a
+n24-b v5-a
+v5-b n31-a
+v5-c n25-a
+n25-b n26-a
+n26-b n27-a
+n27-b n28-a
+n28-b n29-a
+n29-b n30-a
+n30-b b2-a
+n31-b n32-a
+n32-b n33-a
+n33-b n34-a
+v6-a n35-a
+n34-b v6-b
+n35-b n36-a
+v7-a n38-a
+n36-b v7-b
+v7-c n37-a
+n37-b s2-a
+n38-b n39-a
+n39-b n40-a
+n40-b n41-a
+n41-b n42-a
+n42-b n43-a
+v6-c n44-a
+n44-b n45-a
+n45-b n46-a
+n46-b n47-a
+n47-b n48-a
+v8-a n49-a
+n49-b n50-a
+n50-b n51-a
+n51-b n52-a
+n52-b n53-a
+n53-b n54-a
+n54-b n55-a
+n55-b n56-a
+n56-b v9-a
+v9-b n57-a
+n57-b n58-a
+n58-b n59-a
+n59-b n60-a
+n60-b n61-a
+n61-b n62-a
+n62-b v8-b
+k1-d v8-c
+n63-a v9-c
+n63-b k2-b
+k2-a n73-b
+k2-c n74-a
+k2-d n64-a
+n64-b n65-a
+v10-a n66-a
+v10-b n82-a
+n65-b v10-c
+n66-b n67-a
+n67-b n68-a
+n68-b n69-a
+n69-b n70-a
+v11-a n71-b
+v11-b n72-a
+n70-b v11-c
+n72-b n73-a
+n74-b n75-a
+n75-b n76-a
+n76-b n77-a
+n77-b v12-b
+v12-a n83-a
+v12-c n78-a
+n78-b n79-a
+n79-b n80-a
+n80-b n81-a
+n81-b n82-b
+n83-b v13-a
+v13-b n84-a
+n84-b n85-a
+n85-b b3-a
+v13-c n86-a
+n86-b v14-b
+v14-a n91-a
+v14-c n87-a
+n87-b n88-a
+n88-b n89-a
+n89-b n90-a
+n90-b s3-a
+n91-b n92-a
+n92-b n93-a
+n93-b n94-a

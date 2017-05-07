@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Zotya
  * BeSin osztaly, SinElem leszarmazottja.
  * Vonatok belepesi pontja
  * csak egy kimeno aga van, mert a palya szelen van
+ * nincs kirajzolva
  */
 public class BeSin extends SinElem {
 	List<Vonat> beadando = new ArrayList<>();//taroljuk a vonatokat amig varnak
@@ -49,14 +49,9 @@ public class BeSin extends SinElem {
 	 */
 	@Override
 	public void leptet(Mozdony m, SinElem s) {
-		//A mozdony ralepett a sinElemre
-        szerelvenyek++;//SinEleme
-        //Ha rálép egy vonat, akkor ütközik
-        //if(s != this){
-        //    m.utkozik();
-        //}
+		//A mozdony ralepett a besinre akkor vesztunk. nem mehet ki a palyarol
+        szerelvenyek++;
         Jatek.getInstance().veszt();
-        
 	}
 	
 	/**
@@ -114,17 +109,26 @@ public class BeSin extends SinElem {
 					kovKocsi = u;
 				}
 				Mozdony m = new Mozdony(v.id, kovKocsi, sinA);//vegen az egeszet egy mozdonyra kapcsoljuk
-                                m.SetElozoElem(this);
+                m.SetElozoElem(this);
 				Terepasztal.getInstance().AddMozdony(m);//elinditjuk itt
 			}
 		}
 	}
 	
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
 	}
-        
+    
+	/**
+	 * againak lekerese
+	 * @param a melyiket. a, b ugyanazt adja vissza
+	 * @return a parameterben megadott sinElem. null, ha hibas parameter
+	 */
     @Override
     public SinElem getAg(char c){
         if(c == 'a' || c == 'b'){

@@ -1,8 +1,16 @@
+/**
+ * normal sin, ket kapcsolodo aggal
+ * SinElem leszarmazottja
+ * lehet egyenes, kanyar, alagutbeli..
+ */
 public class Sin extends SinElem {
 	private SinElem sinB;
-	private boolean AlagutSin;
 	private boolean lathato=true;
 	
+	/**
+	 * konstruktor
+	 * @param id Azonosito
+	 */
 	Sin(String id) 
     {
     	super(id);
@@ -14,14 +22,13 @@ public class Sin extends SinElem {
      * @param c Melyik helyre allitsa be:
      *          a: SinA, b: SinB
      */    
-	
 	@Override
-    public void setSinElem(SinElem s, char c){
-        if (c == 'a')
-        	sinA = s;
-        else if (c == 'b')
-        	sinB = s;
-    }
+	public void setSinElem(SinElem s, char c){
+	    if (c == 'a')
+	    	sinA = s;
+	    else if (c == 'b')
+	    	sinB = s;
+	}
     	
     /**
      * Visszater a kovetkezo SinElemmel, attol fuggoen, merrol jon a vonat
@@ -37,12 +44,20 @@ public class Sin extends SinElem {
 		}
 	}
 	
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
 	}
 	
-	
+	/**
+	 * againak lekerese
+	 * @param a melyiket. a, b
+	 * @return a parameterben megadott sinElem. null, ha hibas parameter
+	 */
 	public SinElem getAg(char a)
 	{
         if (a == 'a')
@@ -52,11 +67,20 @@ public class Sin extends SinElem {
         return null;
 	}
 	
+	/**
+	 * setter a lathatosaghoz
+	 * pl. alagutban van akkor nem lathato
+	 * @param l legyen-e lathato a sin
+	 */
     public void setLathato(boolean l)
     {
     	lathato=l;
     }
     
+    /**
+     * getter a lathatosaghoz
+     * @return lathato-e a sin
+     */
     public boolean getLathato()
     {
     	return lathato;

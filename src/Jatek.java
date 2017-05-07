@@ -1,34 +1,34 @@
-
-import javax.swing.JOptionPane;
-
 /**
- * Tartalmazza a terepasztalt és a timert.
- * A timer működteti a terepasztalt.
+ * szamontartja a szukseges osztalyokat
+ * nyeres, vesztes kezelese
+ * 
+ * Singleton
+ * Tartalmazza a terepasztalt es a timert.
+ * A timer mukodteti a terepasztalt.
  */
 public class Jatek {
     /**
-     * Játék egyetlen példánya
+     * Jatek egyetlen peldanya
      */
 	private static Jatek instance;
     /**
-     * Az időzítő referenciája
+     * Az idozito referenciaja
      */
 	private Timer timer;
 	private boolean nyert = false;
-	private Controller controller;
 	private Rajzolo rajzolo;
-        private Menu menu;
-        private int currentProgress = 0;
+    private Menu menu;
+    private int currentProgress = 0;
 
     /**
-     * privát konstruktor
+     * privat konstruktor
      */
     private Jatek(){
            
     }
 
     /**
-     * //Singleton osztály
+     * Singleton osztaly
      * @return a Jatek maga
      */
     public static Jatek getInstance(){
@@ -39,10 +39,10 @@ public class Jatek {
     }
 
     /**
-     * Játék elindítása.
-     * A menüben ha a játékos elindítja a játékot meghívódik ez a függvény
-     * Betölti a terepasztalt és elindítja a Timert
-     * @param palya a pályának a neve
+     * Jatek elinditasa.
+     * A menuben ha a jatekos elindítja a jatekot meghívódik ez a fuggveny
+     * Betolti a terepasztalt es elindítja a Timert
+     * @param palya a palyanak a neve
      */
     public void start(String palya) {
         nyert = false;
@@ -55,60 +55,63 @@ public class Jatek {
 	}
 
     /**
-     * Játékos veszt
-     * két vonat összeütközött a pályán
+     * Jatekos veszt
+     * ket vonat osszeutkozott a palyan
      */
 	public void veszt() {
-        //System.exit(0);
         if(!nyert){
             Terepasztal.getInstance().Vege();
-            nyert = true; //lezárjuk
+            nyert = false; //lezarjuk
             timer.stop();
-            System.out.println("vege vesztett");
-            //JOptionPane.showMessageDialog(menu, "VESZTETTÉL!", "Defeat is unacceptable!", JOptionPane.WARNING_MESSAGE);
+            //a vesztettel uzenetet kesobb irjuk ki
         }
-        
-        
 	}
 
     /**
-     * Játékos nyer
+     * Jatekos nyer
      * elfogytak az utasok
      */
 	public void nyer() {
-		System.out.println("vege nyert");
 		timer.stop();
-                nyert = true;
-                Terepasztal.getInstance().Vege();
+        nyert = true;
+        Terepasztal.getInstance().Vege();
 		if(currentProgress == menu.getProgress() && menu.getProgress() < 3 ){
-                    menu.addProgress();
-                    //JOptionPane.showMessageDialog(menu, "NYERTÉL!", "Victory lies ahead!", JOptionPane.WARNING_MESSAGE);
-                }//max 3 map
-			
-		
+			menu.addProgress();//megnyitjuk a kovetkezo palya lehetoseget, ha van
+			//a nyertel uzenetet kesobb irjuk ki
+        }//max 3 map
 	}
 	
+	/**
+	 * setter a rajzolohoz
+	 * @param r1 rajzolo megadasa
+	 */
 	public void setRajzolo(Rajzolo r1)
 	{
 		rajzolo=r1;
 	}
 	
-	public void setController(Controller c1)
-	{
-		controller=c1;
-	}
-	
+	/**
+	 * getter a rajzolohoz
+	 */
 	public Rajzolo getRajzolo()
 	{
 		return rajzolo;
 	}
-        
-        public void setMenu(Menu m){
-            menu = m;
-        }
-	
-        public boolean getNyert(){
-            return nyert;
-        }
+    
+	/**
+	 * setter a menuhoz
+	 * @param m menu megadasa
+	 */
+    public void setMenu(Menu m){
+        menu = m;
+    }
+
+    /**
+     * getter a nyeres lekerdezesehez
+     * @return igaz, ha a jatekos nyert
+     */
+    public boolean getNyert(){
+        return nyert;
+    }
         
 }

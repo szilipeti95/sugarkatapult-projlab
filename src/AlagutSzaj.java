@@ -42,7 +42,6 @@ public class AlagutSzaj extends SinElem {
         if (megepitve == true) {
         	if(!a.isFoglalt()) {
 	        	//A felhasznalo egy mar megepitett alagutSzajra kattintott. Le kell bontani
-                                System.out.println(id+ " alagutszaj lerombolva");
 				a.RemoveAlagutSzaj(this);
 				megepitve = false;
 				
@@ -50,14 +49,12 @@ public class AlagutSzaj extends SinElem {
 		}
 		else if (megepitve == false && !a.getAllapot().equals(AlagutAllapot.VanAlagut)){
 			//A felhasznalo egy meg nem megepitett alagutSzajra kattintott. fel kell epiteni
-                        System.out.println(id+ " alagutszaj megepitve");
 			a.AddAlagutSzaj(this);
 			megepitve = true;
 			
 		}
-		else if(a.getAllapot().equals(AlagutAllapot.VanAlagut)){
-			System.out.println("nem epitheto meg az alagutszaj");
-		}
+		/*else if(a.getAllapot().equals(AlagutAllapot.VanAlagut)){
+		}*///nem lehet alagutszajat epiteni
 	}
 	
 	/**
@@ -119,16 +116,30 @@ public class AlagutSzaj extends SinElem {
 		}
 	}
 	
+	/**
+	 * getter a megepitettseghez
+	 * @return igaz, ha meg van epitve
+	 */
 	public boolean getMegeptive()
 	{
 		return megepitve;
 	}
 
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
 	}
 	
+	/**
+	 * againak lekerese
+	 * @param a melyiket. a-kimenet, b-alagutsin(ha megvan epitve)
+	 * @return a parameterben megadott sinElem. null, ha hibas parameter
+	 */
+	@Override
 	public SinElem getAg(char a)
 	{
         if (a == 'a')

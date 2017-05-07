@@ -1,6 +1,3 @@
-
-import java.awt.image.BufferedImage;
-
 /**
  * Kerdezgeti az alatta allo SinElemet, hogy melyik lesz a kovetkezo SinElem.
  * Szol az elso Kocsinak, hogy mozogjon (mozog). 
@@ -62,64 +59,30 @@ public class Mozdony extends Szerelveny {
 	public void utkozesVizsgal() {
 		//Lekérdezzük, hogy a SinElem-en, amin a mozdony van, van-e másik szerelvény.
 		boolean utkozes = sinElem.getUtkozes();
-		
 		if (utkozes)
 		{
 			utkozik();
-			Jatek.getInstance().veszt();
-                        
+			Jatek.getInstance().veszt();               
 		}
 	}
-	
-        public boolean getUtkozott(){
-            return utkozott;
-        }
 	
 	/**
-	 * Kiirja az osszes, vagy a megadott attributum ertekeit
-	 * @param id az azonosit, amire az infot kertek
-	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
+	 * getter, hogy utkozott-e a mozdony
+	 * @return igaz, ha utkozott
 	 */
-	@Override
-	public void GetInfo(String id, String attr) {
-		if(id.equals(this.id)) {
-			super.GetInfo(id, attr);
-			if (attr == null)
-			{
-				System.out.println("utkozott: " + utkozott);
-				if (id.split("-").length > 1)
-				kovKocsi.GetInfo(id.split("-")[1], attr);
-			}
-			else
-			{
-				switch (attr) {
-				case "utkozott":
-					System.out.println(this.id + ":");
-					System.out.println("utkozott: " + utkozott);
-					break;
-			
-				default:
-					break;
-				}
-			}
-		}
-		else if (id.split("-").length > 1) {
-			if(kovKocsi != null)
-				kovKocsi.GetInfo(id.split("-")[1], attr);
-		}
-		
-	}
-        @Override
-        public void rajzol(Rajzolo r){
-            r.rajzol(this);
-            if(kovKocsi != null){
-                if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15){
-                    kovKocsi.rajzol(r);
-                }
-                
-            }
-            
-        }
-
-
+    public boolean getUtkozott(){
+        return utkozott;
+    }
+	
+	/**
+	 * kirajzoltatja magat es a maga utan huzott kocsit (ha van) a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
+    @Override
+    public void rajzol(Rajzolo r){
+        r.rajzol(this);
+        if(kovKocsi != null)
+            if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15)
+                kovKocsi.rajzol(r);
+    }
 }

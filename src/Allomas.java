@@ -8,10 +8,14 @@ public class Allomas extends SinElem {
 	private Szin szin;//allomas szine
 	private boolean ures;//ures e vagy vannak felszallni akaro utasok
 	
-	
+	/**
+	 * konstruktor
+	 * @param id azonositoja
+	 * @param szin Szine: p,k,s,z
+	 */
 	Allomas(String id, String szin, int ures) 
     {
-    	super(id);
+    	super(id);//szulo (sinElem) konstruktora
     	switch (szin) {
 		case "p":
 			this.szin = Szin.PIROS;
@@ -29,11 +33,15 @@ public class Allomas extends SinElem {
 			this.szin = Szin.PIROS;
 			break;
 		}
-    	this.ures = (ures == 0);
+    	this.ures = (ures == 0);//int -> boolean
     	
     }
 	
-	
+	/**
+	 * setter a sinelemeihez
+	 * @param s amit rakapcsolunk
+	 * @param c amelyik agara kapcsoljuk: a, b
+	 */
 	@Override
     public void setSinElem(SinElem s, char c){
         if (c == 'a')
@@ -111,11 +119,20 @@ public class Allomas extends SinElem {
 		return sinA;//default, elvileg itt elozo==sinB
 	}
 	
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
 	}
 	
+	/**
+	 * againak lekerese
+	 * @param a melyiket. a, b
+	 * @return a parameterben megadott sinElem. null, ha hibas parameter
+	 */
 	public SinElem getAg(char a)
 	{
         if (a == 'a')

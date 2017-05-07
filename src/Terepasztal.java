@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -42,12 +41,16 @@ public class Terepasztal {
 	 *	tickek számlálója
 	 */
 	private int tck;
-        
-        private int mozdonyokSzama = 0;
-        
-        private final String lehetsegesKocsik = "kpzsx";
-        
-        private boolean vege = false;
+    /**
+     * hany mozdony van osszesen
+     */
+    private int mozdonyokSzama = 0;
+    /**
+     * Sillye megoldasa, vonat generalashoz kell
+     */
+    private final String lehetsegesKocsik = "kpzsx";
+    
+    private boolean vege = false;
         
 	/**
 	 * Terepasztal alapértékeit beállítja, listákat létrehozza
@@ -57,7 +60,7 @@ public class Terepasztal {
         mozdonyok = new ArrayList<>();
         sinelemek = new ArrayList<>();
         besinek = new ArrayList<>();
-        alagut = new Alagut("t1");
+        alagut = new Alagut();
         tck = 0;
 	}
 	/**
@@ -79,9 +82,9 @@ public class Terepasztal {
 		mozdonyok.clear();
 		sinelemek.clear();
 		besinek.clear();
-		alagut = new Alagut("t1");
+		alagut = new Alagut();
 		tck = 0;
-                vege = false;
+        vege = false;
 	}
 
 	/**
@@ -104,14 +107,12 @@ public class Terepasztal {
 	public void rajzol()
 	{
 		Jatek.getInstance().getRajzolo().repaint();
-                if(vege){
-                    if(Jatek.getInstance().getNyert()){
-                       JOptionPane.showMessageDialog(null, "NYERTÉL!", "Victory lies ahead!", JOptionPane.WARNING_MESSAGE); 
-                    }else{
-                        JOptionPane.showMessageDialog(null, "VESZTETTÉL!", "Defeat is unacceptable!", JOptionPane.WARNING_MESSAGE);
-                    }
-                    
-                }
+        if(vege){
+            if(Jatek.getInstance().getNyert())
+               JOptionPane.showMessageDialog(null, "NYERTEL!", "Victory lies ahead!", JOptionPane.WARNING_MESSAGE); 
+            else
+               JOptionPane.showMessageDialog(null, "VESZTETTEL!", "Defeat is unacceptable!", JOptionPane.WARNING_MESSAGE);
+        }
 	}
 	
 	/**
@@ -122,7 +123,7 @@ public class Terepasztal {
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
 			while((line = br.readLine())!= null && !line.equals("."))
-			{
+			{//sinelemek beolvasasa
 				String[] attrs = line.split(" ");
 				switch (attrs[0]) {
 				case "besin":
@@ -156,32 +157,20 @@ public class Terepasztal {
 					keresztSin.setCoords(Integer.parseInt(attrs[2]), Integer.parseInt(attrs[3]));
 					AddSinElem(keresztSin);
 					break;
-
 				default:
 					break;
 				}
 			}
-			while((line = br.readLine())!= null/* && !line.equals(".")*/)
-			{
+			while((line = br.readLine())!= null)
+			{//sinelemek kapcsolatainak beolvasasa
 				String[] attrs = line.split(" ");
 				String[] elso = attrs[0].split("-");
 				String[] masodik = attrs[1].split("-");
-				
 				SinElem talalat1 = ListContains(sinelemek, elso[0]);
 				SinElem talalat2 = ListContains(sinelemek, masodik[0]);
-                                
-                                System.out.println(elso[0] + " " + masodik[0]);
-				
 				talalat1.setSinElem(talalat2, elso[1].charAt(0));
 				talalat2.setSinElem(talalat1, masodik[1].charAt(0));
 			}
-			/*while((line = br.readLine())!= null && !line.equals("."))
-			{
-				String[] attrs = line.split(" ");
-				BeSin beSin = ListContains(besinek, attrs[0]);
-				beSin.VonatBead(attrs[2], Integer.parseInt(attrs[1]), attrs[3]);
-			}*/ //ez a vonat beolvasas
-			System.out.println("jatek elindult");
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "A fajl nem talalhato! Lepjen vissza a menube, es valasszon egy valid palyat.");
 		} catch (IOException e) {
@@ -222,10 +211,9 @@ public class Terepasztal {
 	 */
 	public void AddBeSin(BeSin b) {
          mozdonyokSzama++;
- 	     
          String s = "m" + Integer.toString(mozdonyokSzama);
          Random r = new Random();
-         int db = r.nextInt(2); //max 5 kocsi
+         int db = r.nextInt(4); //max 3 kocsi
           db = Math.max(db, 1); //legyen minimum 1 db;
          StringBuilder sb = new StringBuilder();
          for(int i = 0; i < db; i++){
@@ -242,9 +230,7 @@ public class Terepasztal {
              }
              
          }
-         
-         int tick = r.nextInt(3)+1 + (r.nextInt(2)==0?20:0);
-            System.out.println("Db: " + db + ", kocsik: " + sb.toString() + ", Tick: " + tick);
+         int tick = r.nextInt(mozdonyokSzama*10);//10 tickenkent jon egy vonat kb
          b.VonatBead(s, tick, sb.toString());
          besinek.add(b);
     }
@@ -280,29 +266,42 @@ public class Terepasztal {
 	 */
 	public void vonatrolLeszalltak() {
 	    teliKocsiSzam--;
-	    System.out.println("TeliKocsiszam: " + teliKocsiSzam);
 	    //ha elfogytak a vonatok
 	    if (teliKocsiSzam == 0)
-	    {
 			Jatek.getInstance().nyer();
-            }
 	}
-        
-        public void vonatraFelszalltak(){
-            teliKocsiSzam++;
-        }
+    
+	/**
+	 * szamoljuk hogy hagy teli kocsi van hatra
+	 */
+    public void vonatraFelszalltak(){
+        teliKocsiSzam++;
+    }
 	
+    /**
+     * getter a sinelemekhez
+     * @return a sinelemek listaja
+     */
 	public ArrayList<SinElem> getSinelemek()
 	{
 		return sinelemek;
 	}
-        
-        public ArrayList<Mozdony> getMozdonyok()
+    
+	/**
+	 * getter a mozdonyokhoz (ezekbol a kocsik is elerhetok)
+	 * @return a mozdonyok listaja
+	 */
+    public ArrayList<Mozdony> getMozdonyok()
 	{
 		return mozdonyok;
 	}
 
-	
+	/**
+	 * beolvasasnal hasznalt segedfuggveny
+	 * @param list melyik listaban keresunk
+	 * @param id melyik azonositot
+	 * @return adott tipusu keresett sinelem
+	 */
 	private <T extends SinElem> T ListContains(ArrayList<T> list, String id)
 	{
 		for (int i = 0; i < list.size(); i++)
@@ -312,8 +311,11 @@ public class Terepasztal {
 		}
 		return null;
 	}
-
-        public void Vege(){
-            vege = true;
-        }
+	
+	/**
+	 * setter a veget jelzo valtozohoz
+	 */
+    public void Vege(){
+        vege = true;
+    }
 }

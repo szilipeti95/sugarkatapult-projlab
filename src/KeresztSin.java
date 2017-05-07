@@ -52,8 +52,31 @@ public class KeresztSin extends SinElem {
 		return sinA;//ez a default, ha rossz az elozo, de elv ilyen ne legyen
 	}
 	
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
+	}
+	
+	/**
+	 * againak lekerese
+	 * @param a melyiket. a, b, c, d
+	 * @return a parameterben megadott sinElem. null, ha hibas parameter
+	 */
+	@Override
+	public SinElem getAg(char a)
+	{
+        if (a == 'a')
+        	return sinA;
+        else if (a == 'b')
+        	return sinB;
+        else if (a == 'c')
+        	return sinC;
+        else if (a == 'd')
+        	return sinD;
+        return null;
 	}
 }

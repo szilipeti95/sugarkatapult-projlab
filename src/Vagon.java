@@ -3,7 +3,12 @@
  * hogy melyik SinElemre kell lepnie
  */
 public abstract class Vagon extends Szerelveny {
-
+	
+	/**
+	 * konstruktor
+	 * @param id Azonosito
+	 * @param kovKocsi kovetkezo vagon
+	 */
 	public Vagon(String id, Vagon kovKocsi) {
 		super(id, kovKocsi);
 	}
@@ -19,16 +24,5 @@ public abstract class Vagon extends Szerelveny {
 	 * @param ures true, ha az elozo kocsi ures, kulonben false
 	 */
 	public abstract void SetElozoUres(boolean ures);
-	
-	@Override
-	public void GetInfo(String id, String attr) {
-		if(id.equals(this.id.split("-")[1])) {
-			super.GetInfo(id, attr);
-		}
-		else {
-			if (kovKocsi != null)
-				kovKocsi.GetInfo(id, attr);
-		}
-	}
 
 }

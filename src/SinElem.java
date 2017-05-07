@@ -1,35 +1,61 @@
-import javax.swing.JPanel;
-
+/**
+ * absztrakt osztaly
+ * a kulonbozo sin fajtak szuloje
+ */
 public abstract class SinElem{
-    protected SinElem sinA;
-    protected int x;
+    protected SinElem sinA;//csatlakozo ag
+    protected int x;//koordinatak a palyan
     protected int y;
-    protected int szerelvenyek;
-    protected String id;
+    protected int szerelvenyek;//hanyan vannak rajta
+    protected String id;//azonosito
     
+    /**
+     * setter a koordinatakhoz
+     * legyen a palyan (0-14) hogy latszodjon (pl besinnel, alagutbeli sinnel nem)
+     * @param xin X-koordinata
+     * @param yin Y-koordinata
+     */
     public void setCoords(int xin, int yin)
     {
     	x=xin;
     	y=yin;
     }
     
+    /**
+     * getter az X-koordinatahoz
+     * @return X-koordinata
+     */
     public int getX()
     {
     	return x;
     }
     
+    /**
+     * getter az Y-koordinatahoz
+     * @return Y-koordinata
+     */
     public int getY()
     {
     	return y;
     }
     
-    public SinElem getAg(char a){return null;} //am abstract legyen
+    /**
+     * parameterben kapott agat visszaadja
+     * absztrakt, minden gyereknek mas (pl valto, keresztsin tobb aga van mint tobbinek)
+     * @param a melyik ag, pl a,b,c,d
+     * @return parameterben megadott ag
+     */
+    public abstract SinElem getAg(char a);
         
-    
+    /**
+     * konstruktor
+     * @param id Azonosito
+     */
     SinElem(String id) 
     {
     	this.id = id;
     }
+    
     /**
      * Tovabblepteti a sinen a vonatokat, feluldefinialjak a leszarmazottak
      * @param m Mozdony
@@ -80,10 +106,10 @@ public abstract class SinElem{
 	public void raLep(SzenesKocsi szeneskocsi) {
             szerelvenyek++;
 	}
+	
     /**
      * Input tortent a SinElemen.
      */
-
     public void onInput() {
     }
 
@@ -105,7 +131,10 @@ public abstract class SinElem{
     public abstract void rajzol(Rajzolo r);
     
     
-    
+    /**
+     * getter az azonositohoz
+     * @return azonosito
+     */
     String GetId()
     {
     	return id;

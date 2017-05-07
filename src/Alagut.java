@@ -20,18 +20,6 @@ public class Alagut {
 	 * Az alagut belsejeben levo sinek tarolasa
 	 */
 	private ArrayList<SinElem> alagutSinek = new ArrayList<>();
-	/**
-	 * Alagut id-je
-	 */
-	private String id;
-	
-	/**
-	 * konstruktor
-	 * @param id alagut azonositoja
-	 */
-	Alagut(String id){
-		this.id = id;
-	}
 	
 	/**
 	 * Visszater az Alagut megepultsegenek allapotaval
@@ -60,7 +48,6 @@ public class Alagut {
 				szajB = a;
 			}
 			allapot = AlagutAllapot.VanAlagut;
-			                 System.out.println("alagut megepitve");
 			int length = Math.abs(szajA.getX()-szajB.getX())+Math.abs(szajA.getY()-szajB.getY());
 			for (int i = 0; i < length; i++) {
 				//letrehozzuk a sineket es berakjuk az alagutba
@@ -107,7 +94,6 @@ public class Alagut {
 			}
 			alagutSinek.clear();
 			allapot = AlagutAllapot.EgyAlagutSzaj;
-                        System.out.println("alagut lerombolva");
 		}
 		else{
 			//ha csak egy alagut szaj van akkor csak azt toroljuk
@@ -136,6 +122,11 @@ public class Alagut {
 		return false;
 	}
 	
+	/**
+	 * getter az alagut szajaihoz
+	 * @param c a vagy b szaj
+	 * @return az alagutszaj, vagy null ha ervenytelen
+	 */
 	public AlagutSzaj getSzaj(char c)
 	{
 		if(c=='a')

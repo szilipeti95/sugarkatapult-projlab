@@ -17,7 +17,6 @@ public class UtasKocsi extends Vagon {
 	 */
 	private boolean elozoUres;
 	
-
 	/**
 	 * Konstrukor, inicializalja az adattagokat
 	 * @param id a szerelveny azonositoja
@@ -39,13 +38,11 @@ public class UtasKocsi extends Vagon {
 		if(szin.equals(a.getSzin()) && elozoUres && a.getUres() && !ures) {
 			//A ket szin megegyezik, es az elutte lev kocsi is ures
 			ures = true;
+			//Nincs kovetkezo kocsi, ez a vonat kiurult
+			Terepasztal.getInstance().vonatrolLeszalltak();
 			if(kovKocsi!= null){
-			kovKocsi.SetElozoUres(true);
-                        }
-			if (kovKocsi == null) {
-				//Nincs kovetkezo kocsi, ez a vonat kiurult
-				Terepasztal.getInstance().vonatrolLeszalltak();
-			}
+				kovKocsi.SetElozoUres(true);
+            }
 		}
 	}
 	
@@ -74,7 +71,7 @@ public class UtasKocsi extends Vagon {
 	 * Az allomasnal uj utasok szallnak a kocsira ennek a fugvenynek a meghivasaval
 	 */
 	public void felszall() {
-                Terepasztal.getInstance().vonatraFelszalltak();
+        Terepasztal.getInstance().vonatraFelszalltak();
 		ures = false;
 		if(kovKocsi!=null)
 			kovKocsi.SetElozoUres(false);
@@ -104,54 +101,19 @@ public class UtasKocsi extends Vagon {
 	public void SetElozoUres(boolean urese) {
 		elozoUres = urese;
 	}
-	
+    
 	/**
-	 * Kiirja az osszes, vagy a megadott attributum ertekeit
-	 * @param id az azonosit, amire az infot kertek
-	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
+	 * kirajzoltatja magat es a kovetkezo kocsit (ha van) a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
 	 */
-	@Override
-	public void GetInfo(String id, String attr) {
-		super.GetInfo(id, attr);
-		if(id.equals(this.id.split("-")[1])) {
-			if (attr == null)
-			{
-				System.out.println("szin: " + szin);
-				System.out.println("ures: " + ures);
-				System.out.println("elozoUres: " + elozoUres);
-			}
-			else
-			{
-				switch (attr) {
-				case "elozoUres":
-					System.out.println(this.id + ":");
-					System.out.println("elozoUres: " + elozoUres);
-					break;
-				case "szin":
-					System.out.println(this.id + ":");
-					System.out.println("szin: " + szin);
-					break;
-				case "ures":
-					System.out.println(this.id + ":");
-					System.out.println("ures: " + ures);
-					break;
-			
-				default:
-					break;
-				}
-			}
-		}
-		
-	}
-        
-        @Override
-        public void rajzol(Rajzolo r){
-            r.rajzol(this);
-            if(kovKocsi != null){
-                if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15 &&kovKocsi.getSin().getY()>=0 && kovKocsi.getSin().getY()<15 ){
-                    kovKocsi.rajzol(r);
-                }
+    @Override
+    public void rajzol(Rajzolo r){
+        r.rajzol(this);
+        if(kovKocsi != null){//kirajzoljuk a kovetkezo kocsit, ha van
+            if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15 &&kovKocsi.getSin().getY()>=0 && kovKocsi.getSin().getY()<15 ){
+                kovKocsi.rajzol(r);
             }
         }
+    }
 	
 }

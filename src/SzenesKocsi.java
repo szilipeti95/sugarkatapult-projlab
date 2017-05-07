@@ -1,4 +1,3 @@
-
 /**
  * Ugyan az a felelossege, mint az ososztalyanak, a Vagonnak. 
  * Az allomasnal nem csinal semmit.
@@ -49,24 +48,17 @@ public class SzenesKocsi extends Vagon {
 	}
 	
 	/**
-	 * Kiirja az osszes, vagy a megadott attributum ertekeit
-	 * @param id az azonosit, amire az infot kertek
-	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
 	 */
-	public void GetInfo(String id, String attr) {
-		super.GetInfo(id, attr);
-		
-	}
-        
-        @Override
-        public void rajzol(Rajzolo r){
-            r.rajzol(this);
-            if(kovKocsi != null){
-                if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15){
-                    kovKocsi.rajzol(r);
-                }
+    @Override
+    public void rajzol(Rajzolo r){
+        r.rajzol(this);
+        if(kovKocsi != null){
+            if(kovKocsi.getSin() != null && kovKocsi.getSin().getX() >= 0 && kovKocsi.getSin().getX() < 15){
+                kovKocsi.rajzol(r);
             }
         }
-        
+    }
 
 }

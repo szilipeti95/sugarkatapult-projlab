@@ -48,10 +48,14 @@ public abstract class Szerelveny {
 	public SinElem getSin() {
 		return sinElem;
 	}
-        
-        public SinElem getElozoSin(){
-            return elozoSinElem;
-        }
+    
+	/**
+	 * getter az elozo tickhez tartozo SinElemhez
+	 * @return a SinElem, amin az elozo tickben allt a szerelveny
+	 */
+    public SinElem getElozoSin(){
+        return elozoSinElem;
+    }
 		
 	/**
 	 * Ezt a fuggveny hivja meg az alagtSzaj, mikor a szerelveny belep az alaguttba.
@@ -69,61 +73,26 @@ public abstract class Szerelveny {
 	}
 	
 	/**
-	 * Kiirja az osszes, vagy a megadott attributum ertekeit
-	 * @param id az azonosit, amire az infot kertek
-	 * @param attr az attributum, aminek az erteket ki kell iratni. null, ha az osszes attributum kiiratando
-	 */
-	public void GetInfo(String id, String attr) {
-		if (attr == null)
-		{
-			System.out.println(this.id + ":");
-			System.out.println("sinElem: " + ((sinElem == null) ? "null" : sinElem.GetId()));
-			System.out.println("alagutban: " + alagutban);
-			System.out.println("elozoSinElem: " +((elozoSinElem == null) ? "null" : elozoSinElem.GetId()));
-			System.out.println("kovKocsi: " + ((kovKocsi == null) ? "null" : kovKocsi.GetId()));
-			
-		}
-		else
-		{
-			switch (attr) {
-			case "sinelem":
-				System.out.println(this.id + ":");
-				System.out.println("sinElem: " + sinElem.GetId());
-				break;
-			case "elozosinelem":
-				System.out.println(this.id + ":");
-				System.out.println("elozoSinElem: " +((elozoSinElem == null) ? "null" : elozoSinElem.GetId()));
-				break;
-			case "allapot":
-				System.out.println(this.id + ":");
-				System.out.println("allapot: " + elozoSinElem.GetId());
-				break;
-			case "kovkocsi":
-				System.out.println(this.id + ":");
-				System.out.println("kovKocsi: " + ((kovKocsi == null) ? "null" : kovKocsi.GetId()));
-				break;
-		
-			default:
-				break;
-			}
-		}
-		
-	}
-	
-	/**
 	 * A sinelem-et allitja be, amin a szerelveny epp tartozkodik
 	 * @param s a beallitando sinElem
 	 */
 	public void SetSinElem(SinElem s){
 		this.sinElem = s;
 	}
-        
-        public void SetElozoElem(SinElem s){
+    
+	/**
+	 * A sinelem-et allitja be, amin a szerelveny az elobb tartozkodott
+	 * @param s a beallitando sinElem
+	 */
+    public void SetElozoElem(SinElem s){
 		this.elozoSinElem = s;
 	}
         
-        
-        public abstract void rajzol(Rajzolo r);
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
+    public abstract void rajzol(Rajzolo r);
         
         
 }

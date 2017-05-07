@@ -93,10 +93,8 @@ public class Valto extends SinElem {
      * @param s Melyik SinElemre valtson 
      */
     public void valt(SinElem s) {
-        if(getSzerelvenyek() < 1) { //Ha nem foglalt
+        if(getSzerelvenyek() < 1)//Ha nem foglalt
             aktivAg = s;
-    		System.out.println(id+" valto atvaltott a "+ (char)(kimenetek.indexOf(s)+'a'+1) +" agba");//egyik teszt miatt ezt kiirjuk
-        }
         //else: van rajta vonat, igy nem lehet valtani
     }
 	
@@ -127,11 +125,20 @@ public class Valto extends SinElem {
 		}
 	}
 	
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
 	@Override
 	public void rajzol(Rajzolo r) {
 		r.rajzol(this);
 	}
 	
+	/**
+	 * againak lekerese
+	 * @param a melyiket. a, b, c, ..
+	 * @return a parameterben megadott sinElem. null, ha hibas parameter
+	 */
 	@Override
 	public SinElem getAg(char c)
 	{
@@ -142,6 +149,10 @@ public class Valto extends SinElem {
         }
 	}
 	
+	/**
+	 * getter a valto aktiv agahoz
+	 * @return az aktiv ag
+	 */
 	public SinElem getAktivAg()
 	{
 		return aktivAg;
