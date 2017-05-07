@@ -85,6 +85,7 @@ public class Terepasztal {
 		alagut = new Alagut();
 		tck = 0;
         vege = false;
+        mozdonyokSzama = 0;
 	}
 
 	/**
@@ -120,7 +121,6 @@ public class Terepasztal {
 	 * @param fileName a fájl neve amiből a beolvasás történik
 	 */
 	public void init(String fileName) {
-		tck=0;
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line = null;
 			while((line = br.readLine())!= null && !line.equals("."))
