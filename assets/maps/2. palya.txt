@@ -138,9 +138,9 @@ n13-b n14-a
 n14-b n15-a
 n15-b n16-a
 n16-b n17-a
-n17-b v3-a
+n94-b v3-a
 v3-b n18-a
-v3-c n94-b
+v3-c n17-b
 n18-b v4-a
 v4-b n21-a
 v4-c n19-a
