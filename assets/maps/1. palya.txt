@@ -1,0 +1,76 @@
+besin b1 8 -1
+normalsin n1 8 0
+normalsin n2 8 1
+normalsin n3 8 2
+normalsin n4 8 3
+normalsin n5 8 4
+valto v1 8 5
+normalsin n6 8 6
+normalsin n7 8 7
+normalsin n8 8 8
+allomas a1 k 0 8 9
+normalsin n9 8 10
+normalsin n10 8 11
+normalsin n29 8 12
+besin b2 1 15
+normalsin n11 1 14
+normalsin n12 1 13
+valto v2 1 12
+normalsin n13 1 11
+normalsin n14 1 10
+normalsin n15 1 9
+allomas a2 p 0 1 8
+normalsin n16 1 7
+normalsin n17 1 6
+normalsin n28 1 5
+normalsin n18 2 5
+normalsin n19 3 5
+allomas a3 z 0 4 5
+normalsin n20 5 5
+normalsin n21 6 5
+normalsin n22 7 5
+normalsin n23 2 12
+normalsin n24 3 12
+normalsin n25 4 12
+allomas a4 s 0 5 12
+normalsin n26 6 12
+normalsin n27 7 12
+.
+b1-a n1-a
+n1-b n2-a
+n2-b n3-a
+n3-b n4-a
+n4-b n5-a
+n5-b v1-b
+v1-a n6-a
+n6-b n7-a
+n7-b n8-a
+n8-b a1-a
+a1-b n9-a
+n9-b n10-a
+n10-b n29-a
+b2-a n11-a
+n11-b n12-a
+n12-b v2-b
+v2-a n13-a
+n13-b n14-a
+n14-b n15-a
+n15-b a2-a
+a2-b n16-a
+n16-b n17-a
+n17-b n28-a
+n28-b n18-a
+n18-b n19-a
+n19-b a3-a
+a3-b n20-a
+n20-b n21-a
+n21-b n22-a
+n22-b v1-c
+v2-c n23-a
+n23-b n24-a
+n24-b n25-a
+n25-b a4-a
+a4-b n26-a
+n26-b n27-a
+n28-b n18-a
+n27-b n29-b

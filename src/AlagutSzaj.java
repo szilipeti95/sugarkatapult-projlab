@@ -1,66 +1,151 @@
-import java.util.Scanner;
-
+/**
+ * Szamon tartja, hogy meg van-e epitve. Kezeli az alagut szajra töorteno kattintast.
+ */
 public class AlagutSzaj extends SinElem {
+	/**
+	 * alagutSzaj megepultsegenek allapota
+	 */
 	private boolean megepitve;
+	/**
+	 * hozza kapcsolodo alagutsin
+	 */
 	private SinElem alagutSin;
 	
-	//Reagál arra, ha a felhasználó rákattint az alagutSzaj-ra
+	/**
+	 * konstruktor
+	 * @param id alagutSzaj azonositoja
+	 */
+	AlagutSzaj(String id) 
+    {
+    	super(id);
+    }
+	
+	/**
+	 * alagutsin vegenek bekotese
+	 * @param s amit hozza akarunk kotni
+	 * @param c melyik felehez akarjuk kotni (<code>a</code> sinA / <code>b</code> alagutSin)
+	 */
+	@Override
+    public void setSinElem(SinElem s, char c){
+        if (c == 'a')
+        	sinA = s;
+        else if (c == 'b')
+        	alagutSin = s;
+    }
+	
+	/**
+	 * Reagal arra, ha a felhasznalo rakattint az alagutSzaj-ra
+	 */
 	public void onInput() {
-		System.out.println("AlagutSzaj.onInput()");
-		
 		//Elkerjuk a terepasztaltol az alagutat
-		System.out.print("AlagutSzaj -> ");
 		Alagut a = Terepasztal.getInstance().getAlagut();
-		System.out.println("Meg van mar epitve ez az alagutSzaj? (igen/nem)");
-        Scanner reader = new Scanner(System.in);
-        String valasz = reader.next();
-        if (valasz.equals("igen")) {
-        	//A felhasznalo egy mar megepitett alagutSzajra kattintott. Le kell bontani
-    		System.out.print("AlagutSzaj -> ");
-			a.RemoveAlagutSzaj(this);
+        if (megepitve == true) {
+        	if(!a.isFoglalt()) {
+	        	//A felhasznalo egy mar megepitett alagutSzajra kattintott. Le kell bontani
+				a.RemoveAlagutSzaj(this);
+				megepitve = false;
+				
+        	}
 		}
-		else if (valasz.equals("nem")){
+		else if (megepitve == false && !a.getAllapot().equals(AlagutAllapot.VanAlagut)){
 			//A felhasznalo egy meg nem megepitett alagutSzajra kattintott. fel kell epiteni
-			System.out.print("AlagutSzaj -> ");
 			a.AddAlagutSzaj(this);
+			megepitve = true;
+			
 		}
+		/*else if(a.getAllapot().equals(AlagutAllapot.VanAlagut)){
+		}*///nem lehet alagutszajat epiteni
 	}
 	
-	//
+	/**
+	 * Lepteti a mozdonyt, illetve felrobbantja a vonatot, ha nincs megepitve.
+	 * @param m A leptetendo Mozdony
+	 * @param s Elozo sinelem
+	 */
+	@Override
 	public void leptet(Mozdony m, SinElem s) {
-		System.out.println("AlagutSzaj.leptet()");
-		
-		System.out.println("Meg van epitve az alagut? (igen/nem): ");
-		Scanner reader = new Scanner(System.in);
-		String valasz = reader.next();
-		switch (valasz){
-		case "igen":
-				//Ha az alagut fel van epitve, jelezzuk a mozdony fele, hogy alagutban halad
-				System.out.print("AlagutSzaj -> ");
-				m.alagutValt(); break;
-		case "nem":
-			//Ha nincs megepitve az alagutSzaj. A vonat utkozik
-			System.out.print("AlagutSzaj -> ");
+		Alagut a = Terepasztal.getInstance().getAlagut();
+		if (a.getAllapot().equals(AlagutAllapot.VanAlagut)){
+			//Ha az alagut fel van epitve, jelezzuk a mozdony fele, hogy alagutban halad
+			m.alagutValt();
+			szerelvenyek++;
+		}
+		else {
+			//Ha nincs megepitve az alagut, a vonat utkozik
 			m.utkozik(); 
 			//Es elveszitjuk a jatekot
-			System.out.print("AlagutSzaj -> ");
 			Jatek.getInstance().veszt();
-			break;
 		}
 	}
+	
+	/**
+	 * Ralep egy utaskocsi az AlagutSzaj-ra
+	 * @param k UtasKocsi ami ralepett
+	 */
 	@Override
-	public void raLep(Kocsi k) {
-		System.out.println("AlagutSzaj.raLep()");
-		
+	public void raLep(UtasKocsi k) {
 		//Tudatjuk a kocsikkal, hogy alagutbn haladnak
-		System.out.print("AlagutSzaj -> ");
 		k.alagutValt();
+		szerelvenyek++;
 	}
 	
-
+	/**
+	 * Ralep egy szeneskocsi az AlagutSzaj-ra
+	 * @param k SzenesKocsi ami ralepett
+	 */
+	@Override
+	public void raLep(SzenesKocsi k) {
+		//Tudatjuk a kocsikkal, hogy alagutbn haladnak
+		k.alagutValt();
+		szerelvenyek++;
+	}
+	
+	/**
+     * Lekeri a kovetkezo SinElemet
+     * @param elozo Elozo SinElem
+     * @return Kovetkezo SinElem
+     */
 	@Override
 	public SinElem getKovSinElem(SinElem elozo) {
-		System.out.println("AlagutSzaj.getKovSinElem()");
-		return alagutSin;
+		//Visszaadja a következo SinElem-et
+		if(sinA.equals(elozo)){
+			return alagutSin;
+		}
+		else{
+			return sinA;
+		}
+	}
+	
+	/**
+	 * getter a megepitettseghez
+	 * @return igaz, ha meg van epitve
+	 */
+	public boolean getMegeptive()
+	{
+		return megepitve;
+	}
+
+	/**
+	 * kirajzoltatja magat a parameterben kapott rajzoloval
+	 * @param r A rajzolo ami kirajzolja
+	 */
+	@Override
+	public void rajzol(Rajzolo r) {
+		r.rajzol(this);
+	}
+	
+	/**
+	 * againak lekerese
+	 * @param a melyiket. a-kimenet, b-alagutsin(ha megvan epitve)
+	 * @return a parameterben megadott sinElem. null, ha hibas parameter
+	 */
+	@Override
+	public SinElem getAg(char a)
+	{
+        if (a == 'a')
+        	return sinA;
+        else if (a == 'b')
+        	return alagutSin;
+        return null;
 	}
 }

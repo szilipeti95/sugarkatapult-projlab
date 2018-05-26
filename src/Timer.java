@@ -1,37 +1,30 @@
-﻿import java.util.Scanner;
+import java.util.TimerTask;
 
+/**
+ * idozito osztaly
+ */
 public class Timer {
-        //elindul a Timer
-	//Akkor hívódik meg amikor a játékos elindítja a játékot.
+    java.util.Timer t = new java.util.Timer();
+    /**
+     * elindul a Timer
+     * Akkor hivodik meg amikor a jatekos elinditja a jatekot
+     */
 	public void start() {
-		System.out.println("Timer.start()");
-		
-		Scanner reader = new Scanner(System.in);
-		boolean exit = false;
-		while (!exit) {
-			System.out.println("Valasszon az alabbi lehetosegek kozul? (tick, input, exit, vonatbead)");
-			switch (reader.next()) {
-			case "tick":
-				System.out.print("Timer -> ");
-				Terepasztal.getInstance().tick();
-				break;
-			case "input":
-				System.out.print("Timer -> ");
-				Terepasztal.getInstance().onInput(0, 0);			
-				break;
-			case "vonatbead":
-				System.out.print("Timer -> ");
-				Terepasztal.getInstance().VonatBead();			
-				break;
-			case "exit":
-				exit = true;
-				break;
-			default:
-				break;
-			}
-		if (exit)
-			System.exit(0);
-
-		}
+		t.schedule(new TimerTask()
+		{
+			  @Override
+			  public void run() {
+			    Terepasztal.getInstance().tick();//lepteti a szimulaciot
+			    Terepasztal.getInstance().rajzol();//es kirajzolja
+			  }
+		}, 0,500);
 	}
+    
+	/**
+	 * idozito megallitasa
+	 * amikor vege a jateknak, pl vesztett, nyert
+	 */
+    public void stop(){
+        t.cancel();
+    }
 }
